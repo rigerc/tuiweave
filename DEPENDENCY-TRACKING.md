@@ -23,6 +23,7 @@ from 2026-07-17; they have not been refreshed by the pin review.
 | `github.com/charmbracelet/ultraviolet` | `v0.0.0-20261008173134-6b8d4baf91b4` (pseudo) | **1.26.0** |
 | `charm.land/glamour/v2` | `v2.0.1` (tagged) | 1.25.8 |
 | `github.com/charmbracelet/x/ansi` | `v0.11.9` (tagged) | 1.24.2 |
+| `github.com/lsferreira42/figlet-go` | `v0.0.2-beta` (tagged beta) | 1.21 |
 
 The Go 1.26.0 floor is set by Bubble Tea v2.1.0 and Ultraviolet. Lowering the floor
 requires an upstream or module-structure change (see DESIGN.md §6).
@@ -85,7 +86,9 @@ Go 1.26.0 on Linux.
 tuiweave treats Bubble Tea and Lip Gloss as beta dependencies even though they
 publish v2 tags. Ultraviolet is explicitly v0 and pseudo-versioned. `x/ansi`
 is a tagged utility dependency, but its parsing and visible-width behavior is
-observable throughout tuiweave. All upgrades are deliberate, not automatic;
+observable throughout tuiweave. `figlet-go` is a beta, standard-library-only
+decorative rendering dependency confined to the optional `banner` package. All
+upgrades are deliberate, not automatic;
 see [COMPATIBILITY.md](COMPATIBILITY.md) for the normative policy.
 
 ---

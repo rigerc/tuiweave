@@ -42,6 +42,12 @@ before v1, a minor release may contain breaking changes when clearly called out.
 
 ### Added
 
+- Added `banner`, a figlet ASCII-art utility with named gradients, ANSI or
+  truecolor output, HTML output, explicit plain-text parsing, and a runnable
+  [`examples/banner`](examples/banner) demo. Rendering is deterministic when
+  `Font` and a color or parser are explicit; omitted values select random
+  fonts/gradients.
+
 - Writer-boundary compatibility coverage for split ANSI/UTF-8 input, newline
   style/link restoration, CRLF, nested writers, and writes after close, plus
   direct `Wrap` output comparisons with v2.0.6.

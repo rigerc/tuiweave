@@ -17,6 +17,7 @@ watch report, not a support promise.
 | Glamour | `charm.land/glamour/v2 v2.0.1` | `go.mod`; agentic Markdown tests |
 | Ultraviolet | `v0.0.0-20261008173134-6b8d4baf91b4` | `go.mod`; layout, overlay, and SnapCells coverage |
 | ANSI utilities | `github.com/charmbracelet/x/ansi v0.11.9` | `go.mod`; rendering and cell-width coverage |
+| Figlet rendering | `github.com/lsferreira42/figlet-go v0.0.2-beta` | `go.mod`; banner tests and example golden |
 
 The supported dependency graph is the graph selected by `go.mod`. tuiweave
 does not promise compatibility with arbitrary newer upstream versions merely

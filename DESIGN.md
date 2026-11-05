@@ -382,6 +382,7 @@ github.com/ishan5ain/tuiweave
 ├── palette/           bounded command-palette foundation
 ├── autocomplete/      app-owned input plus conditional suggestion window
 ├── line/              width-aware single-row composition helpers
+├── banner/            figlet ASCII art with named gradients (decoration utility)
 ├── statusbar/  list/  viewport/  textinput/  textarea/  table/  help/  spinner/
 │                    generic primitives, one package each
 ├── scrollbar/       one-column bar for anything implementing Scrollable
@@ -401,6 +402,7 @@ github.com/ishan5ain/tuiweave
 │   ├── chat/        mock agentic session (Phase 3 exit criterion), golden-tested
 │   ├── frame/       framing/decorations/tabs/menu/toolbar/splitpane/stack/progress/toggle/button composition example, golden-tested
 │   ├── palette/     filtered command discovery and activation example, golden-tested
+│   ├── banner/      static figlet splash-banner example, golden-tested
 │   ├── autocomplete/ app-owned input plus conditional suggestions, golden-tested
 │   ├── ops/         non-agentic operations-console pressure test, golden-tested
 │   ├── browser/     filterable file list + scrollable preview, golden-tested

@@ -58,6 +58,7 @@ func main() {
 
 - Canonical non-agentic app: [`examples/ops`](examples/ops)
 - Small composition example: [`examples/frame`](examples/frame)
+- ASCII banner rendering: [`examples/banner`](examples/banner)
 - Huh-style form fields: [`examples/form`](examples/form)
 - Clack-style inline prompts: [`examples/inline`](examples/inline)
 - Public-API consumer smoke app: [`examples/consumer`](examples/consumer)
@@ -129,7 +130,7 @@ interaction component such as `list` or `textarea`, and `snaptest`. Add
 ### Package guides
 
 Foundations and composition:
-[`action`](action), [`focus`](focus), [`frame`](frame), [`inspect`](inspect),
+[`action`](action), [`banner`](banner), [`focus`](focus), [`frame`](frame), [`inspect`](inspect),
 [`layout`](layout), [`line`](line), [`mouse`](mouse), [`overlay`](overlay),
 [`scrollbar`](scrollbar), [`snaptest`](snaptest), [`splitpane`](splitpane), and
 [`stack`](stack).

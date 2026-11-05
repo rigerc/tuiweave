@@ -8,6 +8,7 @@ require (
 	charm.land/lipgloss/v2 v2.0.7-0.20260901023042-868e8b5c4fb6
 	github.com/charmbracelet/ultraviolet v0.0.0-20261008173134-6b8d4baf91b4
 	github.com/charmbracelet/x/ansi v0.11.9
+	github.com/lsferreira42/figlet-go v0.0.2-beta
 )
 
 require (

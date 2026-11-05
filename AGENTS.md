@@ -29,6 +29,7 @@ and example before reading the detailed recipes below.
 - Command palettes: `github.com/ishan5ain/tuiweave/palette` (filtered action discovery)
 - Autocomplete: `github.com/ishan5ain/tuiweave/autocomplete` (app-owned input plus suggestions)
 - Line composition: `github.com/ishan5ain/tuiweave/line` (truncation, alignment, fill zones)
+- Banners: `github.com/ishan5ain/tuiweave/banner` (figlet ASCII art and gradients)
 - Testing: `github.com/ishan5ain/tuiweave/snaptest` (golden files)
 - Domain packages: `tuiweave/agentic/…` (markdown, chat, toolcall, diffview,
   permission, usagebar) — optional, backend-agnostic layers built on the
@@ -323,6 +324,34 @@ badge := frame.Badge(theme, "healthy", frame.BadgeSuccess)
 - Keep borders, titles, and badges in the composition layer. Do not make a
   domain component reimplement them or splice side borders around multiline
   content itself.
+
+### banner
+
+Use `banner` for figlet ASCII art splash screens and CLI headers. It is a pure
+string-rendering utility, not an MVU component or a themed surface:
+
+```go
+out, err := banner.Render(banner.Config{
+    Text:     "tuiweave",
+    Font:     "standard",
+    Width:    80,
+    Parser:   "terminal-color",
+    Gradient: &banner.GradientOcean,
+})
+```
+
+- `Parser` accepts `terminal-color` (default), `terminal` (plain, no ANSI), and
+  `html`. An explicit plain parser wins even when a color or gradient is set.
+- Pass an explicit `Font` and `Color`, `Gradient`, or plain `Parser` for
+  deterministic output. An empty `Font` selects a random font; with no color
+  option set, rendering uses a random predefined gradient.
+- `Gradients()` and `GradientForName(name)` expose the named palette;
+  `RandomGradient()` and `RandomColor` are available for playful output.
+- Banner gradients are intentional decoration presets, not `tuiweave.Theme`
+  roles. Do not use them where a component must follow the selected theme.
+- `Width` defaults to 80; values below 20 clamp to 20.
+
+[examples/banner](examples/banner/main.go) is the runnable gradient example.
 
 ### tabs
 
