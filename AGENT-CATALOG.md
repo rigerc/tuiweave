@@ -30,9 +30,9 @@ failure modes below as an audit checklist.
 | Task | Start here |
 |---|---|
 | Build an app shell | `layout`, then `focus`, `statusbar`, `help` |
-| Start a greenfield app workflow | [AGENT-CONTRACT.md](AGENT-CONTRACT.md), then the closest runnable example |
-| Plan an existing-TUI migration | [AGENT-CONTRACT.md](AGENT-CONTRACT.md) migration contract and `tuiweave-agent-kit` playbooks |
-| Review an app or migration | Theme, layout, MVU, focus, mouse, modal, narrow, and snapshot audit |
+| Start a greenfield app workflow | [AGENT-CONTRACT.md](AGENT-CONTRACT.md), the [agent kit greenfield playbook](agent-kit/playbooks/greenfield.md), then the closest runnable example |
+| Plan an existing-TUI migration | [AGENT-CONTRACT.md](AGENT-CONTRACT.md) migration contract and the [agent kit migration playbook](agent-kit/playbooks/migration.md) |
+| Review an app or migration | Theme, layout, MVU, focus, mouse, modal, narrow, and snapshot audit; [agent kit review playbook](agent-kit/playbooks/review.md) and `agent-kit/scripts/tuiweave-audit.sh` |
 | Build a file browser | `examples/browser`; compose `textinput`, `list`, `viewport`, `tabs`, and `focus` |
 | Compose a multi-pane reference app | `examples/ops` or `examples/browser`; follow the recipes in `AGENTS.md` |
 | Route a nested modal | `focus.Stack`; apply root-to-top `focus.Group` layers and route keys to the top layer |

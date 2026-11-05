@@ -21,6 +21,11 @@ before v1, a minor release may contain breaking changes when clearly called out.
 - Writer-boundary compatibility coverage for split ANSI/UTF-8 input, newline
   style/link restoration, CRLF, nested writers, and writes after close, plus
   direct `Wrap` output comparisons with v2.0.6.
+- Vendored
+  [`tuiweave-agent-kit`](https://github.com/ishan5ain/tuiweave-agent-kit) at
+  commit `bfe0f1d` under `agent-kit/`, with its fixture suites checked by
+  `scripts/agent-kit-verify.sh` from root CI. The snapshot is unmodified;
+  `CONTRIBUTING.md` records the revision and the update procedure.
 
 ## [0.3.0] - 2026-10-10
 

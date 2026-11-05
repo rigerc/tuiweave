@@ -68,6 +68,8 @@ configuration.
 
 Run the app's build, vet, tests, snapshot update when intentionally changing
 rendering, and the read-only audit from
-[`tuiweave-agent-kit`](https://github.com/ishan5ain/tuiweave-agent-kit). Read the
-golden diff before handoff. Include failures, deferred gaps, and the exact
-tuiweave revision in the result.
+[`tuiweave-agent-kit`](https://github.com/ishan5ain/tuiweave-agent-kit). A
+tuiweave checkout vendors the kit at `agent-kit/`, so
+`agent-kit/scripts/tuiweave-audit.sh --repo /path/to/app` runs the audit without
+a separate clone. Read the golden diff before handoff. Include failures,
+deferred gaps, and the exact tuiweave revision in the result.

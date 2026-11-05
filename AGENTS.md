@@ -61,6 +61,10 @@ development only. Application agents must report a reusable API gap with a
 minimal example and acceptance test instead of inventing a local fork; changes
 to tuiweave require explicit authorization.
 
+The app workflows, Agent Skills package, templates, and read-only audit are
+vendored from `tuiweave-agent-kit` under [`agent-kit/`](agent-kit/). Keep that
+copy unmodified; see [CONTRIBUTING.md](CONTRIBUTING.md) to update the snapshot.
+
 ## Hard rules
 
 1. **Colors come from `tuiweave.Theme` roles — never literals.** No hex strings,

@@ -337,7 +337,10 @@ rules, compatibility, examples, and snapshots. `AGENT-CONTRACT.md` distills
 the workflow for agents without duplicating the rulebook. The separate
 `tuiweave-agent-kit` repository packages greenfield, migration, and review
 playbooks, portable templates, a standard Agent Skills skill, host installation
-instructions, and a read-only audit.
+instructions, and a read-only audit. This repository vendors that kit as a
+pinned upstream snapshot under `agent-kit/`, so a checkout carries the workflows
+and audit tooling without a second clone; `CONTRIBUTING.md` records the revision
+and the update procedure.
 
 The workflow deliberately separates reusable library behavior from application
 orchestration. An app agent may identify a candidate tuiweave API gap, but it must

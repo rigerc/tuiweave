@@ -182,6 +182,7 @@ encapsulated.
 - [v1 readiness checklist](V1-READINESS.md)
 - [Agent catalog](AGENT-CATALOG.md)
 - [Authoring conventions](AGENTS.md)
+- [Agent kit](agent-kit/README.md) — app workflows, skill package, templates, and audit
 
 ## Development
 
@@ -194,6 +195,7 @@ go vet ./...
 go test ./...
 go test -race ./...
 govulncheck ./...
+./scripts/agent-kit-verify.sh
 ```
 
 Rendering changes require intentional snapshot review; see [AGENTS.md](AGENTS.md).
