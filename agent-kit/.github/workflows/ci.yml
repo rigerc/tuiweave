@@ -1,0 +1,36 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "37 8 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: ${{ matrix.name }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - go: stable
+            name: audit
+          - go: 1.26.0
+            name: audit (Go 1.26.0)
+    runs-on: ubuntu-latest
+    env:
+      GOTOOLCHAIN: local
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: ${{ matrix.go }}
+          check-latest: true
+      - name: Run audit fixtures
+        run: ./tests/tuiweave-audit_test.sh
+      - name: Run reference sync fixtures
+        run: ./tests/sync-tuiweave-reference_test.sh

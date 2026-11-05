@@ -1,0 +1,2 @@
+1: "> " [fg=Accent] | "hello" [fg=Text] | " " [fg=Text reverse]
+2:

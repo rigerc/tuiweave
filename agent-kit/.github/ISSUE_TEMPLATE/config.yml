@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Usage and workflow discussions
+    url: https://github.com/ishansain/tuiweave-agent-kit/discussions
+    about: Ask questions about installing or applying the kit.
+  - name: Security report
+    url: https://github.com/ishansain/tuiweave-agent-kit/security/advisories/new
+    about: Report vulnerabilities privately.
