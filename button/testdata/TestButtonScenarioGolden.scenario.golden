@@ -1,11 +1,11 @@
 ## initial
 command: no
-[ Open workspace           ]
+  Open workspace
 
 ## activate
 command: yes
-[ Open workspace           ]
+  Open workspace
 
 ## activate semantically
 command: yes
-[ Open workspace           ]
+  Open workspace

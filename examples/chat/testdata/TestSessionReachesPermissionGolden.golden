@@ -14,9 +14,9 @@ Let me verify │  Reversibility: reversible               │
               │  Policy: shell commands require          │
               │  approval                                │
               │                                          │
-              │   1  Allow once                          │
-              │   2  Allow always                        │
-              │   3  Deny                                │
+              │   1 > Allow once                         │
+              │   2   Allow always                       │
+              │   3   Deny                               │
               │                                          │
-> ask the mock╰──────────────────────────────────────────╯
+┃ > ask the mo╰──────────────────────────────────────────╯
  pi-large                                      ↑1.2k ↓21  $0.00  ctx 1%

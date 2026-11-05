@@ -1,1 +1,1 @@
-1: "> " [fg=Accent] | "type a message…" [fg=TextFaint]
+1: "  " | "> " [fg=Accent] | "type a message…" [fg=TextMuted]

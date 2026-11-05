@@ -1,0 +1,3 @@
+1: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "Refresh" [fg=Accent bg=SurfaceRaised bold] | "                           " [bg=SurfaceRaised]
+2: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "Keep the list current" [fg=TextMuted bg=SurfaceRaised] | "             " [bg=SurfaceRaised]
+3: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "[x]" [fg=Surface bg=Accent bold] | " Auto-refresh" [fg=Text bg=SurfaceRaised] | "                  " [bg=SurfaceRaised]

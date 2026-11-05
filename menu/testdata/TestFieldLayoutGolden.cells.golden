@@ -1,0 +1,5 @@
+1: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "Color" [fg=Accent bg=SurfaceRaised bold] | "                             " [bg=SurfaceRaised]
+2: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "Pick a color" [fg=TextMuted bg=SurfaceRaised] | "                      " [bg=SurfaceRaised]
+3: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "> red" [fg=Accent bg=SurfaceRaised bold] | "                             " [bg=SurfaceRaised]
+4: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "green" [fg=Text bg=SurfaceRaised] | "                           " [bg=SurfaceRaised]
+5: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "blue" [fg=Text bg=SurfaceRaised] | "                            " [bg=SurfaceRaised]

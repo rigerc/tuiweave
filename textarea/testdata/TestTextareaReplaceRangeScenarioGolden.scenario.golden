@@ -1,23 +1,27 @@
 ## initial
 command: no
-> hello world
-  next
-
+┃ > hello world
+┃   next
+┃
+┃
 
 ## replace completion range
 command: no
-> hello tuiweave
-  next
-
+┃ > hello tuiweave
+┃   next
+┃
+┃
 
 ## replace across lines
 command: no
-> hello agent
-  kitxt
-
+┃ > hello agent
+┃   kitxt
+┃
+┃
 
 ## undo range edit
 command: no
-> hello tuiweave
-  next
-
+┃ > hello tuiweave
+┃   next
+┃
+┃

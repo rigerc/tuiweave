@@ -180,7 +180,7 @@ func TestTabPasteGolden(t *testing.T) {
 }
 
 func TestTabCursorAndSelectionGolden(t *testing.T) {
-	m := newFocused(12, 4)
+	m := newFocused(14, 4)
 	m.SetValue("\tabcdefghij")
 	m.SetCursor(0, 1)
 	rows := m.visualRows()

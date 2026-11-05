@@ -40,15 +40,29 @@ func (m Model) applyAction(msg tea.Msg) (Model, bool) {
 // when their inspection surface is trusted to receive user input.
 func (m Model) Inspect() inspect.Node {
 	return inspect.Node{
-		Kind:    "textinput",
-		Bounds:  inspect.Bounds{Width: m.width, Height: m.height},
-		Label:   m.Prompt,
-		Focused: m.focused,
-		Actions: m.Actions(),
-		Attributes: map[string]string{
-			"empty":       strconv.FormatBool(len(m.value) == 0),
-			"placeholder": m.Placeholder,
-			"cursor":      strconv.Itoa(m.pos),
-		},
+		Kind:       "textinput",
+		Bounds:     inspect.Bounds{Width: m.width, Height: m.height},
+		Label:      m.Prompt,
+		Focused:    m.focused,
+		Actions:    m.Actions(),
+		Attributes: m.inspectAttributes(),
 	}
+}
+
+func (m Model) inspectAttributes() map[string]string {
+	attributes := map[string]string{
+		"empty":       strconv.FormatBool(len(m.value) == 0),
+		"placeholder": m.Placeholder,
+		"cursor":      strconv.Itoa(m.pos),
+	}
+	if m.Title != "" {
+		attributes["title"] = m.Title
+	}
+	if m.Description != "" {
+		attributes["description"] = m.Description
+	}
+	if m.Inline {
+		attributes["inline"] = "true"
+	}
+	return attributes
 }

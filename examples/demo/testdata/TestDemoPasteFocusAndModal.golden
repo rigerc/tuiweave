@@ -1,7 +1,7 @@
-▎ welcome                ── welcome ──
-  layout
-  theming                welcome: content line 1
-  testing                welcome: content line 2
+  > welcome              ── welcome ──
+    layout
+    theming              welcome: content line 1
+    testing              welcome: content line 2
                          welcome: content line 3
                          welcome: content line 4
                          welcome: content line 5
@@ -19,6 +19,6 @@
                          welcome: content line 17
                          welcome: content line 18
                          welcome: content line 19
-> pasted item
+┃ > pasted item
 tab focus • enter add item • j/k navigate • ctrl+d quit dialog • ctrl+c quit
  demo  input                                              ⠋ live  4 items    0%

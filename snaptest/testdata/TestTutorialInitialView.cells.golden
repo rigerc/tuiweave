@@ -1,2 +1,2 @@
-1: "[ ] Auto-refresh        " [fg=Text bg=SelectionBg bold]
+1: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "[ ]" [fg=TextMuted bg=SurfaceSunken bold] | " Auto-refresh" [fg=Text bg=SurfaceRaised] | "      " [bg=SurfaceRaised]
 2: "No change delivered"

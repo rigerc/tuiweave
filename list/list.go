@@ -1,6 +1,10 @@
 // Package list provides a scrolling list of single-line items with a
 // selection cursor and optional filtering.
 //
+// Lists use the Huh selection grammar: a thick focus rail, a "> " selector,
+// and accent text for the selected row. Title, Description, and Help add
+// optional field decoration above and below the rows.
+//
 // Filtering is display-only state: SetFilter narrows what is shown and
 // navigated, but Selected always reports the index into the original items,
 // so app logic never deals with filtered indices.
@@ -14,6 +18,7 @@ import (
 	"github.com/charmbracelet/x/ansi"
 
 	"github.com/ishan5ain/tuiweave"
+	"github.com/ishan5ain/tuiweave/internal/fieldstyle"
 )
 
 // Model is a list component. Create one with New.
@@ -26,9 +31,14 @@ type Model struct {
 	off           int   // first visible display position
 	focused       bool
 
-	itemStyle     lipgloss.Style
-	selectedStyle lipgloss.Style
-	markerStyle   lipgloss.Style
+	// Title is an optional field title rendered above the rows.
+	Title string
+	// Description is an optional muted line below the title.
+	Description string
+	// Help is an optional muted hint rendered below the rows.
+	Help string
+
+	field fieldstyle.Styles
 }
 
 const (
@@ -42,15 +52,7 @@ const (
 
 // New returns an empty list styled from the theme's roles.
 func New(theme tuiweave.Theme) Model {
-	return Model{
-		itemStyle: lipgloss.NewStyle().Foreground(theme.Text),
-		selectedStyle: lipgloss.NewStyle().
-			Foreground(theme.SelectionFg).
-			Background(theme.SelectionBg),
-		markerStyle: lipgloss.NewStyle().
-			Foreground(theme.Accent).
-			Background(theme.SelectionBg),
-	}
+	return Model{field: fieldstyle.NewOn(theme, theme.SurfaceRaised)}
 }
 
 // SetSize sets the box the list renders in.
@@ -71,6 +73,12 @@ func (m Model) Items() []string { return append([]string(nil), m.items...) }
 
 // Len returns the number of original items.
 func (m Model) Len() int { return len(m.items) }
+
+// NaturalHeight reports the rows needed to show every displayed item plus
+// optional title, description, and help.
+func (m Model) NaturalHeight() int {
+	return fieldstyle.HeaderHeight(m.Title, m.Description) + boolInt(m.Help != "") + m.displayCount()
+}
 
 // SetFilter narrows the list to items containing query, case-insensitively.
 // An empty query clears the filter. The current selection is kept when it
@@ -186,23 +194,33 @@ func (m Model) Focused() bool { return m.focused }
 // TotalLines returns the displayed item count (scrollbar.Scrollable).
 func (m Model) TotalLines() int { return m.displayCount() }
 
-// VisibleLines returns how many rows are shown at once (scrollbar.Scrollable).
-func (m Model) VisibleLines() int { return m.height }
+// VisibleLines returns how many item rows are shown at once
+// (scrollbar.Scrollable).
+func (m Model) VisibleLines() int { return m.itemArea() }
 
 // YOffset returns the first visible display position (scrollbar.Scrollable).
 func (m Model) YOffset() int { return m.off }
 
+func (m Model) itemArea() int {
+	area := m.height - fieldstyle.HeaderHeight(m.Title, m.Description)
+	if m.Help != "" {
+		area--
+	}
+	return max(0, area)
+}
+
 func (m *Model) scrollIntoView() {
-	if m.height <= 0 {
+	area := m.itemArea()
+	if area <= 0 {
 		return
 	}
 	if m.pos < m.off {
 		m.off = m.pos
 	}
-	if m.pos >= m.off+m.height {
-		m.off = m.pos - m.height + 1
+	if m.pos >= m.off+area {
+		m.off = m.pos - area + 1
 	}
-	m.off = max(0, min(m.off, max(0, m.displayCount()-m.height)))
+	m.off = max(0, min(m.off, max(0, m.displayCount()-area)))
 }
 
 // Update handles navigation while focused: up/k, down/j, pgup, pgdown,
@@ -224,9 +242,9 @@ func (m Model) Update(msg tea.Msg) (Model, tea.Cmd) {
 	case "down", "j":
 		m.selectPos(m.pos + 1)
 	case "pgup":
-		m.selectPos(m.pos - m.height)
+		m.selectPos(m.pos - max(1, m.itemArea()))
 	case "pgdown":
-		m.selectPos(m.pos + m.height)
+		m.selectPos(m.pos + max(1, m.itemArea()))
 	case "g", "home":
 		m.selectPos(0)
 	case "G", "end":
@@ -235,45 +253,55 @@ func (m Model) Update(msg tea.Msg) (Model, tea.Cmd) {
 	return m, nil
 }
 
-// View renders the visible window. The selected item gets an accent marker
-// and the selection roles; when the list is blurred the marker remains as a
-// subtle location hint but the row is not highlighted.
+// View renders the optional title/description, the visible item window, and
+// an optional hint row. Selection is shown with the Huh selector and accent
+// text; the left rail marks focus. The box is always filled exactly.
 func (m Model) View() string {
 	if m.width <= 0 || m.height <= 0 {
 		return ""
 	}
-	rows := make([]string, m.height)
-	for i := range rows {
+	rows := make([]string, 0, m.height)
+	rows = append(rows, m.field.HeaderRows(m.focused, m.Title, m.Description, m.width)...)
+	for i := 0; i < m.itemArea(); i++ {
 		p := m.off + i
 		if p >= m.displayCount() {
-			rows[i] = strings.Repeat(" ", m.width)
+			rows = append(rows, m.field.FrameRow(m.focused, "", m.width))
 			continue
 		}
-		rows[i] = m.renderItem(p)
+		rows = append(rows, m.renderItem(p))
+	}
+	if help := m.field.HelpRow(m.focused, m.Help, m.width); help != "" {
+		rows = append(rows, help)
+	}
+	for len(rows) < m.height {
+		rows = append(rows, m.field.FrameRow(m.focused, "", m.width))
+	}
+	if len(rows) > m.height {
+		rows = rows[:m.height]
 	}
 	return strings.Join(rows, "\n")
 }
 
 func (m Model) renderItem(pos int) string {
-	if m.width == 1 {
-		if pos == m.pos && m.focused {
-			return m.markerStyle.Render("▌")
-		}
-		marker := " "
-		if pos == m.pos {
-			marker = "▎"
-		}
-		return m.itemStyle.Render(marker)
+	bodyWidth := fieldstyle.BodyWidth(m.width)
+	if bodyWidth <= 0 {
+		return m.field.FrameRow(m.focused, "", m.width)
 	}
-	text := ansi.Truncate(m.items[m.origIndex(pos)], m.width-2, "…")
-	pad := strings.Repeat(" ", max(0, m.width-2-ansi.StringWidth(text)))
 
-	if pos == m.pos && m.focused {
-		return m.markerStyle.Render("▌") + m.selectedStyle.Render(" "+text+pad)
+	selected := pos == m.pos
+	selector := m.field.Selector(selected)
+	textWidth := max(0, bodyWidth-lipgloss.Width(selector))
+	text := ansi.Truncate(m.items[m.origIndex(pos)], textWidth, "…")
+	body := selector + m.field.Label(text, selected, false)
+	if pad := bodyWidth - lipgloss.Width(body); pad > 0 {
+		body += m.field.Pad.Render(strings.Repeat(" ", pad))
 	}
-	marker := " "
-	if pos == m.pos {
-		marker = "▎"
+	return m.field.FrameRow(m.focused, body, m.width)
+}
+
+func boolInt(value bool) int {
+	if value {
+		return 1
 	}
-	return m.itemStyle.Render(marker+" "+text) + pad
+	return 0
 }

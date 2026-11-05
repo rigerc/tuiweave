@@ -35,6 +35,7 @@ failure modes below as an audit checklist.
 | Review an app or migration | Theme, layout, MVU, focus, mouse, modal, narrow, and snapshot audit; [agent kit review playbook](agent-kit/playbooks/review.md) and `agent-kit/scripts/tuiweave-audit.sh` |
 | Build a file browser | `examples/browser`; compose `textinput`, `list`, `viewport`, `tabs`, and `focus` |
 | Compose a multi-pane reference app | `examples/ops` or `examples/browser`; follow the recipes in `AGENTS.md` |
+| Build a Huh-style form or Clack inline prompts | `examples/form` or `examples/inline`; see the field recipes in `AGENTS.md` |
 | Route a nested modal | `focus.Stack`; apply root-to-top `focus.Group` layers and route keys to the top layer |
 | Frame content or add semantic badges | `frame.Panel`, `frame.Divider`, `frame.Badge` |
 | Handle mouse input | `mouse.WheelDelta`, `mouse.Position`, `mouse.InBounds`; apps own click routing |

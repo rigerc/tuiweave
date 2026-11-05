@@ -1,8 +1,15 @@
 // Package textinput provides a single-line text input with a prompt,
 // placeholder, cursor, and grapheme-aware horizontal scrolling.
+//
+// Inputs can render as Huh-style stacked fields: set Title, Description, and
+// Help for a title/description block above the input and a hint below it, with
+// a thick focus rail marking the active field. Set Inline to render a Clack
+// prompt block instead: a ◆ header, │ body rows, a › input, and a └ footer.
+// An unfocused inline input collapses to its submitted value.
 package textinput
 
 import (
+	"image/color"
 	"strings"
 
 	tea "charm.land/bubbletea/v2"
@@ -10,6 +17,8 @@ import (
 	"github.com/charmbracelet/x/ansi"
 
 	"github.com/ishan5ain/tuiweave"
+	"github.com/ishan5ain/tuiweave/internal/clackstyle"
+	"github.com/ishan5ain/tuiweave/internal/fieldstyle"
 	"github.com/ishan5ain/tuiweave/internal/paste"
 	"github.com/ishan5ain/tuiweave/layout"
 )
@@ -25,7 +34,19 @@ type Model struct {
 	Prompt string
 	// Placeholder is shown, faint, while the value is empty.
 	Placeholder string
+	// Title is an optional field title. Inline uses it as the Clack prompt
+	// message; stacked mode renders it above the input.
+	Title string
+	// Description is an optional muted line below the title.
+	Description string
+	// Help is an optional muted hint rendered below the input.
+	Help string
+	// Inline renders a Clack prompt block. The focused prompt expands; an
+	// unfocused prompt collapses to its submitted value.
+	Inline bool
 
+	field            fieldstyle.Styles
+	clack            clackstyle.Styles
 	promptStyle      lipgloss.Style
 	textStyle        lipgloss.Style
 	placeholderStyle lipgloss.Style
@@ -39,23 +60,36 @@ const (
 )
 
 // New returns an empty text input styled from the theme's roles.
-func New(theme tuiweave.Theme) Model {
+func New(theme tuiweave.Theme) Model { return NewOn(theme, nil) }
+
+// NewOn returns an empty text input that paints background behind its field
+// rail, prompt, text, and padding. Use theme.SurfaceRaised when embedding the
+// input in a panel or popover so nested style resets cannot leave gaps.
+func NewOn(theme tuiweave.Theme, background color.Color) Model {
+	base := lipgloss.NewStyle()
+	if background != nil {
+		base = base.Background(background)
+	}
 	return Model{
 		Prompt:           "> ",
-		promptStyle:      lipgloss.NewStyle().Foreground(theme.Accent),
-		textStyle:        lipgloss.NewStyle().Foreground(theme.Text),
-		placeholderStyle: lipgloss.NewStyle().Foreground(theme.TextFaint),
-		cursorStyle:      lipgloss.NewStyle().Foreground(theme.Text).Reverse(true),
+		field:            fieldstyle.NewOn(theme, background),
+		clack:            clackstyle.NewOn(theme, background),
+		promptStyle:      base.Foreground(theme.Accent),
+		textStyle:        base.Foreground(theme.Text),
+		placeholderStyle: base.Foreground(theme.TextMuted),
+		cursorStyle:      base.Foreground(theme.Text).Reverse(true),
 	}
 }
 
-// SetSize sets the box the input renders in; the input is one line tall.
+// SetSize sets the box the input renders in. The input is width-bounded with a
+// natural height: one row normally, plus optional Title/Description rows and a
+// Help row. Inline renders a Clack prompt block whose height depends on focus.
 func (m *Model) SetSize(width, height int) {
 	m.width, m.height = width, height
 }
 
 // SizeMode reports that the input is width-constrained with a natural height
-// of one row.
+// that grows when field decoration is set.
 func (m Model) SizeMode() layout.SizeMode { return layout.SizeWidthBounded }
 
 // Focus makes the input accept keys and show its cursor.
@@ -167,24 +201,102 @@ func (m *Model) deleteWordBack() {
 	m.pos = i
 }
 
-// View renders the prompt, visible text window, and cursor.
+// NaturalHeight reports the number of rows View renders at the current
+// settings, before any caller-imposed height cap. Inline height depends on
+// focus: an unfocused prompt is two rows; a focused prompt includes its field
+// rows and footer.
+func (m Model) NaturalHeight() int {
+	if m.Inline {
+		if !m.focused {
+			return 2 // submitted header and value
+		}
+		height := 3 // header, input, footer
+		if m.Description != "" {
+			height++
+		}
+		if m.Help != "" {
+			height++
+		}
+		return height
+	}
+	return fieldstyle.HeaderHeight(m.Title, m.Description) + 1 + boolInt(m.Help != "")
+}
+
+// View renders the optional title/description, the input row, and an optional
+// hint row. The focus rail is the only focus indicator.
 func (m Model) View() string {
 	if m.width <= 0 || m.height <= 0 {
 		return ""
 	}
-	prompt := ansi.Truncate(m.Prompt, m.width, "")
-	promptWidth := ansi.StringWidth(prompt)
-	avail := m.width - promptWidth
-	if avail <= 0 {
-		return m.promptStyle.Render(prompt)
+
+	var rows []string
+	if m.Inline {
+		rows = append(rows, m.clack.HeaderRow(m.focused, m.Title, m.width))
+		if !m.focused {
+			value := m.Value()
+			if value == "" {
+				value = m.Placeholder
+			}
+			rows = append(rows, m.clack.Row(false, m.clack.Inactive.Render(value), m.width))
+			if len(rows) > m.height {
+				rows = rows[:m.height]
+			}
+			return strings.Join(rows, "\n")
+		}
+		if m.Description != "" {
+			rows = append(rows, m.clack.Row(m.focused, m.clack.Desc.Render(m.Description), m.width))
+		}
+		bodyWidth := clackstyle.BodyWidth(m.width)
+		rows = append(rows, m.clack.Row(m.focused, m.renderControlWithStyle("› ", m.clack.Prompt, bodyWidth), m.width))
+		if m.Help != "" {
+			rows = append(rows, m.clack.HelpRow(m.focused, m.Help, m.width))
+		}
+		rows = append(rows, m.clack.FooterRow(m.width))
+	} else {
+		rows = append(rows, m.field.HeaderRows(m.focused, m.Title, m.Description, m.width)...)
+		bodyWidth := fieldstyle.BodyWidth(m.width)
+		if m.width <= 1 {
+			bodyWidth = max(0, m.width)
+		}
+		rows = append(rows, m.field.FrameRow(m.focused, m.renderControl(bodyWidth), m.width))
+		if help := m.field.HelpRow(m.focused, m.Help, m.width); help != "" {
+			rows = append(rows, help)
+		}
 	}
-	prompt = m.promptStyle.Render(prompt)
+	if len(rows) > m.height {
+		rows = rows[:m.height]
+	}
+	return strings.Join(rows, "\n")
+}
+
+// renderControl renders the prompt, visible text window, and cursor within
+// avail cells. It returns an unpadded fragment; FrameRow supplies the field
+// rail and exact-width padding.
+func (m Model) renderControl(avail int) string {
+	return m.renderControlWithPrompt(m.Prompt, avail)
+}
+
+func (m Model) renderControlWithPrompt(rawPrompt string, avail int) string {
+	return m.renderControlWithStyle(rawPrompt, m.promptStyle, avail)
+}
+
+func (m Model) renderControlWithStyle(rawPrompt string, promptStyle lipgloss.Style, avail int) string {
+	if avail <= 0 {
+		return ""
+	}
+	prompt := ansi.Truncate(rawPrompt, avail, "")
+	promptWidth := ansi.StringWidth(prompt)
+	textWidth := avail - promptWidth
+	if textWidth <= 0 {
+		return promptStyle.Render(prompt)
+	}
+	prompt = promptStyle.Render(prompt)
 
 	if len(m.value) == 0 {
-		return prompt + m.renderPlaceholder(avail)
+		return prompt + m.renderPlaceholder(textWidth)
 	}
 
-	start, end, focusStart, focusEnd, focusVisible := windowForCursor(m.value, m.pos, avail, m.focused)
+	start, end, focusStart, focusEnd, focusVisible := windowForCursor(m.value, m.pos, textWidth, m.focused)
 	var b strings.Builder
 	b.WriteString(prompt)
 	if m.focused {
@@ -202,6 +314,13 @@ func (m Model) View() string {
 		b.WriteString(m.textStyle.Render(string(m.value[start:end])))
 	}
 	return b.String()
+}
+
+func boolInt(value bool) int {
+	if value {
+		return 1
+	}
+	return 0
 }
 
 func (m Model) renderPlaceholder(avail int) string {

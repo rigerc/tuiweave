@@ -1,0 +1,24 @@
+ FORM  field demo                                                         ready
+╭ Preferences ─────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│ ┃ Name                                                                       │
+│ ┃ Shown on your profile                                                      │
+│ ┃ > Ada                                                                      │
+│                                                                              │
+│   Search                                                                     │
+│   > type to filter                                                           │
+│                                                                              │
+│   Environment                                                                │
+│   Choose a target                                                            │
+│   > Staging                                                                  │
+│     Production                                                               │
+│     Development                                                              │
+│                                                                              │
+│   Updates                                                                    │
+│   [x] Auto-refresh                                                           │
+│                                                                              │
+│   Save changes                                                               │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+tab focus • enter activate • ←/→ change • esc quit

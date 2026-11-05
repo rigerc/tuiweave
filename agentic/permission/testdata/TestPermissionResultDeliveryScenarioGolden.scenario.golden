@@ -6,9 +6,9 @@ command: no
 │  The agent wants to run a shell      │
 │  command.                            │
 │                                      │
-│   1  Allow once                      │
-│   2  Allow always                    │
-│   3  Deny                            │
+│   1 > Allow once                     │
+│   2   Allow always                   │
+│   3   Deny                           │
 │                                      │
 ╰──────────────────────────────────────╯
 
@@ -20,9 +20,9 @@ command: no
 │  The agent wants to run a shell      │
 │  command.                            │
 │                                      │
-│   1  Allow once                      │
-│   2  Allow always                    │
-│   3  Deny                            │
+│   1   Allow once                     │
+│   2 > Allow always                   │
+│   3   Deny                           │
 │                                      │
 ╰──────────────────────────────────────╯
 
@@ -34,9 +34,9 @@ command: yes
 │  The agent wants to run a shell      │
 │  command.                            │
 │                                      │
-│   1  Allow once                      │
-│   2  Allow always                    │
-│   3  Deny                            │
+│   1   Allow once                     │
+│   2 > Allow always                   │
+│   3   Deny                           │
 │                                      │
 ╰──────────────────────────────────────╯
 

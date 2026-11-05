@@ -16,6 +16,30 @@ before v1, a minor release may contain breaking changes when clearly called out.
   [writer experiment](agentic/markdown/WRITER-BATCHING.md) records measurements
   and remaining targets in issue #49.
 
+### Changed
+
+- Form-like components now use a Huh-inspired field grammar: a thick left
+  focus rail, optional `Title`, `Description`, and `Help` rows, `> ` option
+  selectors, accent selected text, and action chips. Applies to `textinput`,
+  `textarea`, `menu`, `list`, `palette`, `autocomplete`, `toggle`, `button`,
+  `dialog`, and `agentic/permission`; goldens and composed examples were
+  refreshed.
+- `textinput`, `menu`, and `toggle` support Clack-style inline prompts through
+  `Inline`, matching the Vercel Skills CLI: `◆`/`◇` headers, `│` body rows, a
+  `›` input, vertical `❯ ●/○` options, and a `└` footer. Focused prompts expand;
+  blurred prompts collapse to their submitted value. Inline natural height is
+  focus-dependent, and inline menus report a width-bounded size mode.
+  `NaturalHeight()` was added to `textinput`, `menu`, `list`, and `toggle`;
+  `textarea.ContentHeight` now includes field decoration rows.
+- `list`, `menu`, `palette`, and `autocomplete` no longer paint selected rows
+  with `SelectionBg`; they use the selector plus accent text. `SelectionBg`
+  remains the text-selection fill.
+- `toggle` checked state now uses `Accent` instead of `Success`, separating
+  settings from health/status semantics.
+- Added [`examples/form`](examples/form) covering Huh-style stacked fields and
+  an action chip, plus [`examples/inline`](examples/inline) for the Clack-style
+  inline prompt sequence.
+
 ### Added
 
 - Writer-boundary compatibility coverage for split ANSI/UTF-8 input, newline

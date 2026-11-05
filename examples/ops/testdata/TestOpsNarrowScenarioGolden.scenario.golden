@@ -4,11 +4,11 @@ command: no
 ▸Services   Jobs   Audit
 ╭ Actions ───────╮│╭ Operations ───╮
 │                │││               │
-│ ▸ Restart ser… │││  State      … │
-│   Drain traff… │││ ───────────── │
-│   Acknowledge… │││ Deploy ░  72% │
-│   Delete serv… │││ [x] Auto-ref… │
-│                │││ [ Open logs ] │
+│   > Restart s… │││  State      … │
+│     Drain tra… │││ ───────────── │
+│     Acknowled… │││ Deploy ░  72% │
+│     Delete se… │││   [x] Auto-r… │
+│                │││   Open logs   │
 │                │││               │
 ╰────────────────╯│╰───────────────╯
 tab focus · ctrl+p commands · q quit
@@ -20,8 +20,8 @@ command: no
 ╭ Actions ───────╮│╭ Operations ───╮
 │ ╭ Command palette ─────────────╮ │
 │ │                              │ │
-│ │ ›                            │ │
-│ │ ▸ Restart service  Restart … │ │
+│ │ ┃ ›                          │ │
+│ │ ┃ > Restart service  Restar… │ │
 │ │                              │ │
 │ ╰──────────────────────────────╯ │
 │                │││               │
@@ -38,7 +38,7 @@ command: no
 │ │  service may interrupt       │ │
 │ │  traffic.                    │ │
 │ │                              │ │
-│ │       Restart      Cancel    │ │
+│ │        Restart     Cancel    │ │
 │ │                              │ │
 ╰─╰──────────────────────────────╯─╯
 tab focus · ctrl+p commands · q quit
@@ -50,8 +50,8 @@ command: no
 ╭ Actions ───────╮│╭ Operations ───╮
 │ ╭ Command palette ─────────────╮ │
 │ │                              │ │
-│ │ ›                            │ │
-│ │ ▸ Restart service  Restart … │ │
+│ │ ┃ ›                          │ │
+│ │ ┃ > Restart service  Restar… │ │
 │ │                              │ │
 │ ╰──────────────────────────────╯ │
 │                │││               │

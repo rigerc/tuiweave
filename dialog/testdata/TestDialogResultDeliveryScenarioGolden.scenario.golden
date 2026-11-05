@@ -5,7 +5,7 @@ command: no
 │  Quit tuiweave?                  │
 │  Unsaved changes will be lost.   │
 │                                  │
-│                OK      Cancel    │
+│                 OK     Cancel    │
 │                                  │
 ╰──────────────────────────────────╯
 
@@ -16,7 +16,7 @@ command: yes
 │  Quit tuiweave?                  │
 │  Unsaved changes will be lost.   │
 │                                  │
-│                OK      Cancel    │
+│                 OK     Cancel    │
 │                                  │
 ╰──────────────────────────────────╯
 

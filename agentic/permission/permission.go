@@ -1,6 +1,7 @@
 // Package permission provides the modal prompt agentic tools show before a
-// sensitive action: a question with vertically stacked options and optional
-// structured provenance for the operation being approved.
+// sensitive action: a question with vertically stacked options selected with
+// the Huh "> " grammar and optional structured provenance for the operation
+// being approved.
 //
 // Like dialog, the app owns visibility: render it (composited with
 // tuiweave/overlay) while waiting, and close it when Update returns a
@@ -16,6 +17,7 @@ import (
 	"github.com/charmbracelet/x/ansi"
 
 	"github.com/ishan5ain/tuiweave"
+	"github.com/ishan5ain/tuiweave/internal/fieldstyle"
 	"github.com/ishan5ain/tuiweave/layout"
 )
 
@@ -64,13 +66,13 @@ type Model struct {
 	// Body adds detail below the title.
 	Body string
 
-	panelStyle      lipgloss.Style
-	titleStyle      lipgloss.Style
-	bodyStyle       lipgloss.Style
-	optionStyle     lipgloss.Style
-	selectedStyle   lipgloss.Style
-	numStyle        lipgloss.Style
-	provenanceStyle lipgloss.Style
+	field      fieldstyle.Styles
+	titleStyle lipgloss.Style
+	panelStyle lipgloss.Style
+	bodyStyle  lipgloss.Style
+	numStyle   lipgloss.Style
+	fieldLabel lipgloss.Style
+	fieldValue lipgloss.Style
 }
 
 // New returns a prompt with the standard options: Allow once, Allow always,
@@ -78,31 +80,25 @@ type Model struct {
 // moments, not errors.
 func New(theme tuiweave.Theme) Model {
 	return Model{
-		options: []string{"Allow once", "Allow always", "Deny"},
+		options:    []string{"Allow once", "Allow always", "Deny"},
+		field:      fieldstyle.NewOn(theme, theme.SurfaceRaised),
+		titleStyle: fieldstyle.NewOn(theme, theme.SurfaceRaised).Title,
 		panelStyle: lipgloss.NewStyle().
 			Border(lipgloss.RoundedBorder()).
 			BorderForeground(theme.Warning).
 			Background(theme.SurfaceRaised).
 			Padding(1, 2),
-		titleStyle: lipgloss.NewStyle().
-			Foreground(theme.Text).
-			Background(theme.SurfaceRaised).
-			Bold(true),
 		bodyStyle: lipgloss.NewStyle().
 			Foreground(theme.TextMuted).
 			Background(theme.SurfaceRaised),
-		optionStyle: lipgloss.NewStyle().
-			Foreground(theme.Text).
-			Background(theme.SurfaceRaised),
-		selectedStyle: lipgloss.NewStyle().
-			Foreground(theme.TextInverted).
-			Background(theme.Accent).
-			Bold(true),
 		numStyle: lipgloss.NewStyle().
 			Foreground(theme.TextFaint).
 			Background(theme.SurfaceRaised),
-		provenanceStyle: lipgloss.NewStyle().
+		fieldLabel: lipgloss.NewStyle().
 			Foreground(theme.TextMuted).
+			Background(theme.SurfaceRaised),
+		fieldValue: lipgloss.NewStyle().
+			Foreground(theme.Text).
 			Background(theme.SurfaceRaised),
 	}
 }
@@ -183,13 +179,9 @@ func (m Model) View() string {
 	rows = append(rows, m.provenanceLines(inner)...)
 	rows = append(rows, bounded(m.bodyStyle, "", inner))
 	for i, opt := range m.options {
-		label := fmt.Sprintf(" %s ", opt)
-		line := m.numStyle.Render(fmt.Sprintf(" %d ", i+1))
-		if i == m.sel {
-			line += m.selectedStyle.Render(label)
-		} else {
-			line += m.optionStyle.Render(label)
-		}
+		line := m.numStyle.Render(fmt.Sprintf(" %d ", i+1)) +
+			m.field.Selector(i == m.sel) +
+			m.field.Label(opt, i == m.sel, false)
 		if lipgloss.Width(line) > inner {
 			line = ansi.Truncate(line, inner, "")
 		}
@@ -221,7 +213,9 @@ func (m Model) provenanceLines(width int) []string {
 		if field.value == "" {
 			continue
 		}
-		rows = append(rows, bounded(m.provenanceStyle, field.label+": "+field.value, width))
+		value := m.fieldValue.Render(field.value)
+		line := m.fieldLabel.Render(field.label+": ") + value
+		rows = append(rows, bounded(m.bodyStyle, line, width))
 	}
 	return rows
 }

@@ -1,34 +1,41 @@
 ## initial
 command: no
-> one two
-
+┃ > one two
+┃
+┃
 
 ## kill previous word
 command: no
-> one
-
+┃ > one
+┃
+┃
 
 ## break kill chain
 command: no
-> one
-
+┃ > one
+┃
+┃
 
 ## kill another word
 command: no
->
-
+┃ >
+┃
+┃
 
 ## yank
 command: no
-> one
-
+┃ > one
+┃
+┃
 
 ## rotate yank
 command: no
-> two
-
+┃ > two
+┃
+┃
 
 ## undo yank
 command: no
-> one
-
+┃ > one
+┃
+┃

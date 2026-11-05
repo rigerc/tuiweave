@@ -2,13 +2,13 @@
 ▸Workspace   Recent   Pinned
 ╭ Files ────────╮ ╭ Preview ──────────────────╮
 │               │ │                           │
-│ > filter file │ │ package main              │┃
-│ ▎ cmd/tuiwea… │ │                           ││
-│   layout/lay… │ │ import (                  ││
-│   list/list.… │ │     "fmt"                 ││
-│   examples/b… │ │     "os"                  ││
-│   examples/f… │ │ )                         ││
-│   agentic/ch… │ │                           ││
+│   > filter fi │ │ package main              │┃
+│   > cmd/tuiw… │ │                           ││
+│     layout/l… │ │ import (                  ││
+│     list/lis… │ │     "fmt"                 ││
+│     examples… │ │     "os"                  ││
+│     examples… │ │ )                         ││
+│     agentic/… │ │                           ││
 │               │ │                           │
 ╰───────────────╯ ╰───────────────────────────╯
 ────────────────── tab focus · / filter · q quit

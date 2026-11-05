@@ -1,4 +1,4 @@
-1: "  item 01" [fg=Text]
-2: "▎ item 02" [fg=Text]
-3: "  item 03" [fg=Text]
-4: "  item 04" [fg=Text]
+1: "    " [bg=SurfaceRaised] | "item 01" [fg=Text bg=SurfaceRaised] | "   " [bg=SurfaceRaised]
+2: "  " [bg=SurfaceRaised] | "> item 02" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised]
+3: "    " [bg=SurfaceRaised] | "item 03" [fg=Text bg=SurfaceRaised] | "   " [bg=SurfaceRaised]
+4: "    " [bg=SurfaceRaised] | "item 04" [fg=Text bg=SurfaceRaised] | "   " [bg=SurfaceRaised]

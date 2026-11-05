@@ -4,10 +4,10 @@ command: no
 ▸Services   Jobs   Audit
 ╭ Actions ─────────────────────────────╮│╭ Operations ─────────────────────────╮
 │                                      │││                                     │
-│ ▸ Restart service                    │││ Service     State      Region       │
-│   Drain traffic                      │││ ─────────────────────────────────── │
-│   Acknowledge alert                  │││ api         healthy    us-west-2    │
-│   Delete service                     │││ worker      busy       us-west-2    │
+│   > Restart service                  │││ Service     State      Region       │
+│     Drain traffic                    │││ ─────────────────────────────────── │
+│     Acknowledge alert                │││ api         healthy    us-west-2    │
+│     Delete service                   │││ worker      busy       us-west-2    │
 │                                      │││ scheduler   degraded   us-east-1    │
 │                                      │││                                     │
 │                                      │││                                     │
@@ -17,8 +17,8 @@ command: no
 │                                      │││                                     │
 │                                      │││                                     │
 │                                      │││ Deploy ████████████████░░░░░░░  72% │
-│                                      │││ [x] Auto-refresh                    │
-│                                      │││ [ Open logs                       ] │
+│                                      │││   [x] Auto-refresh                  │
+│                                      │││   Open logs                         │
 │                                      │││                                     │
 ╰──────────────────────────────────────╯│╰─────────────────────────────────────╯
 ─────────────────────────────────────────── tab focus · ctrl+p commands · q quit
@@ -29,10 +29,10 @@ command: no
  Services  ▸Jobs   Audit
 ╭ Actions ─────────────────────────────╮│╭ Operations ─────────────────────────╮
 │                                      │││                                     │
-│ ▸ Restart service                    │││ Job         State      Owner        │
-│   Drain traffic                      │││ ─────────────────────────────────── │
-│   Acknowledge alert                  │││ nightly-ba… running    platform     │
-│   Delete service                     │││ index-rebu… queued     search       │
+│   > Restart service                  │││ Job         State      Owner        │
+│     Drain traffic                    │││ ─────────────────────────────────── │
+│     Acknowledge alert                │││ nightly-ba… running    platform     │
+│     Delete service                   │││ index-rebu… queued     search       │
 │                                      │││ billing-ro… healthy    finance      │
 │                                      │││                                     │
 │                                      │││                                     │
@@ -42,8 +42,8 @@ command: no
 │                                      │││                                     │
 │                                      │││                                     │
 │                                      │││ Deploy ████████████████░░░░░░░  72% │
-│                                      │││ [x] Auto-refresh                    │
-│                                      │││ [ Open logs                       ] │
+│                                      │││   [x] Auto-refresh                  │
+│                                      │││   Open logs                         │
 │                                      │││                                     │
 ╰──────────────────────────────────────╯│╰─────────────────────────────────────╯
 ─────────────────────────────────────────── tab focus · ctrl+p commands · q quit
@@ -54,21 +54,21 @@ command: no
  Services  ▸Jobs   Audit
 ╭ Actions ─────────────────────────────╮│╭ Operations ─────────────────────────╮
 │                                      │││                                     │
-│   Restart service                    │││ Job         State      Owner        │
-│ ▸ Drain traffic                      │││ ─────────────────────────────────── │
-│   Acknowledge alert                  │││ nightly-ba… running    platform     │
-│   Delete service                     │││ index-rebu… queued     search       │
-│                                      │││ billing-ro… healthy    finance      │
-│                                      │││                                     │
-│                                      │││                                     │
-│                                      │││                                     │
-│                                      │││                                     │
-│                                      │││                                     │
-│                                      │││                                     │
-│                                      │││                                     │
-│                                      │││ Deploy ████████████████░░░░░░░  72% │
-│                                      │││ [x] Auto-refresh                    │
-│                                      │││ [ Open logs                       ] │
+│ ┃   Restart service                  │││ Job         State      Owner        │
+│ ┃ > Drain traffic                    │││ ─────────────────────────────────── │
+│ ┃   Acknowledge alert                │││ nightly-ba… running    platform     │
+│ ┃   Delete service                   │││ index-rebu… queued     search       │
+│ ┃                                    │││ billing-ro… healthy    finance      │
+│ ┃                                    │││                                     │
+│ ┃                                    │││                                     │
+│ ┃                                    │││                                     │
+│ ┃                                    │││                                     │
+│ ┃                                    │││                                     │
+│ ┃                                    │││                                     │
+│ ┃                                    │││                                     │
+│ ┃                                    │││ Deploy ████████████████░░░░░░░  72% │
+│ ┃                                    │││   [x] Auto-refresh                  │
+│ ┃                                    │││   Open logs                         │
 │                                      │││                                     │
 ╰──────────────────────────────────────╯│╰─────────────────────────────────────╯
 ─────────────────────────────────────────── tab focus · ctrl+p commands · q quit
@@ -79,10 +79,10 @@ command: no
  Services  ▸Jobs   Audit
 ╭ Actions ─────────────────────────────╮│╭ Operations ─────────────────────────╮
 │                                      │││                                     │
-│   Restart service                    │││ Job         State      Owner        │
-│ ▸ Drain traffic                      │││ ─────────────────────────────────── │
-│   Acknowledge alert                  │││ nightly-ba… running    platform     │
-│   Delete service                     │││ index-rebu… queued     search       │
+│     Restart service                  │││ Job         State      Owner        │
+│   > Drain traffic                    │││ ─────────────────────────────────── │
+│     Acknowledge alert                │││ nightly-ba… running    platform     │
+│     Delete service                   │││ index-rebu… queued     search       │
 │                                      │││ billing-ro… healthy    finance      │
 │                                      │││                                     │
 │                                      │││                                     │
@@ -92,8 +92,8 @@ command: no
 │                                      │││                                     │
 │                                      │││                                     │
 │                                      │││ Deploy ████████████████░░░░░░░  72% │
-│                                      │││ [x] Auto-refresh                    │
-│                                      │││ [ Open logs                       ] │
+│                                      │││   [x] Auto-refresh                  │
+│                                      │││   Open logs                         │
 │                                      │││                                     │
 ╰──────────────────────────────────────╯│╰─────────────────────────────────────╯
 ─────────────────────────────────────────── tab focus · ctrl+p commands · q quit
@@ -104,10 +104,10 @@ command: yes
  Services  ▸Jobs   Audit
 ╭ Actions ─────────────────────────────╮│╭ Operations ─────────────────────────╮
 │                                      │││                                     │
-│   Restart service                    │││ Job         State      Owner        │
-│ ▸ Drain traffic                      │││ ─────────────────────────────────── │
-│   Acknowledge alert                  │││ nightly-ba… running    platform     │
-│   Delete service                     │││ index-rebu… queued     search       │
+│     Restart service                  │││ Job         State      Owner        │
+│   > Drain traffic                    │││ ─────────────────────────────────── │
+│     Acknowledge alert                │││ nightly-ba… running    platform     │
+│     Delete service                   │││ index-rebu… queued     search       │
 │                                      │││ billing-ro… healthy    finance      │
 │                                      │││                                     │
 │                                      │││                                     │
@@ -117,8 +117,8 @@ command: yes
 │                                      │││                                     │
 │                                      │││                                     │
 │                                      │││ Deploy ████████████████░░░░░░░  72% │
-│                                      │││ [ ] Auto-refresh                    │
-│                                      │││ [ Open logs                       ] │
+│                                      │││ ┃ [ ] Auto-refresh                  │
+│                                      │││   Open logs                         │
 │                                      │││                                     │
 ╰──────────────────────────────────────╯│╰─────────────────────────────────────╯
 ─────────────────────────────────────────── tab focus · ctrl+p commands · q quit
@@ -129,10 +129,10 @@ command: no
  Services  ▸Jobs   Audit
 ╭ Actions ─────────────────────────────╮│╭ Operations ─────────────────────────╮
 │                                      │││                                     │
-│   Restart service                    │││ Job         State      Owner        │
-│ ▸ Drain traffic                      │││ ─────────────────────────────────── │
-│   Acknowledge alert                  │││ nightly-ba… running    platform     │
-│   Delete service                     │││ index-rebu… queued     search       │
+│     Restart service                  │││ Job         State      Owner        │
+│   > Drain traffic                    │││ ─────────────────────────────────── │
+│     Acknowledge alert                │││ nightly-ba… running    platform     │
+│     Delete service                   │││ index-rebu… queued     search       │
 │                                      │││ billing-ro… healthy    finance      │
 │                                      │││                                     │
 │                                      │││                                     │
@@ -142,8 +142,8 @@ command: no
 │                                      │││                                     │
 │                                      │││                                     │
 │                                      │││ Deploy ████████████████░░░░░░░  72% │
-│                                      │││ [ ] Auto-refresh                    │
-│                                      │││ [ Open logs                       ] │
+│                                      │││ ┃ [ ] Auto-refresh                  │
+│                                      │││   Open logs                         │
 │                                      │││                                     │
 ╰──────────────────────────────────────╯│╰─────────────────────────────────────╯
 ─────────────────────────────────────────── tab focus · ctrl+p commands · q quit
@@ -154,21 +154,21 @@ command: no
  Services  ▸Jobs   Audit
 ╭ Actions ─────────────────────────────╮│╭ Operations ─────────────────────────╮
 │                                      │││                                     │
-│   Restart service                    │││ Job         State      Owner        │
-│ ▸ Drain traffic                      │││ ─────────────────────────────────── │
-│   Acknowledge alert                  │││ nightly-ba… running    platform     │
-│   Delete s╭ Command palette ─────────────────────────────────────╮arch       │
+│     Restart service                  │││ Job         State      Owner        │
+│   > Drain traffic                    │││ ─────────────────────────────────── │
+│     Acknowledge alert                │││ nightly-ba… running    platform     │
+│     Delete╭ Command palette ─────────────────────────────────────╮arch       │
 │           │                                                      │nance      │
-│           │ ›                                                    │           │
-│           │ ▸ Restart service  Restart the selected service      │           │
-│           │   Drain traffic  Remove a service from rotation      │           │
-│           │   Acknowledge alert  Mark the current alert handled  │           │
+│           │ ┃ ›                                                  │           │
+│           │ ┃ > Restart service  Restart the selected service    │           │
+│           │ ┃   Drain traffic  Remove a service from rotation    │           │
+│           │ ┃   Acknowledge alert  Mark the current alert handl… │           │
 │           │                                                      │           │
 │           ╰──────────────────────────────────────────────────────╯           │
 │                                      │││                                     │
 │                                      │││ Deploy ████████████████░░░░░░░  72% │
-│                                      │││ [ ] Auto-refresh                    │
-│                                      │││ [ Open logs                       ] │
+│                                      │││   [ ] Auto-refresh                  │
+│                                      │││   Open logs                         │
 │                                      │││                                     │
 ╰──────────────────────────────────────╯│╰─────────────────────────────────────╯
 ─────────────────────────────────────────── tab focus · ctrl+p commands · q quit
@@ -179,21 +179,21 @@ command: no
  Services  ▸Jobs   Audit
 ╭ Actions ─────────────────────────────╮│╭ Operations ─────────────────────────╮
 │                                      │││                                     │
-│   Restart service                    │││ Job         State      Owner        │
-│ ▸ Drain traffic                      │││ ─────────────────────────────────── │
-│   Acknowledge alert                  │││ nightly-ba… running    platform     │
-│   Delete s╭ Command palette ─────────────────────────────────────╮arch       │
+│     Restart service                  │││ Job         State      Owner        │
+│   > Drain traffic                    │││ ─────────────────────────────────── │
+│     Acknowledge alert                │││ nightly-ba… running    platform     │
+│     Delete╭ Command palette ─────────────────────────────────────╮arch       │
 │           │                                                      │nance      │
-│           │ ›                                                    │           │
-│           │ ▸ Restart service  Restart the selected service      │           │
-│           │   Drain traffic  Remove a service from rotation      │           │
-│           │   Acknowledge alert  Mark the current alert handled  │           │
+│           │ ┃ ›                                                  │           │
+│           │ ┃ > Restart service  Restart the selected service    │           │
+│           │ ┃   Drain traffic  Remove a service from rotation    │           │
+│           │ ┃   Acknowledge alert  Mark the current alert handl… │           │
 │           │                                                      │           │
 │           ╰──────────────────────────────────────────────────────╯           │
 │                                      │││                                     │
 │                                      │││ Deploy ████████████████░░░░░░░  72% │
-│                                      │││ [ ] Auto-refresh                    │
-│                                      │││ [ Open logs                       ] │
+│                                      │││   [ ] Auto-refresh                  │
+│                                      │││   Open logs                         │
 │                                      │││                                     │
 ╰──────────────────────────────────────╯│╰─────────────────────────────────────╯
 ─────────────────────────────────────────── tab focus · ctrl+p commands · q quit

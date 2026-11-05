@@ -469,7 +469,7 @@ Defined in the root package (`tuiweave.Theme`), all fields `image/color.Color`
 | Text | `Text`, `TextMuted`, `TextFaint`, `TextInverted` | primary; secondary/placeholders/help; tertiary/separators; text on accent fills |
 | Intent | `Accent`, `AccentMuted`, `Success`, `Warning`, `Danger`, `Info` | brand/interactive; subdued accent fills; semantic states |
 | Chrome | `Border`, `BorderFocused`, `BorderMuted` | default borders; focused element; subtle dividers |
-| Selection | `SelectionBg`, `SelectionFg` | selected rows/items |
+| Selection | `SelectionBg`, `SelectionFg` | text selection; row selection where a fill is appropriate (Huh-style field rows use a selector plus accent text) |
 
 18 roles. Adding a role is an API event requiring justification that no
 existing role covers the semantics — this is the mechanism that keeps the

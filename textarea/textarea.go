@@ -1,6 +1,10 @@
 // Package textarea provides a multi-line text input for chat-style prompts:
 // soft-wrapped display, a prompt gutter, and content-driven height.
 //
+// Textareas can render as Huh-style fields: Title and Description appear above
+// the text, Help appears below, and a thick focus rail spans the body. The
+// multi-line body is always stacked; use textinput for inline fields.
+//
 // The model is logical lines ([][]rune); display is those lines soft-wrapped
 // at the available cell width (grapheme-aware, deterministic). Enter inserts a
 // newline — the app owns the send key. ContentHeight reports how many visual
@@ -15,6 +19,7 @@
 package textarea
 
 import (
+	"image/color"
 	"strings"
 	"unicode"
 
@@ -23,6 +28,7 @@ import (
 	"github.com/charmbracelet/x/ansi"
 
 	"github.com/ishan5ain/tuiweave"
+	"github.com/ishan5ain/tuiweave/internal/fieldstyle"
 	"github.com/ishan5ain/tuiweave/internal/paste"
 )
 
@@ -50,7 +56,18 @@ type Model struct {
 	Prompt string
 	// Placeholder is shown, faint, while the value is empty.
 	Placeholder string
+	// Title is an optional field title rendered above the text area.
+	Title string
+	// Description is an optional muted line below the title.
+	Description string
+	// Help is an optional muted hint rendered below the text area.
+	Help string
 
+	// noFrame marks the internal copy used to render the body inside the
+	// field rail. It is never set by applications.
+	noFrame bool
+
+	field            fieldstyle.Styles
 	promptStyle      lipgloss.Style
 	textStyle        lipgloss.Style
 	selectionStyle   lipgloss.Style
@@ -80,15 +97,25 @@ const (
 )
 
 // New returns an empty textarea styled from the theme's roles.
-func New(theme tuiweave.Theme) Model {
+func New(theme tuiweave.Theme) Model { return NewOn(theme, nil) }
+
+// NewOn returns an empty textarea that paints background behind its field
+// rail and text runs. Use theme.SurfaceRaised when embedding the textarea in a
+// panel so nested style resets cannot leave gaps.
+func NewOn(theme tuiweave.Theme, background color.Color) Model {
+	base := lipgloss.NewStyle()
+	if background != nil {
+		base = base.Background(background)
+	}
 	return Model{
 		lines:            [][]rune{{}},
 		Prompt:           "> ",
-		promptStyle:      lipgloss.NewStyle().Foreground(theme.Accent),
-		textStyle:        lipgloss.NewStyle().Foreground(theme.Text),
+		field:            fieldstyle.NewOn(theme, background),
+		promptStyle:      base.Foreground(theme.Accent),
+		textStyle:        base.Foreground(theme.Text),
 		selectionStyle:   lipgloss.NewStyle().Foreground(theme.SelectionFg).Background(theme.SelectionBg),
-		placeholderStyle: lipgloss.NewStyle().Foreground(theme.TextFaint),
-		cursorStyle:      lipgloss.NewStyle().Foreground(theme.Text).Reverse(true),
+		placeholderStyle: base.Foreground(theme.TextMuted),
+		cursorStyle:      base.Foreground(theme.Text).Reverse(true),
 	}
 }
 
@@ -176,16 +203,38 @@ func (m *Model) insertStringRaw(s string) {
 	}
 }
 
-// visiblePrompt is the prompt clipped to the assigned width. A prompt
+// contentWidth is the width available to the prompt and text after the field
+// rail.
+func (m Model) contentWidth() int {
+	if m.noFrame {
+		return m.width
+	}
+	return fieldstyle.BodyWidth(m.width)
+}
+
+// visiblePrompt is the prompt clipped to the assigned content width. A prompt
 // grapheme that does not fit is omitted, which keeps narrow boxes bounded and
 // leaves any remaining cell available for content.
 func (m Model) visiblePrompt() string {
-	return ansi.Truncate(m.Prompt, m.width, "")
+	return ansi.Truncate(m.Prompt, m.contentWidth(), "")
 }
 
 // wrapWidth is the usable text width after the prompt gutter.
 func (m Model) wrapWidth() int {
-	return m.width - ansi.StringWidth(m.visiblePrompt())
+	return m.contentWidth() - ansi.StringWidth(m.visiblePrompt())
+}
+
+// textHeight reports the rows available to the text body after field
+// decoration.
+func (m Model) textHeight() int {
+	if m.noFrame {
+		return m.height
+	}
+	height := m.height - fieldstyle.HeaderHeight(m.Title, m.Description)
+	if m.Help != "" {
+		height--
+	}
+	return max(0, height)
 }
 
 // vrow is one visual (soft-wrapped) display row.
@@ -260,10 +309,18 @@ func (m Model) cursorVisual(rows []vrow) (idx, vcol int) {
 	return max(0, len(rows)-1), 0
 }
 
-// ContentHeight returns how many visual rows the content needs at the
-// current width — use it to grow the input's layout slot.
+// ContentHeight returns how many visual rows the content needs at the current
+// width, including optional Title/Description/Help rows — use it to grow the
+// input's layout slot.
 func (m Model) ContentHeight() int {
-	return max(1, len(m.visualRows()))
+	height := max(1, len(m.visualRows()))
+	if !m.noFrame {
+		height += fieldstyle.HeaderHeight(m.Title, m.Description)
+		if m.Help != "" {
+			height++
+		}
+	}
+	return height
 }
 
 // Cursor returns the logical cursor position (row, col in runes).
@@ -291,7 +348,8 @@ func (m *Model) SetCursor(row, col int) {
 }
 
 func (m *Model) ensureCursorVisible() {
-	if m.height <= 0 || m.width <= 0 {
+	height := m.textHeight()
+	if height <= 0 || m.width <= 0 {
 		return
 	}
 	rows := m.visualRows()
@@ -299,10 +357,10 @@ func (m *Model) ensureCursorVisible() {
 	if idx < m.yoff {
 		m.yoff = idx
 	}
-	if idx >= m.yoff+m.height {
-		m.yoff = idx - m.height + 1
+	if idx >= m.yoff+height {
+		m.yoff = idx - height + 1
 	}
-	m.yoff = max(0, min(m.yoff, max(0, len(rows)-m.height)))
+	m.yoff = max(0, min(m.yoff, max(0, len(rows)-height)))
 }
 
 func (m *Model) insertRunes(rs []rune) {
@@ -606,12 +664,43 @@ func (m Model) Update(msg tea.Msg) (Model, tea.Cmd) {
 	return m, nil
 }
 
-// View renders the visible window of visual rows with the prompt gutter and,
-// when focused, the cursor.
+// View renders the optional title/description, the visible window of visual
+// rows with the prompt gutter and cursor, and an optional hint row. Multi-line
+// text areas do not support inline mode.
 func (m Model) View() string {
 	if m.width <= 0 || m.height <= 0 {
 		return ""
 	}
+	if m.noFrame {
+		return m.viewContent()
+	}
+
+	rows := m.field.HeaderRows(m.focused, m.Title, m.Description, m.width)
+	help := m.field.HelpRow(m.focused, m.Help, m.width)
+	bodyHeight := m.textHeight()
+	bodyWidth := m.contentWidth()
+	if bodyHeight > 0 && bodyWidth > 0 {
+		body := m
+		body.width = bodyWidth
+		body.height = bodyHeight
+		body.noFrame = true
+		for _, row := range strings.Split(body.viewContent(), "\n") {
+			rows = append(rows, m.field.FrameRow(m.focused, row, m.width))
+		}
+	}
+	if help != "" {
+		rows = append(rows, help)
+	}
+	for len(rows) < m.height {
+		rows = append(rows, m.field.FrameRow(m.focused, "", m.width))
+	}
+	if len(rows) > m.height {
+		rows = rows[:m.height]
+	}
+	return strings.Join(rows, "\n")
+}
+
+func (m Model) viewContent() string {
 	w := m.wrapWidth()
 	if w <= 0 {
 		return m.fitView(m.promptStyle.Render(m.visiblePrompt()))

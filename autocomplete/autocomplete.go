@@ -1,7 +1,10 @@
-// Package autocomplete provides a conditional, width-bounded suggestion window for an
-// application-owned text input. The app owns the query and insertion policy;
-// this component owns matching, navigation, rendering, and semantic
+// Package autocomplete provides a conditional, width-bounded suggestion window
+// for an application-owned text input. The app owns the query and insertion
+// policy; this component owns matching, navigation, rendering, and semantic
 // activation.
+//
+// Suggestions use the Huh field grammar: a focus rail, a "> " selector, accent
+// text for the selected candidate, and muted descriptions.
 package autocomplete
 
 import (
@@ -14,6 +17,7 @@ import (
 	"github.com/ishan5ain/tuiweave"
 	"github.com/ishan5ain/tuiweave/action"
 	"github.com/ishan5ain/tuiweave/inspect"
+	"github.com/ishan5ain/tuiweave/internal/fieldstyle"
 	"github.com/ishan5ain/tuiweave/layout"
 )
 
@@ -70,31 +74,12 @@ type Model struct {
 	off           int
 	focused       bool
 
-	itemStyle            lipgloss.Style
-	descriptionStyle     lipgloss.Style
-	selectedStyle        lipgloss.Style
-	selectedBlurredStyle lipgloss.Style
-	disabledStyle        lipgloss.Style
+	field fieldstyle.Styles
 }
 
 // New returns an empty autocomplete window styled from semantic theme roles.
 func New(theme tuiweave.Theme) Model {
-	base := lipgloss.NewStyle().Background(theme.SurfaceRaised)
-	return Model{
-		pos: -1,
-		itemStyle: base.
-			Foreground(theme.Text),
-		descriptionStyle: base.
-			Foreground(theme.TextMuted),
-		selectedStyle: lipgloss.NewStyle().
-			Foreground(theme.SelectionFg).
-			Background(theme.SelectionBg),
-		selectedBlurredStyle: base.
-			Foreground(theme.Accent).
-			Bold(true),
-		disabledStyle: base.
-			Foreground(theme.TextFaint),
-	}
+	return Model{pos: -1, field: fieldstyle.NewOn(theme, theme.SurfaceRaised)}
 }
 
 // SetSize sets the suggestion window's bounded box. A non-empty window fills
@@ -251,8 +236,9 @@ func (m Model) Update(msg tea.Msg) (Model, tea.Cmd) {
 	return m, nil
 }
 
-// View renders visible suggestions at the assigned width. It returns empty
-// when there are no matches so an application can hide its popup naturally.
+// View renders visible suggestions at the assigned width with the Huh rail and
+// selector. It returns empty when there are no matches so an application can
+// hide its popup naturally.
 func (m Model) View() string {
 	if m.width <= 0 || m.height <= 0 || len(m.matches) == 0 {
 		return ""
@@ -261,7 +247,7 @@ func (m Model) View() string {
 	for i := range rows {
 		position := m.off + i
 		if position >= len(m.matches) {
-			rows[i] = strings.Repeat(" ", m.width)
+			rows[i] = m.field.FrameRow(m.focused, "", m.width)
 			continue
 		}
 		rows[i] = m.renderItem(position)
@@ -275,15 +261,14 @@ func (m Model) renderItem(position int) string {
 	if label == "" {
 		label = item.Value
 	}
-	if m.width == 1 {
-		return m.styleFor(position, item).Render(ansi.Truncate(label, 1, "…"))
+	bodyWidth := fieldstyle.BodyWidth(m.width)
+	if bodyWidth <= 0 {
+		return m.field.FrameRow(m.focused, "", m.width)
 	}
 
-	marker := "  "
-	if position == m.pos {
-		marker = "▸ "
-	}
-	available := max(0, m.width-2)
+	selected := position == m.pos && !item.Disabled
+	selector := m.field.Selector(selected)
+	available := max(0, bodyWidth-lipgloss.Width(selector))
 	label = ansi.Truncate(label, available, "…")
 	description := ""
 	gap := 0
@@ -297,27 +282,18 @@ func (m Model) renderItem(position int) string {
 			gap = 0
 		}
 	}
-	used := 2 + ansi.StringWidth(label) + gap + ansi.StringWidth(description)
-	padding := strings.Repeat(" ", max(0, m.width-used))
-	if item.Disabled || position == m.pos {
-		line := marker + label + strings.Repeat(" ", gap) + description + padding
-		return m.styleFor(position, item).Render(line)
-	}
-	return m.itemStyle.Render(marker+label+strings.Repeat(" ", gap)) +
-		m.descriptionStyle.Render(description) + m.itemStyle.Render(padding)
-}
-
-func (m Model) styleFor(position int, item Item) lipgloss.Style {
-	if item.Disabled {
-		return m.disabledStyle
-	}
-	if position == m.pos {
-		if m.focused {
-			return m.selectedStyle
+	body := selector + m.field.Label(label, selected, item.Disabled)
+	if gap > 0 {
+		descStyle := m.field.Desc
+		if item.Disabled {
+			descStyle = m.field.Disabled
 		}
-		return m.selectedBlurredStyle
+		body += m.field.Pad.Render(strings.Repeat(" ", gap)) + descStyle.Render(description)
 	}
-	return m.itemStyle
+	if pad := bodyWidth - lipgloss.Width(body); pad > 0 {
+		body += m.field.Pad.Render(strings.Repeat(" ", pad))
+	}
+	return m.field.FrameRow(m.focused, body, m.width)
 }
 
 func (m *Model) selectFirst() {

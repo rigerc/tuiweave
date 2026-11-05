@@ -63,6 +63,9 @@ func (m Model) Inspect() inspect.Node {
 	if m.filter != "" {
 		attributes["filter"] = m.filter
 	}
+	if m.Title != "" {
+		attributes["title"] = m.Title
+	}
 	return inspect.Node{
 		Kind:       "list",
 		Bounds:     inspect.Bounds{Width: m.width, Height: m.height},

@@ -1,5 +1,9 @@
 // Package button provides a compact, focusable action button. It owns only
 // presentation and activation; applications own the action's side effects.
+//
+// Buttons render as Huh-style action chips: a content-sized label with a
+// sunken resting fill and an accent fill when focused, left-aligned inside the
+// assigned box.
 package button
 
 import (
@@ -11,6 +15,7 @@ import (
 
 	"github.com/ishan5ain/tuiweave"
 	"github.com/ishan5ain/tuiweave/inspect"
+	"github.com/ishan5ain/tuiweave/internal/fieldstyle"
 	"github.com/ishan5ain/tuiweave/layout"
 )
 
@@ -41,25 +46,12 @@ type Model struct {
 	// ID identifies this button in PressedMsg and application inspection trees.
 	ID string
 
-	style         lipgloss.Style
-	focusedStyle  lipgloss.Style
-	disabledStyle lipgloss.Style
+	field fieldstyle.Styles
 }
 
 // New returns a button styled from the theme's semantic roles.
 func New(theme tuiweave.Theme) Model {
-	return Model{
-		style: lipgloss.NewStyle().
-			Foreground(theme.Text).
-			Background(theme.SurfaceRaised),
-		focusedStyle: lipgloss.NewStyle().
-			Foreground(theme.TextInverted).
-			Background(theme.Accent).
-			Bold(true),
-		disabledStyle: lipgloss.NewStyle().
-			Foreground(theme.TextFaint).
-			Background(theme.SurfaceSunken),
-	}
+	return Model{field: fieldstyle.NewOn(theme, theme.SurfaceRaised)}
 }
 
 // SetSize sets the box the button renders in. The button renders one row
@@ -131,26 +123,23 @@ func (m Model) Update(msg tea.Msg) (Model, tea.Cmd) {
 	return m, nil
 }
 
-// View renders one exact-width button row. Labels are truncated inside the
-// brackets at narrow widths.
+// View renders one exact-width action chip. The chip is content-sized and
+// left-aligned, with the remaining width left blank; labels are truncated at
+// narrow widths.
 func (m Model) View() string {
 	if m.width <= 0 || m.height <= 0 {
 		return ""
 	}
-
-	style := m.style
-	if m.disabled {
-		style = m.disabledStyle
-	} else if m.focused {
-		style = m.focusedStyle
-	}
-	if m.width < 4 {
-		return style.Render(ansi.Truncate("[ "+m.label+" ]", m.width, "…"))
+	if m.width < 5 {
+		return m.field.ChipNarrow(m.label, m.focused, m.disabled, m.width)
 	}
 
-	labelWidth := m.width - 4
-	label := ansi.Truncate(m.label, labelWidth, "…")
-	return style.Render("[ " + label + strings.Repeat(" ", labelWidth-ansi.StringWidth(label)) + " ]")
+	label := ansi.Truncate(m.label, m.width-4, "…")
+	chip := m.field.Chip(label, m.focused, m.disabled)
+	if pad := m.width - lipgloss.Width(chip); pad > 0 {
+		chip += m.field.Pad.Render(strings.Repeat(" ", pad))
+	}
+	return chip
 }
 
 func (m Model) applyAction(msg tea.Msg) (Model, tea.Cmd, bool) {

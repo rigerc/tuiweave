@@ -1,16 +1,16 @@
-1: "> " [fg=Accent] | "    " [fg=Text]
-2: "  " | "abcd" [fg=Text]
-3: "  " | "efgh" [fg=Text]
-4: "  " | "ij" [fg=Text] | " " [fg=Text reverse]
-5:
-6:
-7:
-8:
-9:
-10:
-11:
-12:
-13:
-14:
-15:
-16:
+1: "┃" [fg=Accent bold] | "> " [fg=Accent] | "   " [fg=Text]
+2: "┃" [fg=Accent bold] | "  " | "abc" [fg=Text]
+3: "┃" [fg=Accent bold] | "  " | "def" [fg=Text]
+4: "┃" [fg=Accent bold] | "  " | "ghi" [fg=Text]
+5: "┃" [fg=Accent bold] | "  " | "j" [fg=Text] | " " [fg=Text reverse]
+6: "┃" [fg=Accent bold]
+7: "┃" [fg=Accent bold]
+8: "┃" [fg=Accent bold]
+9: "┃" [fg=Accent bold]
+10: "┃" [fg=Accent bold]
+11: "┃" [fg=Accent bold]
+12: "┃" [fg=Accent bold]
+13: "┃" [fg=Accent bold]
+14: "┃" [fg=Accent bold]
+15: "┃" [fg=Accent bold]
+16: "┃" [fg=Accent bold]

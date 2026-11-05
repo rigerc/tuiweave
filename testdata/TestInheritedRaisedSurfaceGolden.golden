@@ -11,27 +11,27 @@ tabs
 statusbar
  tuiweave   ready   healthy
 autocomplete
-▸ git status  inspect
-  go test ./...  verify
+┃ > git status  inspect
+┃   go test ./...  verify
 toolbar
 ▸Open   Refresh
 toggle
-[x] Auto-refresh
+  [x] Auto-refresh
 progress
 Indexing ██████████░░░░  72%
 palette
-›
-▸ Open  open workspace
-  Refresh  refresh state
+┃ ›
+┃ > Open  open workspace
+┃   Refresh  refresh state
 button
-[ Open workspace           ]
+  Open workspace
 dialog
 ╭──────────────────────────────╮
 │                              │
 │  Delete workspace?           │
 │  This cannot be undone.      │
 │                              │
-│            OK      Cancel    │
+│             OK     Cancel    │
 │                              │
 ╰──────────────────────────────╯
 permission
@@ -43,8 +43,8 @@ permission
 │  Tool: shell                     │
 │  Operation: execute              │
 │                                  │
-│   1  Allow once                  │
-│   2  Allow always                │
-│   3  Deny                        │
+│   1 > Allow once                 │
+│   2   Allow always               │
+│   3   Deny                       │
 │                                  │
 ╰──────────────────────────────────╯

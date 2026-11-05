@@ -116,7 +116,7 @@ func TestSoftWrapGolden(t *testing.T) {
 }
 
 func TestCellWidthWrapAndCursor(t *testing.T) {
-	ta := newFocused(8, 4) // cell wrap width 6 after the prompt
+	ta := newFocused(10, 4) // cell wrap width 6 after the prompt and field rail
 	ta.SetValue("界abcd")
 	if got := ta.ContentHeight(); got != 2 {
 		t.Fatalf("wide ContentHeight = %d, want 2 for an exact cell-width row", got)
@@ -131,8 +131,8 @@ func TestCellWidthWrapAndCursor(t *testing.T) {
 		t.Fatalf("combining ContentHeight = %d, want 1", got)
 	}
 	for _, line := range strings.Split(ta.View(), "\n") {
-		if got := ansi.StringWidth(line); got != 8 {
-			t.Fatalf("rendered cell width = %d, want 8 for %q", got, line)
+		if got := ansi.StringWidth(line); got != 10 {
+			t.Fatalf("rendered cell width = %d, want 10 for %q", got, line)
 		}
 	}
 	ta.SetValue("界abc\nabcd")
@@ -175,7 +175,7 @@ func TestNarrowPromptGolden(t *testing.T) {
 }
 
 func TestSoftWrapKeepsUnicodeClustersTogether(t *testing.T) {
-	ta := newFocused(6, 5) // wrap width 4 after the prompt
+	ta := newFocused(8, 5) // wrap width 4 after the prompt and field rail
 	ta.SetValue("界e\u0301👩‍💻x")
 	rows := ta.visualRows()
 	if len(rows) != 2 {
@@ -201,16 +201,16 @@ func TestSoftWrapKeepsUnicodeClustersTogether(t *testing.T) {
 
 func TestBlurredExactWrapShowsContent(t *testing.T) {
 	ta := New(tuiweave.Dark())
-	ta.SetSize(8, 1) // wrap width 6 after the prompt
+	ta.SetSize(10, 1) // wrap width 6 after the prompt and field rail
 	ta.SetValue("abcdef")
-	if got := ansi.Strip(ta.View()); got != "> abcdef" {
-		t.Fatalf("blurred exact-wrap view = %q, want %q", got, "> abcdef")
+	if got := ansi.Strip(ta.View()); got != "  > abcdef" {
+		t.Fatalf("blurred exact-wrap view = %q, want %q", got, "  > abcdef")
 	}
 
 	ta.Focus()
 	ta.Blur()
-	if got := ansi.Strip(ta.View()); got != "> abcdef" {
-		t.Fatalf("blurred after focus view = %q, want %q", got, "> abcdef")
+	if got := ansi.Strip(ta.View()); got != "  > abcdef" {
+		t.Fatalf("blurred after focus view = %q, want %q", got, "  > abcdef")
 	}
 }
 
@@ -358,7 +358,7 @@ func TestDeleteJoinsForward(t *testing.T) {
 }
 
 func TestVerticalMovesByVisualRow(t *testing.T) {
-	ta := newFocused(12, 5) // wrap width 10
+	ta := newFocused(14, 5) // wrap width 10 after the field rail
 	ta = typeString(ta, "0123456789ABCDE")
 	// cursor at end (visual row 2, vcol 5); up should land inside row 1
 	ta, _ = ta.Update(key("up"))

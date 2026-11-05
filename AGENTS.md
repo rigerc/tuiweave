@@ -2,7 +2,7 @@
 
 Rules for writing code **with** tuiweave (apps) and **in** tuiweave (components).
 The rules layer is compact; recipes link into the runnable example apps
-(`examples/statusbar`, `examples/demo`, `examples/chat`, `examples/frame`, `examples/palette`, `examples/autocomplete`, `examples/textarea-autocomplete`, `examples/ops`, `examples/browser`, `examples/table`). Architecture
+(`examples/statusbar`, `examples/demo`, `examples/chat`, `examples/frame`, `examples/form`, `examples/inline`, `examples/palette`, `examples/autocomplete`, `examples/textarea-autocomplete`, `examples/ops`, `examples/browser`, `examples/table`). Architecture
 rationale lives in [DESIGN.md](DESIGN.md) — read it before adding a
 component; you don't need it to build an app. The portable workflow contract
 is in [AGENT-CONTRACT.md](AGENT-CONTRACT.md).
@@ -153,6 +153,9 @@ natural height of one row; `autocomplete` is `SizeWidthBounded` because it
 fills the assigned height only while matches exist; and `dialog` and
 `permission` are `SizeWidthBounded` with natural content height. Do not assume
 every `SetSize` height is rendered as rows for those documented modes.
+`textinput` and `toggle` are also `SizeWidthBounded`, but their natural height
+grows for stacked field decoration or a Clack inline prompt. `menu` is
+`SizeBounded` for stacked options and `SizeWidthBounded` when `Inline` is set.
 
 Compose the final frame with `lipgloss.JoinVertical` / `JoinHorizontal` and
 wrap it once, at the root: `return tea.NewView(view)`. Full-screen apps set
@@ -378,6 +381,9 @@ remain visible and are skipped by navigation. `enter` emits a typed
 
 ```go
 actions := menu.New(theme)
+actions.Title = "Workspace"
+actions.Description = "Choose an action"
+actions.Help = "enter to run"
 actions.SetItems(commands...)
 actions.SetSize(area.Dx(), area.Dy())
 actions.Focus()
@@ -387,7 +393,12 @@ case menu.SelectedMsg:
 ```
 
 - `menu` handles up/down, `j`/`k`, page navigation, `home`/`g`, `end`/`G`,
-  and enter only while focused; global tab order remains app-owned.
+  and enter only while focused; global tab order remains app-owned. With
+  `Inline = true`, it renders a Clack prompt block with vertical
+  `❯ ●/○` options; left/right and `h`/`l` remain aliases for up/down.
+- `Title`, `Description`, and `Help` add optional Huh-style field decoration;
+  `NaturalHeight()` reports the rows needed for the current content. Inline
+  menus are width-bounded and natural-height; size them after focus.
 - Keep IDs stable so `SelectedID()`, `SelectedMsg`, and semantic
   `select.<id>` actions remain useful to tests and agents.
 - Always reassign the returned model and collect the command from `Update`;
@@ -494,10 +505,13 @@ application owns persistence and side effects.
 ```go
 t := toggle.New(theme)
 t.ID = "auto-refresh"
+t.Title = "Updates"
+t.Description = "Keep the list current"
 t.SetLabel("Auto-refresh")
 t.SetChecked(true)
-t.SetSize(area.Dx(), 1)
+t.Inline = true
 t.Focus()
+t.SetSize(area.Dx(), t.NaturalHeight())
 
 case toggle.ChangedMsg:
     // Persist or apply msg.Checked for msg.ID in the application.
@@ -508,8 +522,10 @@ case toggle.ChangedMsg:
 - `toggle` exposes `focus`, `blur`, `toggle`, `on`, and `off` semantic actions
   through `Inspect()`. Disabled toggles remain renderable but reject focus and
   state changes.
-- It renders one exact-width row and truncates its label at narrow widths; do
-  not pre-truncate the setting label in the app.
+- `Title`, `Description`, and `Help` add Huh-style field decoration. `Inline`
+  renders a Clack prompt block with `❯ ●/○`; the focused prompt expands and
+  the others collapse to their submitted label. Size inline toggles after
+  focus. Checked state uses `Accent`, not `Success`.
 
 ### button
 
@@ -534,8 +550,9 @@ case button.PressedMsg:
   `Inspect()`. Disabled buttons remain visible but reject focus and activation.
 - Use `menu` or `toolbar` when the user must choose among several actions; use
   `button` when there is one action at that location.
-- It renders one exact-width row and truncates the label inside its brackets;
-  do not pre-truncate the label in the app.
+- It renders one exact-width Huh-style action chip: a content-sized label with
+  a sunken resting fill, an accent fill when focused, and trailing blank space.
+  Do not pre-truncate the label in the app.
 
 ### palette
 
@@ -560,7 +577,9 @@ case palette.SelectedMsg:
 - Semantic `select.<id>`, `next`, `previous`, `first`, `last`, `clear`, and
   `activate` actions are exposed through `Inspect()` for tests and agents.
 - The palette renders an explicit `No matching commands` state and exact-width
-  query/result rows. Do not pre-filter or pre-truncate actions in the app.
+  query/result rows. The query input supplies the focus rail; results use a
+  `> ` selector with accent text and muted descriptions, without selection
+  fills. Do not pre-filter or pre-truncate actions in the app.
 
 ### autocomplete
 
@@ -597,7 +616,99 @@ case autocomplete.SelectedMsg:
   value. Semantic selection, focus, navigation, clear, and activation actions
   are available through `Inspect()`.
 - No matches render an empty suggestion window; matching rows remain exact-width
-  and fill the assigned height.
+  and fill the assigned height. Suggestions use a focus rail, a `> ` selector,
+  and accent text for the selected candidate.
+
+### Huh-style fields
+
+The stacked form components share one field grammar inspired by Huh:
+
+- focused fields get a thick left rail (`┃ `) and a one-cell inset; blurred
+  fields keep the inset so content does not jump
+- `Title` is accent and bold; `Description` is muted; `Help` is a muted hint
+- selected options use a `> ` selector and accent text rather than a row fill
+- action chips are filled when focused, sunken when resting
+
+```go
+name := textinput.New(theme)
+name.Title = "Name"
+name.Description = "Shown on your profile"
+name.SetSize(width, name.NaturalHeight())
+
+env := menu.New(theme)
+env.Title = "Environment"
+env.SetItems(
+    action.Item{ID: "staging", Label: "Staging"},
+    action.Item{ID: "production", Label: "Production"},
+)
+env.SetSize(width, env.NaturalHeight())
+```
+
+[examples/form](examples/form/main.go) is the full stacked-form composition.
+The rail is decorative chrome, not a layout segment: components still render
+an exact box and the app still assigns rectangles. At narrow widths the rail
+degrades to one cell or disappears before it truncates the control.
+
+### Clack-style inline prompts
+
+Set `Inline` on `textinput`, `menu`, or `toggle` to render a Clack prompt block
+matching the Vercel Skills CLI:
+
+```text
+◆  Name
+│  Shown on your profile
+│  › Ada
+└
+```
+
+- Active prompt: `◆` header, `│` body rows, `›` input, `❯ ●/○` options, and a
+  `└` footer. Blurred prompts show `◇` and collapse to their submitted value.
+  Symbols use `Info` for the active diamond/cursor and `Success` for submitted
+  or selected marks, mirroring Clack's cyan/green palette.
+- `textinput.Inline` renders its title, description, input, and help.
+- `menu.Inline` renders its options vertically with
+  `↑/↓ to navigate • Enter: confirm`. Its `SizeMode` is width-bounded; `View`
+  returns its natural height.
+- `toggle.Inline` renders `❯ ●` or `❯ ○` with the setting label.
+- Inline natural height depends on focus. Call `Focus()` first, then
+  `SetSize(width, NaturalHeight())`; reapply size after each focus change.
+- `menu.NewOn(theme, nil)` and `toggle.NewOn(theme, nil)` render transparent
+  Clack prompts on the application surface. `textinput.New` is already
+  transparent.
+
+```go
+name := textinput.New(theme)
+name.Title = "Name"
+name.Inline = true
+name.Focus()
+name.SetSize(width, name.NaturalHeight())
+
+env := menu.NewOn(theme, nil)
+env.Title = "Environment"
+env.Inline = true
+env.SetItems(
+    action.Item{ID: "staging", Label: "Staging"},
+    action.Item{ID: "production", Label: "Production"},
+)
+env.Focus()
+env.SetSize(width, env.NaturalHeight())
+
+auto := toggle.NewOn(theme, nil)
+auto.Title = "Updates"
+auto.SetLabel("Auto-refresh")
+auto.Inline = true
+auto.Focus()
+auto.SetSize(width, auto.NaturalHeight())
+```
+
+[examples/inline](examples/inline/main.go) is the runnable Clack prompt
+sequence. The focused prompt expands; the others collapse to submitted values.
+
+Menus, lists, palettes, autocomplete, toggles, buttons, and modals paint their
+own `SurfaceRaised` background so nested style resets cannot leave gaps inside a
+panel. `textinput` and `textarea` are transparent by default; when embedding
+them in a panel, construct them with `textinput.NewOn(theme,
+theme.SurfaceRaised)` or `textarea.NewOn(theme, theme.SurfaceRaised)`.
 
 ### line
 
@@ -672,11 +783,19 @@ tb.SetRows([]string{"1", "api"})
 
 ```go
 ti := textinput.New(theme)       // single line
+ti.Title = "Name"
+ti.Description = "Shown on your profile"
+ti.Help = "tab moves focus"
 ti.Placeholder = "type…"
+ti.Inline = true                 // Clack prompt block
 ti.Focus()                       // cursor renders; keys accepted
+ti.SetSize(width, ti.NaturalHeight())
 // enter is NOT handled: check it in the app and read ti.Value(), then ti.Reset()
 
-ta := textarea.New(theme)        // multi-line, soft-wrapped
+ta := textarea.New(theme)        // multi-line, soft-wrapped; always stacked
+ta.Title = "Instructions"
+ta.Description = "Optional"
+ta.Help = "ctrl+enter sends"
 ta.SelectAll()                   // logical-rune selection; inspect with SelectedText()
 ta.Undo() / ta.Redo()             // bounded edit history; CanUndo/CanRedo report state
 ta.Yank()                         // insert the latest killed text; CanYank reports state
@@ -707,6 +826,14 @@ case "alt+enter": ta.InsertString("\n")
   the end of the inserted logical value. Use the app-owned token range plus
   `CursorPosition` for completion instead of reconstructing cursor state from
   `Value()` alone. See [examples/textarea-autocomplete](examples/textarea-autocomplete/main.go).
+
+- `Title`, `Description`, and `Help` add Huh-style field decoration with a
+  thick focus rail. The rail spans the text body; at narrow widths it reduces
+  to one cell or disappears so content is not starved.
+- `textinput.Inline` renders a Clack prompt block (`◆`/`│`/`›`/`└`) and
+  collapses to its submitted value when blurred. `textarea` stays stacked
+  because it is multi-line. `textinput.NaturalHeight` is focus-dependent for
+  inline; `textarea.ContentHeight` includes decoration rows.
 
 Grow a chat input with its content by re-splitting the layout after edits:
 `layout.Len(min(4, ta.ContentHeight()))` — see [examples/chat](examples/chat/main.go).

@@ -114,7 +114,7 @@ func newModel() model {
 	m := model{
 		theme:   theme,
 		tabs:    tabs.New(theme),
-		filter:  textinput.New(theme),
+		filter:  textinput.NewOn(theme, theme.SurfaceRaised),
 		files:   list.New(theme),
 		preview: viewport.New(theme),
 		status:  statusbar.New(theme),

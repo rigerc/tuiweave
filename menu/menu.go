@@ -1,9 +1,16 @@
 // Package menu provides a focusable vertical menu of application-owned
 // actions. It renders the choices and emits a SelectedMsg on activation; the
 // application owns the resulting command's behavior.
+//
+// Menus follow the Huh field grammar: Title and Description render above the
+// options, Help below, a thick focus rail marks the active field, and the
+// selected option uses a "> " selector. Inline renders a Clack prompt block
+// with a ◆ header, ❯ ●/○ options, instructions, and a └ footer; an unfocused
+// prompt collapses to the selected value.
 package menu
 
 import (
+	"image/color"
 	"strings"
 
 	tea "charm.land/bubbletea/v2"
@@ -13,6 +20,9 @@ import (
 	"github.com/ishan5ain/tuiweave"
 	"github.com/ishan5ain/tuiweave/action"
 	"github.com/ishan5ain/tuiweave/inspect"
+	"github.com/ishan5ain/tuiweave/internal/clackstyle"
+	"github.com/ishan5ain/tuiweave/internal/fieldstyle"
+	"github.com/ishan5ain/tuiweave/layout"
 )
 
 const (
@@ -54,24 +64,31 @@ type Model struct {
 	off           int
 	focused       bool
 
-	itemStyle            lipgloss.Style
-	disabledStyle        lipgloss.Style
-	selectedStyle        lipgloss.Style
-	selectedBlurredStyle lipgloss.Style
+	// Title is an optional field title. Inline uses it as the Clack prompt
+	// message; stacked mode renders it above the options.
+	Title string
+	// Description is an optional muted line below the title.
+	Description string
+	// Help is an optional muted hint rendered below the options.
+	Help string
+	// Inline renders a Clack prompt block. The focused prompt expands its
+	// options; an unfocused prompt collapses to the selected value.
+	Inline bool
+
+	field fieldstyle.Styles
+	clack clackstyle.Styles
 }
 
 // New returns an empty menu styled from the theme's roles.
-func New(theme tuiweave.Theme) Model {
+func New(theme tuiweave.Theme) Model { return NewOn(theme, theme.SurfaceRaised) }
+
+// NewOn returns an empty menu with the given background painted behind its
+// rows. Use nil for a transparent menu on the application surface.
+func NewOn(theme tuiweave.Theme, background color.Color) Model {
 	return Model{
-		selected:  -1,
-		itemStyle: lipgloss.NewStyle().Foreground(theme.Text),
-		disabledStyle: lipgloss.NewStyle().
-			Foreground(theme.TextFaint),
-		selectedStyle: lipgloss.NewStyle().
-			Foreground(theme.SelectionFg).
-			Background(theme.SelectionBg),
-		selectedBlurredStyle: lipgloss.NewStyle().
-			Foreground(theme.Accent),
+		selected: -1,
+		field:    fieldstyle.NewOn(theme, background),
+		clack:    clackstyle.NewOn(theme, background),
 	}
 }
 
@@ -79,6 +96,15 @@ func New(theme tuiweave.Theme) Model {
 func (m *Model) SetSize(width, height int) {
 	m.width, m.height = width, height
 	m.scrollIntoView()
+}
+
+// SizeMode reports a bounded scrolling menu for stacked options and a
+// width-bounded, natural-height Clack prompt block for Inline.
+func (m Model) SizeMode() layout.SizeMode {
+	if m.Inline {
+		return layout.SizeWidthBounded
+	}
+	return layout.SizeBounded
 }
 
 // SetItems replaces the menu items, preserving the selected ID when it is
@@ -103,6 +129,27 @@ func (m *Model) SetItems(items ...Item) {
 
 // Items returns the configured menu items.
 func (m Model) Items() []Item { return append([]Item(nil), m.items...) }
+
+// NaturalHeight reports the rows needed to show every option plus optional
+// title, description, and help. Inline height depends on focus: two rows when
+// collapsed, the full prompt when focused.
+func (m Model) NaturalHeight() int {
+	if m.Inline {
+		if !m.focused {
+			return 2
+		}
+		height := 3 // header, instructions, footer
+		if m.Description != "" {
+			height++
+		}
+		height += max(1, len(m.items))
+		if m.Help != "" {
+			height++
+		}
+		return height
+	}
+	return fieldstyle.HeaderHeight(m.Title, m.Description) + boolInt(m.Help != "") + len(m.items)
+}
 
 // Select selects an enabled item by index. Disabled or out-of-range indices
 // leave the current selection unchanged.
@@ -153,8 +200,13 @@ func (m Model) Focused() bool { return m.focused }
 // TotalLines returns the configured item count for scrollbar.Scrollable.
 func (m Model) TotalLines() int { return len(m.items) }
 
-// VisibleLines returns the number of visible menu rows.
-func (m Model) VisibleLines() int { return m.height }
+// VisibleLines returns the number of visible option rows.
+func (m Model) VisibleLines() int {
+	if m.Inline {
+		return max(1, len(m.items))
+	}
+	return m.itemArea()
+}
 
 // YOffset returns the first visible item index.
 func (m Model) YOffset() int { return m.off }
@@ -189,10 +241,18 @@ func (m Model) Update(msg tea.Msg) (Model, tea.Cmd) {
 		m.selectRelative(-1)
 	case "down", "j":
 		m.selectRelative(1)
+	case "left", "h":
+		if m.Inline {
+			m.selectRelative(-1)
+		}
+	case "right", "l":
+		if m.Inline {
+			m.selectRelative(1)
+		}
 	case "pgup":
-		m.selectRelative(-max(1, m.height))
+		m.selectRelative(-max(1, m.itemArea()))
 	case "pgdown":
-		m.selectRelative(max(1, m.height))
+		m.selectRelative(max(1, m.itemArea()))
 	case "home", "g":
 		m.Select(m.firstEnabled())
 	case "end", "G":
@@ -203,53 +263,85 @@ func (m Model) Update(msg tea.Msg) (Model, tea.Cmd) {
 	return m, nil
 }
 
-// View renders the visible menu rows. Selection uses SelectionBg/SelectionFg
-// only while focused; a blurred menu keeps a subtle accent marker.
+// View renders the Huh-style option list or, when Inline is set, a Clack-style
+// prompt block with a ◆ header, │ rows, ❯ ●/○ options, and a └ footer.
 func (m Model) View() string {
 	if m.width <= 0 || m.height <= 0 {
 		return ""
 	}
-	rows := make([]string, m.height)
-	for i := range rows {
+	rows := make([]string, 0, m.height)
+
+	if m.Inline {
+		rows = append(rows, m.clack.HeaderRow(m.focused, m.Title, m.width))
+		if !m.focused {
+			value := "No selection"
+			if item := m.SelectedItem(); item.Label != "" {
+				value = item.Label
+			}
+			rows = append(rows, m.clack.Row(false, m.clack.Inactive.Render(value), m.width))
+			if len(rows) > m.height {
+				rows = rows[:m.height]
+			}
+			return strings.Join(rows, "\n")
+		}
+		if m.Description != "" {
+			rows = append(rows, m.clack.Row(m.focused, m.clack.Desc.Render(m.Description), m.width))
+		}
+		if len(m.items) == 0 {
+			rows = append(rows, m.clack.Row(m.focused, m.clack.Inactive.Render("No options"), m.width))
+		} else {
+			for i, item := range m.items {
+				rows = append(rows, m.clack.OptionRow(m.focused, i == m.selected, item.Disabled, item.Label, m.width))
+			}
+		}
+		rows = append(rows, m.clack.InstructionsRow(m.focused, "↑/↓ to navigate • Enter: confirm", m.width))
+		if m.Help != "" {
+			rows = append(rows, m.clack.HelpRow(m.focused, m.Help, m.width))
+		}
+		rows = append(rows, m.clack.FooterRow(m.width))
+		if len(rows) > m.height {
+			rows = rows[:m.height]
+		}
+		return strings.Join(rows, "\n")
+	}
+
+	rows = append(rows, m.field.HeaderRows(m.focused, m.Title, m.Description, m.width)...)
+	for i := 0; i < m.itemArea(); i++ {
 		index := m.off + i
 		if index >= len(m.items) {
-			rows[i] = strings.Repeat(" ", m.width)
+			rows = append(rows, m.field.FrameRow(m.focused, "", m.width))
 			continue
 		}
-		rows[i] = m.renderItem(index)
+		rows = append(rows, m.renderItem(index))
+	}
+	if help := m.field.HelpRow(m.focused, m.Help, m.width); help != "" {
+		rows = append(rows, help)
+	}
+	for len(rows) < m.height {
+		rows = append(rows, m.field.FrameRow(m.focused, "", m.width))
+	}
+	if len(rows) > m.height {
+		rows = rows[:m.height]
 	}
 	return strings.Join(rows, "\n")
 }
 
 func (m Model) renderItem(index int) string {
 	item := m.items[index]
-	if m.width == 1 {
-		text := ansi.Truncate(item.Label, 1, "…")
-		return m.styleFor(index).Render(text)
+	bodyWidth := fieldstyle.BodyWidth(m.width)
+	if bodyWidth <= 0 {
+		return m.field.FrameRow(m.focused, "", m.width)
 	}
 
-	textWidth := m.width - 2
-	text := ansi.Truncate(item.Label, textWidth, "…")
-	text += strings.Repeat(" ", max(0, textWidth-ansi.StringWidth(text)))
-	marker := " "
-	if index == m.selected {
-		marker = "▸"
+	selected := index == m.selected && !item.Disabled
+	selector := m.field.Selector(selected)
+	labelWidth := max(0, bodyWidth-lipgloss.Width(selector))
+	label := ansi.Truncate(item.Label, labelWidth, "…")
+	body := selector + m.field.Label(label, selected, item.Disabled)
+	if pad := bodyWidth - lipgloss.Width(body); pad > 0 {
+		body += m.field.Pad.Render(strings.Repeat(" ", pad))
 	}
-	return m.styleFor(index).Render(marker + " " + text)
-}
-
-func (m Model) styleFor(index int) lipgloss.Style {
-	item := m.items[index]
-	if item.Disabled {
-		return m.disabledStyle
-	}
-	if index == m.selected {
-		if m.focused {
-			return m.selectedStyle
-		}
-		return m.selectedBlurredStyle
-	}
-	return m.itemStyle
+	return m.field.FrameRow(m.focused, body, m.width)
 }
 
 func (m Model) firstEnabled() int {
@@ -301,8 +393,21 @@ func (m *Model) selectRelative(delta int) {
 	m.Select(index)
 }
 
+func (m Model) itemArea() int {
+	area := m.height - fieldstyle.HeaderHeight(m.Title, m.Description)
+	if m.Help != "" {
+		area--
+	}
+	return max(0, area)
+}
+
 func (m *Model) scrollIntoView() {
-	if len(m.items) == 0 || m.height <= 0 {
+	if m.Inline || len(m.items) == 0 {
+		m.off = 0
+		return
+	}
+	area := m.itemArea()
+	if area <= 0 {
 		m.off = 0
 		return
 	}
@@ -313,10 +418,10 @@ func (m *Model) scrollIntoView() {
 	if m.selected < m.off {
 		m.off = m.selected
 	}
-	if m.selected >= m.off+m.height {
-		m.off = m.selected - m.height + 1
+	if m.selected >= m.off+area {
+		m.off = m.selected - area + 1
 	}
-	m.off = max(0, min(m.off, max(0, len(m.items)-m.height)))
+	m.off = max(0, min(m.off, max(0, len(m.items)-area)))
 }
 
 func abs(value int) int {
@@ -360,4 +465,11 @@ func (m Model) applyAction(msg tea.Msg) (Model, tea.Cmd, bool) {
 		return m, nil, false
 	}
 	return m, nil, true
+}
+
+func boolInt(value bool) int {
+	if value {
+		return 1
+	}
+	return 0
 }

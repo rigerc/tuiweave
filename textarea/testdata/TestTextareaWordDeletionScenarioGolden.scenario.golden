@@ -1,19 +1,23 @@
 ## initial
 command: no
-> one two
-
+┃ > one two
+┃
+┃
 
 ## move to start
 command: no
-> one two
-
+┃ > one two
+┃
+┃
 
 ## delete next word
 command: no
-> two
-
+┃ > two
+┃
+┃
 
 ## yank deleted word
 command: no
-> one two
-
+┃ > one two
+┃
+┃

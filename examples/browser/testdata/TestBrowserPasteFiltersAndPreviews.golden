@@ -2,10 +2,10 @@
 ▸Workspace   Recent   Pinned
 ╭ Files ───────────────────────╮ ╭ Preview ───────────────────────────────────────────╮
 │                              │ │                                                    │
-│ > main                       │ │ package main                                       │┃
-│ ▎ cmd/tuiweave/main.go       │ │                                                    │┃
-│   examples/browser/main.go   │ │ import (                                           │┃
-│   examples/frame/main.go     │ │     "fmt"                                          │┃
+│ ┃ > main                     │ │ package main                                       │┃
+│   > cmd/tuiweave/main.go     │ │                                                    │┃
+│     examples/browser/main.go │ │ import (                                           │┃
+│     examples/frame/main.go   │ │     "fmt"                                          │┃
 │                              │ │     "os"                                           │┃
 │                              │ │ )                                                  │┃
 │                              │ │                                                    │┃

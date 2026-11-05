@@ -1,1 +1,1 @@
-1: "> " [fg=Accent] | "hello world" [fg=Text] | " " [fg=Text reverse]
+1: "┃" [fg=Accent bold] | " " | "> " [fg=Accent] | "hello world" [fg=Text] | " " [fg=Text reverse]

@@ -51,6 +51,12 @@ func (m Model) Inspect() inspect.Node {
 	if id := m.SelectedID(); id != "" {
 		attributes["selected_id"] = id
 	}
+	if m.Title != "" {
+		attributes["title"] = m.Title
+	}
+	if m.Inline {
+		attributes["inline"] = "true"
+	}
 	return inspect.Node{
 		Kind:       "menu",
 		Bounds:     inspect.Bounds{Width: m.width, Height: m.height},

@@ -2,15 +2,15 @@
 command: no
 ╭ Textarea completion ─────────────────────────────────────────────────╮
 │                                                                      │
-│ > type a command fragment                                            │
-│ ▸ git status  show changes                                           │
-│   git log --oneline  show commits                                    │
-│   go test ./...  run tests                                           │
-│                                                                      │
-│                                                                      │
-│                                                                      │
-│                                                                      │
-│                                                                      │
+│ ┃ > type a command fragment                                          │
+│ ┃ > git status  show changes                                         │
+│ ┃   git log --oneline  show commits                                  │
+│ ┃   go test ./...  run tests                                         │
+│ ┃                                                                    │
+│ ┃                                                                    │
+│ ┃                                                                    │
+│ ┃                                                                    │
+│ ┃                                                                    │
 │                                                                      │
 ╰──────────────────────────────────────────────────────────────────────╯
  textarea  git-status                3 matches  ↑↓ choose  enter accept
@@ -19,15 +19,15 @@ command: no
 command: no
 ╭ Textarea completion ─────────────────────────────────────────────────╮
 │                                                                      │
-│ > g                                                                  │
-│ ▸ git status  show changes                                           │
-│   git log --oneline  show commits                                    │
-│   go test ./...  run tests                                           │
-│                                                                      │
-│                                                                      │
-│                                                                      │
-│                                                                      │
-│                                                                      │
+│ ┃ > g                                                                │
+│ ┃ > git status  show changes                                         │
+│ ┃   git log --oneline  show commits                                  │
+│ ┃   go test ./...  run tests                                         │
+│ ┃                                                                    │
+│ ┃                                                                    │
+│ ┃                                                                    │
+│ ┃                                                                    │
+│ ┃                                                                    │
 │                                                                      │
 ╰──────────────────────────────────────────────────────────────────────╯
  textarea  git-status                3 matches  ↑↓ choose  enter accept
@@ -36,15 +36,15 @@ command: no
 command: no
 ╭ Textarea completion ─────────────────────────────────────────────────╮
 │                                                                      │
-│ > gi                                                                 │
-│ ▸ git status  show changes                                           │
-│   git log --oneline  show commits                                    │
-│                                                                      │
-│                                                                      │
-│                                                                      │
-│                                                                      │
-│                                                                      │
-│                                                                      │
+│ ┃ > gi                                                               │
+│ ┃ > git status  show changes                                         │
+│ ┃   git log --oneline  show commits                                  │
+│ ┃                                                                    │
+│ ┃                                                                    │
+│ ┃                                                                    │
+│ ┃                                                                    │
+│ ┃                                                                    │
+│ ┃                                                                    │
 │                                                                      │
 ╰──────────────────────────────────────────────────────────────────────╯
  textarea  git-status                2 matches  ↑↓ choose  enter accept
@@ -53,15 +53,15 @@ command: no
 command: yes
 ╭ Textarea completion ─────────────────────────────────────────────────╮
 │                                                                      │
-│ > gi                                                                 │
-│ ▸ git status  show changes                                           │
-│   git log --oneline  show commits                                    │
-│                                                                      │
-│                                                                      │
-│                                                                      │
-│                                                                      │
-│                                                                      │
-│                                                                      │
+│ ┃ > gi                                                               │
+│ ┃ > git status  show changes                                         │
+│ ┃   git log --oneline  show commits                                  │
+│ ┃                                                                    │
+│ ┃                                                                    │
+│ ┃                                                                    │
+│ ┃                                                                    │
+│ ┃                                                                    │
+│ ┃                                                                    │
 │                                                                      │
 ╰──────────────────────────────────────────────────────────────────────╯
  textarea  git-status                2 matches  ↑↓ choose  enter accept
@@ -70,7 +70,7 @@ command: yes
 command: no
 ╭ Textarea completion ─────────────────────────────────────────────────╮
 │                                                                      │
-│ > git status                                                         │
+│ ┃ > git status                                                       │
 │                                                                      │
 │                                                                      │
 ╰──────────────────────────────────────────────────────────────────────╯

@@ -4,14 +4,14 @@ command: no
 ▸Workspace   Recent   Pinned
 ╭ Files ───────────────────────╮ ╭ Preview ───────────────────────────────────────────╮
 │                              │ │                                                    │
-│ > filter files               │ │ package main                                       │┃
-│ ▎ cmd/tuiweave/main.go       │ │                                                    │┃
-│   layout/layout.go           │ │ import (                                           │┃
-│   list/list.go               │ │     "fmt"                                          │┃
-│   examples/browser/main.go   │ │     "os"                                           │┃
-│   examples/frame/main.go     │ │ )                                                  │┃
-│   agentic/chat/chat.go       │ │                                                    │┃
-│   agentic/toolcall/toolcall… │ │ func main() {                                      │┃
+│   > filter files             │ │ package main                                       │┃
+│   > cmd/tuiweave/main.go     │ │                                                    │┃
+│     layout/layout.go         │ │ import (                                           │┃
+│     list/list.go             │ │     "fmt"                                          │┃
+│     examples/browser/main.go │ │     "os"                                           │┃
+│     examples/frame/main.go   │ │ )                                                  │┃
+│     agentic/chat/chat.go     │ │                                                    │┃
+│     agentic/toolcall/toolca… │ │ func main() {                                      │┃
 │                              │ │     config := loadConfig()                         │┃
 │                              │ │     if err := run(config); err != nil {            │┃
 │                              │ │         fmt.Fprintln(os.Stderr, err)               ││
@@ -31,14 +31,14 @@ command: no
 ▸Workspace   Recent   Pinned
 ╭ Files ───────────────────────╮ ╭ Preview ───────────────────────────────────────────╮
 │                              │ │                                                    │
-│ > filter files               │ │ package main                                       │┃
-│ ▎ cmd/tuiweave/main.go       │ │                                                    │┃
-│   layout/layout.go           │ │ import (                                           │┃
-│   list/list.go               │ │     "fmt"                                          │┃
-│   examples/browser/main.go   │ │     "os"                                           │┃
-│   examples/frame/main.go     │ │ )                                                  │┃
-│   agentic/chat/chat.go       │ │                                                    │┃
-│   agentic/toolcall/toolcall… │ │ func main() {                                      │┃
+│ ┃ > filter files             │ │ package main                                       │┃
+│   > cmd/tuiweave/main.go     │ │                                                    │┃
+│     layout/layout.go         │ │ import (                                           │┃
+│     list/list.go             │ │     "fmt"                                          │┃
+│     examples/browser/main.go │ │     "os"                                           │┃
+│     examples/frame/main.go   │ │ )                                                  │┃
+│     agentic/chat/chat.go     │ │                                                    │┃
+│     agentic/toolcall/toolca… │ │ func main() {                                      │┃
 │                              │ │     config := loadConfig()                         │┃
 │                              │ │     if err := run(config); err != nil {            │┃
 │                              │ │         fmt.Fprintln(os.Stderr, err)               ││
@@ -58,10 +58,10 @@ command: no
 ▸Workspace   Recent   Pinned
 ╭ Files ───────────────────────╮ ╭ Preview ───────────────────────────────────────────╮
 │                              │ │                                                    │
-│ > m                          │ │ package main                                       │┃
-│ ▎ cmd/tuiweave/main.go       │ │                                                    │┃
-│   examples/browser/main.go   │ │ import (                                           │┃
-│   examples/frame/main.go     │ │     "fmt"                                          │┃
+│ ┃ > m                        │ │ package main                                       │┃
+│   > cmd/tuiweave/main.go     │ │                                                    │┃
+│     examples/browser/main.go │ │ import (                                           │┃
+│     examples/frame/main.go   │ │     "fmt"                                          │┃
 │                              │ │     "os"                                           │┃
 │                              │ │ )                                                  │┃
 │                              │ │                                                    │┃
@@ -85,10 +85,10 @@ command: no
 ▸Workspace   Recent   Pinned
 ╭ Files ───────────────────────╮ ╭ Preview ───────────────────────────────────────────╮
 │                              │ │                                                    │
-│ > m                          │ │     "fmt"                                          ││
-│ ▎ cmd/tuiweave/main.go       │ │     "os"                                           ││
-│   examples/browser/main.go   │ │ )                                                  │┃
-│   examples/frame/main.go     │ │                                                    │┃
+│ ┃ > m                        │ │     "fmt"                                          ││
+│   > cmd/tuiweave/main.go     │ │     "os"                                           ││
+│     examples/browser/main.go │ │ )                                                  │┃
+│     examples/frame/main.go   │ │                                                    │┃
 │                              │ │ func main() {                                      │┃
 │                              │ │     config := loadConfig()                         │┃
 │                              │ │     if err := run(config); err != nil {            │┃
@@ -112,23 +112,23 @@ command: no
 ▸Workspace   Recent   Pinned
 ╭ Files ───────────────────────╮ ╭ Preview ───────────────────────────────────────────╮
 │                              │ │                                                    │
-│ > m                          │ │     "fmt"                                          ││
-│ ▌ cmd/tuiweave/main.go       │ │     "os"                                           ││
-│   examples/browser/main.go   │ │ )                                                  │┃
-│   examples/frame/main.go     │ │                                                    │┃
-│                              │ │ func main() {                                      │┃
-│                              │ │     config := loadConfig()                         │┃
-│                              │ │     if err := run(config); err != nil {            │┃
-│                              │ │         fmt.Fprintln(os.Stderr, err)               │┃
-│                              │ │         os.Exit(1)                                 │┃
-│                              │ │     }                                              │┃
-│                              │ │ }                                                  │┃
-│                              │ │                                                    │┃
-│                              │ │ func loadConfig() Config {                         ││
-│                              │ │     return Config{Mode: "development"}             ││
-│                              │ │ }                                                  ││
-│                              │ │                                                    ││
-│                              │ │ func run(config Config) error {                    ││
+│   > m                        │ │     "fmt"                                          ││
+│ ┃ > cmd/tuiweave/main.go     │ │     "os"                                           ││
+│ ┃   examples/browser/main.go │ │ )                                                  │┃
+│ ┃   examples/frame/main.go   │ │                                                    │┃
+│ ┃                            │ │ func main() {                                      │┃
+│ ┃                            │ │     config := loadConfig()                         │┃
+│ ┃                            │ │     if err := run(config); err != nil {            │┃
+│ ┃                            │ │         fmt.Fprintln(os.Stderr, err)               │┃
+│ ┃                            │ │         os.Exit(1)                                 │┃
+│ ┃                            │ │     }                                              │┃
+│ ┃                            │ │ }                                                  │┃
+│ ┃                            │ │                                                    │┃
+│ ┃                            │ │ func loadConfig() Config {                         ││
+│ ┃                            │ │     return Config{Mode: "development"}             ││
+│ ┃                            │ │ }                                                  ││
+│ ┃                            │ │                                                    ││
+│ ┃                            │ │ func run(config Config) error {                    ││
 │                              │ │                                                    │
 ╰──────────────────────────────╯ ╰────────────────────────────────────────────────────╯
 ────────────────────────────────────────────────────────── tab focus · / filter · q quit
@@ -139,10 +139,10 @@ command: no
 ▸Workspace   Recent   Pinned
 ╭ Files ───────────────────────╮ ╭ Preview ───────────────────────────────────────────╮
 │                              │ │                                                    │
-│ > m                          │ │     "fmt"                                          ││
-│ ▎ cmd/tuiweave/main.go       │ │     "os"                                           ││
-│   examples/browser/main.go   │ │ )                                                  │┃
-│   examples/frame/main.go     │ │                                                    │┃
+│   > m                        │ │     "fmt"                                          ││
+│   > cmd/tuiweave/main.go     │ │     "os"                                           ││
+│     examples/browser/main.go │ │ )                                                  │┃
+│     examples/frame/main.go   │ │                                                    │┃
 │                              │ │ func main() {                                      │┃
 │                              │ │     config := loadConfig()                         │┃
 │                              │ │     if err := run(config); err != nil {            │┃
@@ -166,10 +166,10 @@ command: no
 ▸Workspace   Recent   Pinned
 ╭ Files ───────────────────────╮ ╭ Preview ───────────────────────────────────────────╮
 │                              │ │                                                    │
-│ > m                          │ │         fmt.Fprintln(os.Stderr, err)               ││
-│ ▎ cmd/tuiweave/main.go       │ │         os.Exit(1)                                 ││
-│   examples/browser/main.go   │ │     }                                              ││
-│   examples/frame/main.go     │ │ }                                                  ││
+│   > m                        │ │         fmt.Fprintln(os.Stderr, err)               ││
+│   > cmd/tuiweave/main.go     │ │         os.Exit(1)                                 ││
+│     examples/browser/main.go │ │     }                                              ││
+│     examples/frame/main.go   │ │ }                                                  ││
 │                              │ │                                                    ││
 │                              │ │ func loadConfig() Config {                         ││
 │                              │ │     return Config{Mode: "development"}             ││

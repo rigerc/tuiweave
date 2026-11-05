@@ -18,5 +18,5 @@ All green. Here's the pattern in practice:
  ).Apply(area, &m.chat, &m.input)
 
 That's the whole wiring — rectangles in, sized components out.
-> ask the mock agent anything…
+┃ > ask the mock agent anything…
  pi-large                                      ↑1.2k ↓39  $0.00  ctx 2%

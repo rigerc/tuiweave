@@ -1,3 +1,3 @@
-1: "  界é  " [fg=Text bg=SurfaceRaised] | "説明" [fg=TextMuted bg=SurfaceRaised] | " " [fg=Text bg=SurfaceRaised]
-2: "▸ 👩\u200d💻 dev…  …" [fg=Text bg=SelectionBg]
-3: "  a very…  " [fg=Text bg=SurfaceRaised] | "…" [fg=TextMuted bg=SurfaceRaised]
+1: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "界é" [fg=Text bg=SurfaceRaised] | "  " [bg=SurfaceRaised] | "説…" [fg=TextMuted bg=SurfaceRaised]
+2: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "> 👩\u200d💻 d…" [fg=Accent bg=SurfaceRaised bold] | "  " [bg=SurfaceRaised] | "…" [fg=TextMuted bg=SurfaceRaised]
+3: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "a ve…" [fg=Text bg=SurfaceRaised] | "  " [bg=SurfaceRaised] | "…" [fg=TextMuted bg=SurfaceRaised]

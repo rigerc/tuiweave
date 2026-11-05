@@ -1,0 +1,7 @@
+1: "◆" [fg=Info bg=SurfaceRaised bold] | "  " [bg=SurfaceRaised] | "Color" [fg=Text bg=SurfaceRaised bold] | "                            " [bg=SurfaceRaised]
+2: "│" [fg=TextFaint bg=SurfaceRaised] | "  " [bg=SurfaceRaised] | "Pick a color" [fg=TextMuted bg=SurfaceRaised] | "                     " [bg=SurfaceRaised]
+3: "│" [fg=TextFaint bg=SurfaceRaised] | "  " [bg=SurfaceRaised] | "❯ " [fg=Info bg=SurfaceRaised bold] | "●" [fg=Success bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "red" [fg=Text bg=SurfaceRaised bold] | "                          " [bg=SurfaceRaised]
+4: "│" [fg=TextFaint bg=SurfaceRaised] | "    " [bg=SurfaceRaised] | "○" [fg=TextMuted bg=SurfaceRaised] | " " [bg=SurfaceRaised] | "green" [fg=TextMuted bg=SurfaceRaised] | "                        " [bg=SurfaceRaised]
+5: "│" [fg=TextFaint bg=SurfaceRaised] | "    " [bg=SurfaceRaised] | "○" [fg=TextMuted bg=SurfaceRaised] | " " [bg=SurfaceRaised] | "blue" [fg=TextMuted bg=SurfaceRaised] | "                         " [bg=SurfaceRaised]
+6: "│" [fg=TextFaint bg=SurfaceRaised] | "  " [bg=SurfaceRaised] | "↑/↓ to navigate • Enter: confirm" [fg=TextMuted bg=SurfaceRaised] | " " [bg=SurfaceRaised]
+7: "└" [fg=TextFaint bg=SurfaceRaised] | "                                   " [bg=SurfaceRaised]

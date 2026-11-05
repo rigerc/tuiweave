@@ -2,13 +2,13 @@
 command: no
 ╭ Command completion ──────────────────────────────────────────╮
 │                                                              │
-│ > type a command prefix                                      │
-│ ▸ git checkout  switch branch                                │
-│   git status  show changes                                   │
-│   go test  run tests                                         │
-│   go run  run a command                                      │
-│   deploy preview  preview a deployment                       │
-│                                                              │
+│ ┃ > type a command prefix                                    │
+│ ┃ > git checkout  switch branch                              │
+│ ┃   git status  show changes                                 │
+│ ┃   go test  run tests                                       │
+│ ┃   go run  run a command                                    │
+│ ┃   deploy preview  preview a deployment                     │
+│ ┃                                                            │
 │                                                              │
 ╰──────────────────────────────────────────────────────────────╯
  completion  git-checkout    5 matches  ↑↓ choose  enter accept
@@ -17,13 +17,13 @@ command: no
 command: no
 ╭ Command completion ──────────────────────────────────────────╮
 │                                                              │
-│ > g                                                          │
-│ ▸ git checkout  switch branch                                │
-│   git status  show changes                                   │
-│   go test  run tests                                         │
-│   go run  run a command                                      │
-│                                                              │
-│                                                              │
+│ ┃ > g                                                        │
+│ ┃ > git checkout  switch branch                              │
+│ ┃   git status  show changes                                 │
+│ ┃   go test  run tests                                       │
+│ ┃   go run  run a command                                    │
+│ ┃                                                            │
+│ ┃                                                            │
 │                                                              │
 ╰──────────────────────────────────────────────────────────────╯
  completion  git-checkout    4 matches  ↑↓ choose  enter accept
@@ -32,13 +32,13 @@ command: no
 command: no
 ╭ Command completion ──────────────────────────────────────────╮
 │                                                              │
-│ > gi                                                         │
-│ ▸ git checkout  switch branch                                │
-│   git status  show changes                                   │
-│                                                              │
-│                                                              │
-│                                                              │
-│                                                              │
+│ ┃ > gi                                                       │
+│ ┃ > git checkout  switch branch                              │
+│ ┃   git status  show changes                                 │
+│ ┃                                                            │
+│ ┃                                                            │
+│ ┃                                                            │
+│ ┃                                                            │
 │                                                              │
 ╰──────────────────────────────────────────────────────────────╯
  completion  git-checkout    2 matches  ↑↓ choose  enter accept
@@ -47,13 +47,13 @@ command: no
 command: no
 ╭ Command completion ──────────────────────────────────────────╮
 │                                                              │
-│ > gi                                                         │
-│   git checkout  switch branch                                │
-│ ▸ git status  show changes                                   │
-│                                                              │
-│                                                              │
-│                                                              │
-│                                                              │
+│ ┃ > gi                                                       │
+│ ┃   git checkout  switch branch                              │
+│ ┃ > git status  show changes                                 │
+│ ┃                                                            │
+│ ┃                                                            │
+│ ┃                                                            │
+│ ┃                                                            │
 │                                                              │
 ╰──────────────────────────────────────────────────────────────╯
  completion  git-status      2 matches  ↑↓ choose  enter accept
@@ -62,13 +62,13 @@ command: no
 command: yes
 ╭ Command completion ──────────────────────────────────────────╮
 │                                                              │
-│ > gi                                                         │
-│   git checkout  switch branch                                │
-│ ▸ git status  show changes                                   │
-│                                                              │
-│                                                              │
-│                                                              │
-│                                                              │
+│ ┃ > gi                                                       │
+│ ┃   git checkout  switch branch                              │
+│ ┃ > git status  show changes                                 │
+│ ┃                                                            │
+│ ┃                                                            │
+│ ┃                                                            │
+│ ┃                                                            │
 │                                                              │
 ╰──────────────────────────────────────────────────────────────╯
  completion  git-status      2 matches  ↑↓ choose  enter accept

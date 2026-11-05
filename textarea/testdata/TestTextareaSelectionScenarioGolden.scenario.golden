@@ -1,23 +1,27 @@
 ## initial
 command: no
-> hello world
-
-
+┃ > hello world
+┃
+┃
+┃
 
 ## select all
 command: no
-> hello world
-
-
+┃ > hello world
+┃
+┃
+┃
 
 ## replace selection
 command: no
-> hi
-
-
+┃ > hi
+┃
+┃
+┃
 
 ## undo
 command: no
-> hello world
-
-
+┃ > hello world
+┃
+┃
+┃

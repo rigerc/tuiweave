@@ -58,6 +58,8 @@ func main() {
 
 - Canonical non-agentic app: [`examples/ops`](examples/ops)
 - Small composition example: [`examples/frame`](examples/frame)
+- Huh-style form fields: [`examples/form`](examples/form)
+- Clack-style inline prompts: [`examples/inline`](examples/inline)
 - Public-API consumer smoke app: [`examples/consumer`](examples/consumer)
 - Agentic chat interface: [`examples/chat`](examples/chat)
 - Snapshot verification: [`snaptest` tutorial](snaptest/README.md)

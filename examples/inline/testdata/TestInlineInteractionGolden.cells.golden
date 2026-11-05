@@ -1,0 +1,26 @@
+1: "┌" [fg=TextFaint] | "  " | "Inline fields" [fg=Text bold]
+2: "│" [fg=TextFaint]
+3: "◇" [fg=Success] | "  " | "Name" [fg=TextMuted]
+4: "│" [fg=TextFaint] | "  " | "Ada Lovelace" [fg=TextMuted]
+5: "◇" [fg=Success] | "  " | "Email" [fg=TextMuted]
+6: "│" [fg=TextFaint] | "  " | "ada" [fg=TextMuted]
+7: "◇" [fg=Success] | "  " | "Environment" [fg=TextMuted]
+8: "│" [fg=TextFaint] | "  " | "Production" [fg=TextMuted]
+9: "◇" [fg=Success] | "  " | "Updates" [fg=TextMuted]
+10: "│" [fg=TextFaint] | "  " | "○ Auto-refresh" [fg=TextMuted]
+11: "◆" [fg=Info bold] | "  " | "Theme" [fg=Text bold]
+12: "│" [fg=TextFaint] | "    " | "○" [fg=TextMuted] | " " | "Dark" [fg=TextMuted]
+13: "│" [fg=TextFaint] | "  " | "❯ " [fg=Info bold] | "●" [fg=Success bold] | " " | "Light" [fg=Text bold]
+14: "│" [fg=TextFaint] | "    " | "○" [fg=TextMuted] | " " | "System" [fg=TextMuted]
+15: "│" [fg=TextFaint] | "  " | "↑/↓ to navigate • Enter: confirm" [fg=TextMuted]
+16: "└" [fg=TextFaint]
+17:
+18: "└" [fg=TextFaint] | "  " | "tab focus • ↑/↓ change • space toggle • esc quit" [fg=TextMuted]
+19:
+20:
+21:
+22:
+23:
+24:
+25:
+26:

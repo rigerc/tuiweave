@@ -1,11 +1,11 @@
 ## initial
 command: no
-[ ] Auto-refresh
+┃ [ ] Auto-refresh
 
 ## turn on
 command: yes
-[x] Auto-refresh
+┃ [x] Auto-refresh
 
 ## turn off
 command: yes
-[ ] Auto-refresh
+┃ [ ] Auto-refresh

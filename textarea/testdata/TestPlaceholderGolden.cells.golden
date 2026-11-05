@@ -1,2 +1,2 @@
-1: "> " [fg=Accent] | "ask anything…" [fg=TextFaint]
+1: "  " | "> " [fg=Accent] | "ask anything…" [fg=TextMuted]
 2:

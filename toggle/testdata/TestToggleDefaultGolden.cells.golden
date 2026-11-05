@@ -1,1 +1,1 @@
-1: "[ ]" [fg=TextMuted bg=SurfaceSunken bold] | " Auto-refresh            " [fg=Text bg=SurfaceRaised]
+1: "  " [bg=SurfaceRaised] | "[ ]" [fg=TextMuted bg=SurfaceSunken bold] | " Auto-refresh" [fg=Text bg=SurfaceRaised] | "          " [bg=SurfaceRaised]

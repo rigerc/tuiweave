@@ -1,41 +1,48 @@
 ## initial
 command: no
-> old
-
-
+┃ > old
+┃
+┃
+┃
 
 ## select all
 command: no
-> old
-
-
+┃ > old
+┃
+┃
+┃
 
 ## paste starts
 command: no
-> old
-
-
+┃ > old
+┃
+┃
+┃
 
 ## paste replaces selection
 command: no
-> 界é
-  x
-
+┃ > 界é
+┃   x
+┃
+┃
 
 ## paste ends
 command: no
-> 界é
-  x
-
+┃ > 界é
+┃   x
+┃
+┃
 
 ## undo paste
 command: no
-> old
-
-
+┃ > old
+┃
+┃
+┃
 
 ## redo paste
 command: no
-> 界é
-  x
-
+┃ > 界é
+┃   x
+┃
+┃

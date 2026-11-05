@@ -1,6 +1,9 @@
 // Package palette provides a bounded command-palette foundation: a query
 // input, filtered action window, stable IDs, and semantic activation. The
 // application owns visibility and the meaning of each action.
+//
+// Palettes use the Huh field grammar: the query input supplies the focus rail,
+// results use a "> " selector and accent text, and descriptions stay muted.
 package palette
 
 import (
@@ -13,6 +16,7 @@ import (
 	"github.com/ishan5ain/tuiweave"
 	"github.com/ishan5ain/tuiweave/action"
 	"github.com/ishan5ain/tuiweave/inspect"
+	"github.com/ishan5ain/tuiweave/internal/fieldstyle"
 	"github.com/ishan5ain/tuiweave/textinput"
 )
 
@@ -58,40 +62,17 @@ type Model struct {
 	focused       bool
 	input         textinput.Model
 
-	itemStyle            lipgloss.Style
-	descriptionStyle     lipgloss.Style
-	selectedStyle        lipgloss.Style
-	selectedBlurredStyle lipgloss.Style
-	disabledStyle        lipgloss.Style
-	emptyStyle           lipgloss.Style
-	queryStyle           lipgloss.Style
+	field fieldstyle.Styles
 }
 
 // New returns an empty command palette styled from the theme's semantic roles.
 func New(theme tuiweave.Theme) Model {
-	base := lipgloss.NewStyle().Background(theme.SurfaceRaised)
-	input := textinput.New(theme)
+	input := textinput.NewOn(theme, theme.SurfaceRaised)
 	input.Prompt = "› "
 	return Model{
 		pos:   -1,
 		input: input,
-		itemStyle: base.
-			Foreground(theme.Text),
-		descriptionStyle: base.
-			Foreground(theme.TextMuted),
-		selectedStyle: lipgloss.NewStyle().
-			Foreground(theme.SelectionFg).
-			Background(theme.SelectionBg),
-		selectedBlurredStyle: base.
-			Foreground(theme.Accent).
-			Bold(true),
-		disabledStyle: base.
-			Foreground(theme.TextFaint),
-		emptyStyle: base.
-			Foreground(theme.TextMuted),
-		queryStyle: lipgloss.NewStyle().
-			Foreground(theme.Text).
-			Background(theme.SurfaceSunken),
+		field: fieldstyle.NewOn(theme, theme.SurfaceRaised),
 	}
 }
 
@@ -269,32 +250,30 @@ func (m Model) Update(msg tea.Msg) (Model, tea.Cmd) {
 }
 
 // View renders one exact-width query row followed by the visible result rows.
-// A no-match state is explicit so a palette does not look broken while a user
-// is searching.
+// The query input supplies the focus rail; result rows use the same rail and a
+// Huh-style selector. A no-match state is explicit so a palette does not look
+// broken while a user is searching.
 func (m Model) View() string {
 	if m.width <= 0 || m.height <= 0 {
 		return ""
 	}
-	query := ansi.Truncate(m.input.View(), m.width, "…")
-	query += strings.Repeat(" ", max(0, m.width-lipgloss.Width(query)))
-	rows := []string{m.queryStyle.Render(query)}
+	rows := []string{m.input.View()}
 	visible := m.VisibleLines()
 	if visible == 0 {
 		return strings.Join(rows, "\n")
 	}
 	if len(m.matches) == 0 {
-		empty := ansi.Truncate("  No matching commands", m.width, "…")
-		empty += strings.Repeat(" ", max(0, m.width-lipgloss.Width(empty)))
-		rows = append(rows, m.emptyStyle.Render(empty))
+		empty := m.field.FrameRow(m.focused, m.field.Label("  No matching commands", false, false), m.width)
+		rows = append(rows, empty)
 		for len(rows) < m.height {
-			rows = append(rows, m.emptyStyle.Render(strings.Repeat(" ", m.width)))
+			rows = append(rows, m.field.FrameRow(m.focused, "", m.width))
 		}
 		return strings.Join(rows, "\n")
 	}
 	for i := 0; i < visible; i++ {
 		position := m.off + i
 		if position >= len(m.matches) {
-			rows = append(rows, m.itemStyle.Render(strings.Repeat(" ", m.width)))
+			rows = append(rows, m.field.FrameRow(m.focused, "", m.width))
 			continue
 		}
 		rows = append(rows, m.renderItem(position))
@@ -304,15 +283,14 @@ func (m Model) View() string {
 
 func (m Model) renderItem(position int) string {
 	item := m.items[m.matches[position]]
-	marker := "  "
-	if position == m.pos {
-		marker = "▸ "
-	}
-	if m.width == 1 {
-		return m.styleFor(position, item).Render(ansi.Truncate(marker+item.Label, 1, "…"))
+	bodyWidth := fieldstyle.BodyWidth(m.width)
+	if bodyWidth <= 0 {
+		return m.field.FrameRow(m.focused, "", m.width)
 	}
 
-	available := m.width - 2
+	selected := position == m.pos && !item.Disabled
+	selector := m.field.Selector(selected)
+	available := max(0, bodyWidth-lipgloss.Width(selector))
 	label := ansi.Truncate(item.Label, available, "…")
 	description := ""
 	gap := 0
@@ -326,22 +304,18 @@ func (m Model) renderItem(position int) string {
 			gap = 0
 		}
 	}
-	used := 2 + ansi.StringWidth(label) + gap + ansi.StringWidth(description)
-	line := marker + label + strings.Repeat(" ", gap) + description + strings.Repeat(" ", max(0, m.width-used))
-	return m.styleFor(position, item).Render(line)
-}
-
-func (m Model) styleFor(position int, item Item) lipgloss.Style {
-	if item.Disabled {
-		return m.disabledStyle
-	}
-	if position == m.pos {
-		if m.focused {
-			return m.selectedStyle
+	body := selector + m.field.Label(label, selected, item.Disabled)
+	if gap > 0 {
+		descStyle := m.field.Desc
+		if item.Disabled {
+			descStyle = m.field.Disabled
 		}
-		return m.selectedBlurredStyle
+		body += m.field.Pad.Render(strings.Repeat(" ", gap)) + descStyle.Render(description)
 	}
-	return m.itemStyle
+	if pad := bodyWidth - lipgloss.Width(body); pad > 0 {
+		body += m.field.Pad.Render(strings.Repeat(" ", pad))
+	}
+	return m.field.FrameRow(m.focused, body, m.width)
 }
 
 func (m *Model) selectFirst() {

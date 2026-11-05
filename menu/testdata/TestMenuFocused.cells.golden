@@ -1,4 +1,4 @@
-1: "▸ Open workspace        " [fg=Text bg=SelectionBg]
-2: "  Refresh data          " [fg=Text]
-3: "  Delete workspace      " [fg=TextFaint]
-4: "  Quit                  " [fg=Text]
+1: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "> Open workspace" [fg=Accent bg=SurfaceRaised bold] | "      " [bg=SurfaceRaised]
+2: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "Refresh data" [fg=Text bg=SurfaceRaised] | "        " [bg=SurfaceRaised]
+3: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "Delete workspace" [fg=TextFaint bg=SurfaceRaised] | "    " [bg=SurfaceRaised]
+4: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "Quit" [fg=Text bg=SurfaceRaised] | "                " [bg=SurfaceRaised]

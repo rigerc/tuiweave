@@ -1,22 +1,22 @@
 ## initial
 command: no
-> type here
+  > type her
 
 ## blurred input is ignored
 command: no
-> type here
+  > type her
 
 ## focus input
 command: no
-> type here
+┃ > type her
 
 ## type wide grapheme
 command: no
-> 界
+┃ > 界
 
 ## type suffix
 command: no
-> 界a
+┃ > 界a
 
 ## resize narrow
 command: no

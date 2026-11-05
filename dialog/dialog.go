@@ -1,4 +1,5 @@
-// Package dialog provides a modal confirmation box with OK/Cancel buttons.
+// Package dialog provides a modal confirmation box with OK/Cancel action chips
+// in the Huh button style.
 //
 // The dialog renders its own bordered panel; composite it over the app with
 // overlay.Center. Visibility belongs to the app: show the dialog by
@@ -18,6 +19,7 @@ import (
 	"github.com/charmbracelet/x/ansi"
 
 	"github.com/ishan5ain/tuiweave"
+	"github.com/ishan5ain/tuiweave/internal/fieldstyle"
 	"github.com/ishan5ain/tuiweave/layout"
 )
 
@@ -44,11 +46,10 @@ type Model struct {
 	// ConfirmLabel and CancelLabel name the buttons. Defaults: "OK", "Cancel".
 	ConfirmLabel, CancelLabel string
 
-	panelStyle    lipgloss.Style
-	titleStyle    lipgloss.Style
-	bodyStyle     lipgloss.Style
-	buttonStyle   lipgloss.Style
-	selectedStyle lipgloss.Style
+	field      fieldstyle.Styles
+	titleStyle lipgloss.Style
+	panelStyle lipgloss.Style
+	bodyStyle  lipgloss.Style
 }
 
 const (
@@ -63,27 +64,16 @@ func New(theme tuiweave.Theme) Model {
 	return Model{
 		ConfirmLabel: "OK",
 		CancelLabel:  "Cancel",
+		field:        fieldstyle.NewOn(theme, theme.SurfaceRaised),
+		titleStyle:   fieldstyle.NewOn(theme, theme.SurfaceRaised).Title.Background(theme.SurfaceRaised),
 		panelStyle: lipgloss.NewStyle().
 			Border(lipgloss.RoundedBorder()).
 			BorderForeground(theme.BorderFocused).
 			Background(theme.SurfaceRaised).
 			Padding(1, 2),
-		titleStyle: lipgloss.NewStyle().
-			Foreground(theme.Text).
-			Background(theme.SurfaceRaised).
-			Bold(true),
 		bodyStyle: lipgloss.NewStyle().
 			Foreground(theme.TextMuted).
 			Background(theme.SurfaceRaised),
-		buttonStyle: lipgloss.NewStyle().
-			Foreground(theme.TextMuted).
-			Background(theme.SurfaceSunken).
-			Padding(0, 2),
-		selectedStyle: lipgloss.NewStyle().
-			Foreground(theme.TextInverted).
-			Background(theme.Accent).
-			Bold(true).
-			Padding(0, 2),
 	}
 }
 
@@ -129,12 +119,10 @@ func (m Model) View() string {
 		return ""
 	}
 
-	confirm := m.buttonStyle
-	cancel := m.selectedStyle
-	if m.sel == 0 {
-		confirm, cancel = m.selectedStyle, m.buttonStyle
-	}
-	buttons := confirm.Render(m.ConfirmLabel) + m.bodyStyle.Render("  ") + cancel.Render(m.CancelLabel)
+	confirmFocused := m.sel == 0
+	buttons := m.field.Chip(m.ConfirmLabel, confirmFocused, false) +
+		m.bodyStyle.Render(" ") +
+		m.field.Chip(m.CancelLabel, !confirmFocused, false)
 	if lipgloss.Width(buttons) > inner {
 		buttons = ansi.Truncate(buttons, inner, "")
 	}

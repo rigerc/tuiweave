@@ -1,0 +1,4 @@
+1: "◆" [fg=Info bg=SurfaceRaised bold] | "  " [bg=SurfaceRaised] | "Refresh" [fg=Text bg=SurfaceRaised bold] | "                                  " [bg=SurfaceRaised]
+2: "│" [fg=TextFaint bg=SurfaceRaised] | "  " [bg=SurfaceRaised] | "Keep the list current" [fg=TextMuted bg=SurfaceRaised] | "                    " [bg=SurfaceRaised]
+3: "│" [fg=TextFaint bg=SurfaceRaised] | "  " [bg=SurfaceRaised] | "❯ " [fg=Info bg=SurfaceRaised bold] | "○" [fg=TextMuted bg=SurfaceRaised] | " " [bg=SurfaceRaised] | "Auto-refresh" [fg=Text bg=SurfaceRaised] | "                         " [bg=SurfaceRaised]
+4: "└" [fg=TextFaint bg=SurfaceRaised] | "                                           " [bg=SurfaceRaised]

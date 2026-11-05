@@ -26,6 +26,12 @@ func (m Model) Inspect() inspect.Node {
 	if m.ID != "" {
 		attributes["id"] = m.ID
 	}
+	if m.Title != "" {
+		attributes["title"] = m.Title
+	}
+	if m.Inline {
+		attributes["inline"] = "true"
+	}
 	status := "off"
 	if m.checked {
 		status = "on"

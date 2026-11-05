@@ -1,0 +1,4 @@
+1: "◆" [fg=Info bold] | "  " | "Name" [fg=Text bold]
+2: "│" [fg=TextFaint] | "  " | "Your display name" [fg=TextMuted]
+3: "│" [fg=TextFaint] | "  " | "› " [fg=Info bold] | "A" [fg=Text reverse] | "da Lovelace" [fg=TextMuted]
+4: "└" [fg=TextFaint]

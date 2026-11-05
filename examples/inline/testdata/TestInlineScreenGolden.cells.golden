@@ -1,0 +1,26 @@
+1: "┌" [fg=TextFaint] | "  " | "Inline fields" [fg=Text bold]
+2: "│" [fg=TextFaint]
+3: "◆" [fg=Info bold] | "  " | "Name" [fg=Text bold]
+4: "│" [fg=TextFaint] | "  " | "Shown on your profile" [fg=TextMuted]
+5: "│" [fg=TextFaint] | "  " | "› " [fg=Info bold] | "A" [fg=Text reverse] | "da Lovelace" [fg=TextMuted]
+6: "└" [fg=TextFaint]
+7: "◇" [fg=Success] | "  " | "Email" [fg=TextMuted]
+8: "│" [fg=TextFaint] | "  " | "ada@example.com" [fg=TextMuted]
+9: "◇" [fg=Success] | "  " | "Environment" [fg=TextMuted]
+10: "│" [fg=TextFaint] | "  " | "Staging" [fg=TextMuted]
+11: "◇" [fg=Success] | "  " | "Updates" [fg=TextMuted]
+12: "│" [fg=TextFaint] | "  " | "● Auto-refresh" [fg=TextMuted]
+13: "◇" [fg=Success] | "  " | "Theme" [fg=TextMuted]
+14: "│" [fg=TextFaint] | "  " | "Dark" [fg=TextMuted]
+15:
+16: "└" [fg=TextFaint] | "  " | "tab focus • ↑/↓ change • space toggle • esc quit" [fg=TextMuted]
+17:
+18:
+19:
+20:
+21:
+22:
+23:
+24:
+25:
+26:

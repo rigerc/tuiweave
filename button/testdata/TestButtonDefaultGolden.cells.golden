@@ -1,1 +1,1 @@
-1: "[ Open workspace           ]" [fg=Text bg=SurfaceRaised]
+1: "  " [bg=SurfaceSunken] | "Open workspace" [fg=Text bg=SurfaceSunken] | "  " [bg=SurfaceSunken] | "          " [bg=SurfaceRaised]

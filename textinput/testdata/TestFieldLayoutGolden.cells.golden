@@ -1,0 +1,4 @@
+1: "┃" [fg=Accent bold] | " " | "Name" [fg=Accent bold]
+2: "┃" [fg=Accent bold] | " " | "Your display name" [fg=TextMuted]
+3: "┃" [fg=Accent bold] | " " | "> " [fg=Accent] | "A" [fg=Text reverse] | "da Lovelace" [fg=TextMuted]
+4: "┃" [fg=Accent bold] | " " | "enter to submit" [fg=TextMuted]

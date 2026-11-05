@@ -1,4 +1,4 @@
-1: "> " [fg=Accent] | "界é" [fg=Text]
-2: "  " | "👩\u200d💻 end" [fg=Text] | " " [fg=Text reverse]
-3:
-4:
+1: "┃" [fg=Accent bold] | " " | "> " [fg=Accent] | "界é" [fg=Text]
+2: "┃" [fg=Accent bold] | "   " | "👩\u200d💻 end" [fg=Text] | " " [fg=Text reverse]
+3: "┃" [fg=Accent bold]
+4: "┃" [fg=Accent bold]

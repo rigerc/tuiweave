@@ -1,0 +1,8 @@
+1: "┃" [fg=Accent bold] | " " | "Instructions" [fg=Accent bold]
+2: "┃" [fg=Accent bold] | " " | "Optional details for the agent" [fg=TextMuted]
+3: "┃" [fg=Accent bold] | " " | "> " [fg=Accent] | "first line" [fg=Text]
+4: "┃" [fg=Accent bold] | "   " | "second line" [fg=Text] | " " [fg=Text reverse]
+5: "┃" [fg=Accent bold]
+6: "┃" [fg=Accent bold]
+7: "┃" [fg=Accent bold]
+8: "┃" [fg=Accent bold] | " " | "ctrl+enter sends" [fg=TextMuted]
