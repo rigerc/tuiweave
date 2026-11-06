@@ -42,6 +42,22 @@ before v1, a minor release may contain breaking changes when clearly called out.
 
 ### Added
 
+- Added `multiselect`, a focusable checkbox field with stacked Huh rows and a
+  Clack inline prompt. Its cursor is separate from the checked set; space
+  emits `ChangedMsg` and Enter emits `SubmittedMsg`, while `SetCheckedIDs`,
+  `SelectedIDs`, and semantic `toggle.<id>` actions cover application-owned
+  state. [`examples/form`](examples/form) and
+  [`examples/inline`](examples/inline) exercise both layouts.
+- Added `reorder`, a focusable movable item list with grab mode, direct
+  shift/ctrl-arrow moves, `MoveUp`/`MoveDown`/`MoveTo` helpers, and
+  `MovedMsg` carrying the complete new order. Stacked and Clack inline layouts
+  are covered by [`examples/form`](examples/form) and
+  [`examples/inline`](examples/inline).
+- `textinput.Mask` renders password-style fields by replacing each visible
+  grapheme with a single-cell glyph while `Value()` keeps the real text.
+- [`examples/inline`](examples/inline) now covers text, password, select,
+  multiselect, app-validated number, confirm, and theme fields.
+
 - Added a VHS demo gallery to the README for all runnable examples, with
   checked-in GIFs under `docs/demos`, reusable tapes under `demos/vhs`, a
   `scripts/render-demos.sh` regeneration script, and a matrix CI workflow that

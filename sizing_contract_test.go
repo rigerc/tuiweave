@@ -16,8 +16,10 @@ import (
 	"github.com/ishan5ain/tuiweave/layout"
 	"github.com/ishan5ain/tuiweave/list"
 	"github.com/ishan5ain/tuiweave/menu"
+	"github.com/ishan5ain/tuiweave/multiselect"
 	"github.com/ishan5ain/tuiweave/palette"
 	"github.com/ishan5ain/tuiweave/progress"
+	"github.com/ishan5ain/tuiweave/reorder"
 	"github.com/ishan5ain/tuiweave/statusbar"
 	"github.com/ishan5ain/tuiweave/table"
 	"github.com/ishan5ain/tuiweave/tabs"
@@ -163,6 +165,17 @@ func TestBoundedComponentsFillAssignedBox(t *testing.T) {
 	le := list.New(theme)
 	m := menu.New(theme)
 	m.SetItems(menu.Item{ID: "open", Label: "Open"})
+	ms := multiselect.New(theme)
+	ms.SetItems(
+		multiselect.Item{ID: "types", Label: "Type checking"},
+		multiselect.Item{ID: "format", Label: "Formatting"},
+	)
+	ms.SetCheckedIDs("types")
+	ro := reorder.New(theme)
+	ro.SetItems(
+		reorder.Item{ID: "design", Label: "Design"},
+		reorder.Item{ID: "build", Label: "Build"},
+	)
 	v := viewport.New(theme)
 	v.SetContent("alpha\n界 combining e\u0301\nomega")
 	ve := viewport.New(theme)
@@ -192,6 +205,8 @@ func TestBoundedComponentsFillAssignedBox(t *testing.T) {
 		{name: "list/populated", component: &l},
 		{name: "list/empty", component: &le},
 		{name: "menu", component: &m},
+		{name: "multiselect", component: &ms},
+		{name: "reorder", component: &ro},
 		{name: "viewport/populated", component: &v},
 		{name: "viewport/empty", component: &ve},
 		{name: "table/populated", component: &tb},

@@ -14,6 +14,18 @@
 │     Production                                                               │
 │     Development                                                              │
 │                                                                              │
+│   Checks                                                                     │
+│   Run before commit                                                          │
+│   > [x] Type checking                                                        │
+│     [ ] Formatting                                                           │
+│     [ ] Tests                                                                │
+│                                                                              │
+│   Steps                                                                      │
+│   Release pipeline order                                                     │
+│   > ≡ Design                                                                 │
+│     ≡ Build                                                                  │
+│     ≡ Ship                                                                   │
+│                                                                              │
 │   Updates                                                                    │
 │   [x] Auto-refresh                                                           │
 │                                                                              │

@@ -1,0 +1,26 @@
+┌  Inline fields
+│
+◇  Name
+│  Ada Lovelace
+◇  Email
+│  ada@example.com
+◇  Password
+│  stored locally
+◇  Environment
+│  Staging
+◇  Features
+│  Type checking, Tests
+◆  Steps
+│  Space grabs; arrows move
+│  ❯ ≡ Design
+│    ≡ Build
+│    ≡ Test
+│    ≡ Ship
+│  ↑/↓ • Space grab • Shift+↑/↓ move
+└
+◇  Port
+│  3000
+◇  Updates
+│  ● Auto-refresh
+◇  Theme
+│  Dark

@@ -44,6 +44,11 @@ type Model struct {
 	// Inline renders a Clack prompt block. The focused prompt expands; an
 	// unfocused prompt collapses to its submitted value.
 	Inline bool
+	// Mask replaces each visible grapheme with a single mask glyph in the
+	// rendered value, as in a password field. It affects display only: Value
+	// returns the real text. Use a short, single-cell string such as "•";
+	// an empty Mask renders the text normally.
+	Mask string
 
 	field            fieldstyle.Styles
 	clack            clackstyle.Styles
@@ -233,7 +238,7 @@ func (m Model) View() string {
 	if m.Inline {
 		rows = append(rows, m.clack.HeaderRow(m.focused, m.Title, m.width))
 		if !m.focused {
-			value := m.Value()
+			value := m.displayString()
 			if value == "" {
 				value = m.Placeholder
 			}
@@ -292,28 +297,60 @@ func (m Model) renderControlWithStyle(rawPrompt string, promptStyle lipgloss.Sty
 	}
 	prompt = promptStyle.Render(prompt)
 
-	if len(m.value) == 0 {
+	value, pos := m.displayValue()
+	if len(value) == 0 {
 		return prompt + m.renderPlaceholder(textWidth)
 	}
 
-	start, end, focusStart, focusEnd, focusVisible := windowForCursor(m.value, m.pos, textWidth, m.focused)
+	start, end, focusStart, focusEnd, focusVisible := windowForCursor(value, pos, textWidth, m.focused)
 	var b strings.Builder
 	b.WriteString(prompt)
 	if m.focused {
 		if focusVisible && focusStart < focusEnd {
-			b.WriteString(m.textStyle.Render(string(m.value[start:focusStart])))
-			b.WriteString(m.cursorStyle.Render(string(m.value[focusStart:focusEnd])))
-			b.WriteString(m.textStyle.Render(string(m.value[focusEnd:end])))
+			b.WriteString(m.textStyle.Render(string(value[start:focusStart])))
+			b.WriteString(m.cursorStyle.Render(string(value[focusStart:focusEnd])))
+			b.WriteString(m.textStyle.Render(string(value[focusEnd:end])))
 		} else {
-			b.WriteString(m.textStyle.Render(string(m.value[start:end])))
-			if m.pos >= len(m.value) || !focusVisible {
+			b.WriteString(m.textStyle.Render(string(value[start:end])))
+			if pos >= len(value) || !focusVisible {
 				b.WriteString(m.cursorStyle.Render(" "))
 			}
 		}
 	} else {
-		b.WriteString(m.textStyle.Render(string(m.value[start:end])))
+		b.WriteString(m.textStyle.Render(string(value[start:end])))
 	}
 	return b.String()
+}
+
+// displayValue returns the rendered runes and the cursor position mapped into
+// them. With Mask set, every grapheme cluster becomes one mask sequence so
+// horizontal windowing and the cursor stay aligned without exposing the value.
+func (m Model) displayValue() ([]rune, int) {
+	if m.Mask == "" {
+		return m.value, m.pos
+	}
+	mask := []rune(m.Mask)
+	if len(mask) == 0 {
+		return m.value, m.pos
+	}
+	clusters := clustersOf(m.value)
+	if len(clusters) == 0 {
+		return nil, 0
+	}
+	display := make([]rune, 0, len(clusters)*len(mask))
+	pos := 0
+	for _, cluster := range clusters {
+		if cluster.end <= m.pos {
+			pos += len(mask)
+		}
+		display = append(display, mask...)
+	}
+	return display, pos
+}
+
+func (m Model) displayString() string {
+	value, _ := m.displayValue()
+	return string(value)
 }
 
 func boolInt(value bool) int {

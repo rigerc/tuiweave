@@ -4,6 +4,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/charmbracelet/x/ansi"
+
 	"github.com/ishan5ain/tuiweave"
 	"github.com/ishan5ain/tuiweave/snaptest"
 )
@@ -50,6 +52,52 @@ func TestInlineFieldUsesClackBlock(t *testing.T) {
 		if !strings.Contains(view, want) {
 			t.Fatalf("inline block missing %q: %q", want, view)
 		}
+	}
+}
+
+func TestMaskedFieldGolden(t *testing.T) {
+	ti := New(tuiweave.Dark())
+	ti.Title = "Password"
+	ti.Mask = "•"
+	ti.SetValue("hunter2")
+	ti.SetSize(36, 3)
+	ti.Focus()
+
+	snaptest.Snap(t, ti.View())
+	snaptest.SnapCells(t, ti.View(), snaptest.WithRoles(tuiweave.Dark()))
+}
+
+func TestMaskedInlineCollapsedGolden(t *testing.T) {
+	ti := New(tuiweave.Dark())
+	ti.Title = "Password"
+	ti.Mask = "•"
+	ti.Inline = true
+	ti.SetValue("hunter2")
+	ti.SetSize(36, ti.NaturalHeight())
+
+	snaptest.Snap(t, ti.View())
+}
+
+func TestMaskHidesValueButKeepsEditing(t *testing.T) {
+	ti := New(tuiweave.Dark())
+	ti.Mask = "*"
+	ti.SetSize(30, 1)
+	ti.Focus()
+	ti = typeString(ti, "abc")
+
+	view := ansi.Strip(ti.View())
+	if strings.Contains(view, "abc") {
+		t.Fatalf("masked view exposed the value: %q", view)
+	}
+	if !strings.Contains(view, "***") {
+		t.Fatalf("masked view missing mask glyphs: %q", view)
+	}
+	ti.Blur()
+	if got := ansi.Strip(ti.View()); strings.Contains(got, "abc") || !strings.Contains(got, "***") {
+		t.Fatalf("blurred masked view = %q", got)
+	}
+	if got := ti.Value(); got != "abc" {
+		t.Fatalf("Value() = %q, want abc", got)
 	}
 }
 

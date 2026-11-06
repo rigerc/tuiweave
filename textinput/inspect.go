@@ -64,5 +64,8 @@ func (m Model) inspectAttributes() map[string]string {
 	if m.Inline {
 		attributes["inline"] = "true"
 	}
+	if m.Mask != "" {
+		attributes["masked"] = "true"
+	}
 	return attributes
 }

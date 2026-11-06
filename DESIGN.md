@@ -378,6 +378,8 @@ github.com/ishan5ain/tuiweave
 ├── stack/             width-aware vertical chrome composition
 ├── progress/          passive task progress indicator
 ├── toggle/            focusable boolean setting control
+├── multiselect/       focusable checkbox field with cursor + checked IDs
+├── reorder/           focusable movable item list with grab state
 ├── button/            focusable single-action control
 ├── palette/           bounded command-palette foundation
 ├── autocomplete/      app-owned input plus conditional suggestion window
@@ -401,6 +403,8 @@ github.com/ishan5ain/tuiweave
 │   ├── demo/        multi-pane app (Phase 2 exit criterion), golden-tested
 │   ├── chat/        mock agentic session (Phase 3 exit criterion), golden-tested
 │   ├── frame/       framing/decorations/tabs/menu/toolbar/splitpane/stack/progress/toggle/button composition example, golden-tested
+│   ├── form/        Huh-style stacked fields including multiselect and reorder, golden-tested
+│   ├── inline/      Clack-style inline prompts including multiselect, reorder, and password, golden-tested
 │   ├── palette/     filtered command discovery and activation example, golden-tested
 │   ├── banner/      static figlet splash-banner example, golden-tested
 │   ├── autocomplete/ app-owned input plus conditional suggestions, golden-tested

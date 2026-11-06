@@ -4,7 +4,7 @@ Require go
 Require git
 Set Shell "bash"
 Set Width 1000
-Set Height 700
+Set Height 780
 Set FontSize 18
 Set Theme "TokyoNight"
 Set TypingSpeed 45ms
@@ -21,7 +21,19 @@ Type "Ada"
 Tab
 Type "ada@example.com"
 Tab
+Type "hunter2"
+Tab
 Down
+Tab
+Down
+Space
+Enter
+Tab
+Space
+Down
+Space
+Tab
+Type "8000"
 Tab
 Space
 Tab

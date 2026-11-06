@@ -20,7 +20,7 @@ func update(t *testing.T, m model, msg tea.Msg) (model, tea.Cmd) {
 
 func sized(t *testing.T) model {
 	t.Helper()
-	m, _ := update(t, newModel(), tea.WindowSizeMsg{Width: 80, Height: 24})
+	m, _ := update(t, newModel(), tea.WindowSizeMsg{Width: 80, Height: 36})
 	return m
 }
 
@@ -41,11 +41,28 @@ func TestFormInlineInteractionGolden(t *testing.T) {
 	m, _ = update(t, m, tea.KeyPressMsg{Code: tea.KeyTab}) // environment
 	m, _ = update(t, m, tea.KeyPressMsg{Code: tea.KeyRight})
 
+	m, _ = update(t, m, tea.KeyPressMsg{Code: tea.KeyTab}) // checks
+	m, _ = update(t, m, tea.KeyPressMsg{Code: tea.KeyDown})
+	m, cmd := update(t, m, tea.KeyPressMsg{Code: tea.KeySpace})
+	if cmd == nil {
+		t.Fatal("multiselect toggle did not emit a command")
+	}
+	m, _ = update(t, m, cmd())
+
+	m, _ = update(t, m, tea.KeyPressMsg{Code: tea.KeyTab}) // steps
+	m, _ = update(t, m, tea.KeyPressMsg{Code: tea.KeySpace})
+	m, cmd = update(t, m, tea.KeyPressMsg{Code: tea.KeyDown})
+	if cmd == nil {
+		t.Fatal("reorder move did not emit a command")
+	}
+	m, _ = update(t, m, cmd())
+	m, _ = update(t, m, tea.KeyPressMsg{Code: tea.KeySpace})
+
 	m, _ = update(t, m, tea.KeyPressMsg{Code: tea.KeyTab})   // auto-refresh
 	m, _ = update(t, m, tea.KeyPressMsg{Code: tea.KeySpace}) // toggle
 
 	m, _ = update(t, m, tea.KeyPressMsg{Code: tea.KeyTab}) // save
-	m, cmd := update(t, m, tea.KeyPressMsg{Code: tea.KeyEnter})
+	m, cmd = update(t, m, tea.KeyPressMsg{Code: tea.KeyEnter})
 	if cmd == nil {
 		t.Fatal("save did not emit a command")
 	}

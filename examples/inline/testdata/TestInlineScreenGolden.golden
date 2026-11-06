@@ -6,18 +6,22 @@
 └
 ◇  Email
 │  ada@example.com
+◇  Password
+│  stored locally
 ◇  Environment
 │  Staging
+◇  Features
+│  Type checking, Tests
+◇  Steps
+│  Design, Build, Test, Ship
+◇  Port
+│  3000
 ◇  Updates
 │  ● Auto-refresh
 ◇  Theme
 │  Dark
 
-└  tab focus • ↑/↓ change • space toggle • esc quit
-
-
-
-
+└  tab focus • ↑/↓ change • space toggle • enter submit • esc quit
 
 
 

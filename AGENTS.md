@@ -25,6 +25,8 @@ and example before reading the detailed recipes below.
 - Stacked chrome: `github.com/ishan5ain/tuiweave/stack` (headers, sections, footers)
 - Progress: `github.com/ishan5ain/tuiweave/progress` (passive task indicators)
 - Toggles: `github.com/ishan5ain/tuiweave/toggle` (focusable boolean settings)
+- Multi-select: `github.com/ishan5ain/tuiweave/multiselect` (focusable checkbox fields)
+- Reorder: `github.com/ishan5ain/tuiweave/reorder` (focusable movable item lists)
 - Buttons: `github.com/ishan5ain/tuiweave/button` (focusable single actions)
 - Command palettes: `github.com/ishan5ain/tuiweave/palette` (filtered action discovery)
 - Autocomplete: `github.com/ishan5ain/tuiweave/autocomplete` (app-owned input plus suggestions)
@@ -155,8 +157,9 @@ fills the assigned height only while matches exist; and `dialog` and
 `permission` are `SizeWidthBounded` with natural content height. Do not assume
 every `SetSize` height is rendered as rows for those documented modes.
 `textinput` and `toggle` are also `SizeWidthBounded`, but their natural height
-grows for stacked field decoration or a Clack inline prompt. `menu` is
-`SizeBounded` for stacked options and `SizeWidthBounded` when `Inline` is set.
+grows for stacked field decoration or a Clack inline prompt. `multiselect`,
+`reorder`, and `menu` are `SizeBounded` for stacked rows and
+`SizeWidthBounded` when `Inline` is set.
 
 Compose the final frame with `lipgloss.JoinVertical` / `JoinHorizontal` and
 wrap it once, at the root: `return tea.NewView(view)`. Full-screen apps set
@@ -556,6 +559,86 @@ case toggle.ChangedMsg:
   the others collapse to their submitted label. Size inline toggles after
   focus. Checked state uses `Accent`, not `Success`.
 
+### multiselect
+
+Use `multiselect` when the user can check any number of application-owned
+options. The cursor is separate from the checked set: space, `x`, and semantic
+actions toggle the cursor item, while Enter confirms the field.
+
+```go
+checks := multiselect.New(theme)
+checks.Title = "Checks"
+checks.Description = "Run before commit"
+checks.SetItems(
+    action.Item{ID: "types", Label: "Type checking"},
+    action.Item{ID: "format", Label: "Formatting"},
+    action.Item{ID: "tests", Label: "Tests"},
+)
+checks.SetCheckedIDs("types")
+checks.Inline = true
+checks.Focus()
+checks.SetSize(area.Dx(), checks.NaturalHeight())
+
+case multiselect.ChangedMsg:
+    // Apply msg.Checked for msg.ID; msg.Selected carries the full checked set.
+case multiselect.SubmittedMsg:
+    // Validate or persist msg.Selected in the application.
+```
+
+- `SetItems` preserves checked IDs and the cursor ID that are still present and
+  enabled. New items start unchecked.
+- `SetCheckedIDs`, `SetChecked`, `Clear`, and `Checked` manage visible state;
+  `SelectedIDs`, `SelectedItems`, and `SelectedCount` report it. Never derive
+  checked state from the cursor position.
+- Space and `x` toggle the cursor item and emit `ChangedMsg`; Enter emits
+  `SubmittedMsg`. The application owns validation and persistence.
+- Register it in the app's `focus.Manager` when it belongs in tab order.
+  `Inspect()` exposes `focus`, `blur`, navigation, `toggle`, `check`,
+  `uncheck`, `clear`, `submit`, `select.<id>` (cursor), and `toggle.<id>`
+  (checkbox) semantic actions.
+- Stacked fields use `> [x] label` rows and are `SizeBounded`; `Inline` uses
+  `❯ ◼/◻ label` and is `SizeWidthBounded`. Size inline fields after focus, and
+  let the prompt collapse to checked labels when blurred.
+- [examples/form](examples/form/main.go) shows the stacked field and
+  [examples/inline](examples/inline/main.go) shows the Clack prompt.
+
+### reorder
+
+Use `reorder` when application-owned items need a user-visible order. The
+cursor selects a row; Space grabs it, arrows move it, and Space drops it.
+Shift/Ctrl arrows (or `K`/`J`) move directly without grab mode.
+
+```go
+r := reorder.New(theme)
+r.Title = "Steps"
+r.Description = "Release pipeline order"
+r.SetItems(
+    reorder.Item{ID: "design", Label: "Design"},
+    reorder.Item{ID: "build", Label: "Build"},
+    reorder.Item{ID: "ship", Label: "Ship"},
+)
+r.Focus()
+r.SetSize(area.Dx(), r.NaturalHeight())
+
+case reorder.MovedMsg:
+    // Persist msg.Items or the stable order derived from msg.Items.
+```
+
+- `Item.ID` is stable identity; `Label` is rendered. `SetItems` preserves the
+  cursor item by ID. Never key persistence off cursor position.
+- `MoveUp`, `MoveDown`, and `MoveTo` mutate the order and return a command that
+  emits `MovedMsg` (`From`, `To`, moved `Item`, and the complete new `Items`).
+  They return nil at the edges or when there is nothing to move.
+- Grab mode is visual and local: `Grab`, `Drop`, `Grabbed`, and the
+  space/x/enter toggle. Blurring drops any grabbed item. Escape remains
+  app-owned, so global quit keys keep working.
+- Register it in the app's `focus.Manager` when it belongs in tab order.
+  `Inspect()` exposes focus, navigation, `move-up`, `move-down`, `grab`,
+  `drop`, and `select.<id>` semantic actions plus an `order` attribute.
+- Stacked rows use `> ≡ label` and the `↕ ≡ label` grabbed marker; they are
+  `SizeBounded`. `Inline` uses `❯ ≡` and is `SizeWidthBounded`; size it after
+  focus and let it collapse to the ordered labels when blurred.
+
 ### button
 
 Use `button` for one application-owned action that needs a focused, visible
@@ -680,8 +763,8 @@ degrades to one cell or disappears before it truncates the control.
 
 ### Clack-style inline prompts
 
-Set `Inline` on `textinput`, `menu`, or `toggle` to render a Clack prompt block
-matching the Vercel Skills CLI:
+Set `Inline` on `textinput`, `menu`, `multiselect`, `reorder`, or `toggle` to
+render a Clack prompt block matching the Vercel Skills CLI:
 
 ```text
 ◆  Name
@@ -694,16 +777,25 @@ matching the Vercel Skills CLI:
   `└` footer. Blurred prompts show `◇` and collapse to their submitted value.
   Symbols use `Info` for the active diamond/cursor and `Success` for submitted
   or selected marks, mirroring Clack's cyan/green palette.
-- `textinput.Inline` renders its title, description, input, and help.
+- `textinput.Inline` renders its title, description, input, and help. Set
+  `Mask` to a single-cell glyph such as `•` for password-style display; the
+  real text remains available through `Value()`.
 - `menu.Inline` renders its options vertically with
   `↑/↓ to navigate • Enter: confirm`. Its `SizeMode` is width-bounded; `View`
   returns its natural height.
+- `multiselect.Inline` renders `❯ ◼/◻` checkboxes, toggles the cursor row with
+  space, and submits with Enter. It reports width-bounded sizing and collapses
+  to the checked labels when blurred.
+- `reorder.Inline` renders `❯ ≡` movable rows. Space grabs or drops, arrows
+  move the grabbed item, and Shift+↑/↓ moves directly. It reports width-bounded
+  sizing and collapses to the ordered labels when blurred.
 - `toggle.Inline` renders `❯ ●` or `❯ ○` with the setting label.
 - Inline natural height depends on focus. Call `Focus()` first, then
   `SetSize(width, NaturalHeight())`; reapply size after each focus change.
-- `menu.NewOn(theme, nil)` and `toggle.NewOn(theme, nil)` render transparent
-  Clack prompts on the application surface. `textinput.New` is already
-  transparent.
+- `menu.NewOn(theme, nil)`, `multiselect.NewOn(theme, nil)`,
+  `reorder.NewOn(theme, nil)`, and `toggle.NewOn(theme, nil)` render
+  transparent Clack prompts on the application surface. `textinput.New` is
+  already transparent.
 
 ```go
 name := textinput.New(theme)
@@ -728,6 +820,26 @@ auto.SetLabel("Auto-refresh")
 auto.Inline = true
 auto.Focus()
 auto.SetSize(width, auto.NaturalHeight())
+
+checks := multiselect.NewOn(theme, nil)
+checks.Title = "Checks"
+checks.Inline = true
+checks.SetItems(
+    action.Item{ID: "types", Label: "Type checking"},
+    action.Item{ID: "tests", Label: "Tests"},
+)
+checks.Focus()
+checks.SetSize(width, checks.NaturalHeight())
+
+steps := reorder.NewOn(theme, nil)
+steps.Title = "Steps"
+steps.Inline = true
+steps.SetItems(
+    reorder.Item{ID: "design", Label: "Design"},
+    reorder.Item{ID: "build", Label: "Build"},
+)
+steps.Focus()
+steps.SetSize(width, steps.NaturalHeight())
 ```
 
 [examples/inline](examples/inline/main.go) is the runnable Clack prompt
@@ -863,6 +975,9 @@ case "alt+enter": ta.InsertString("\n")
   collapses to its submitted value when blurred. `textarea` stays stacked
   because it is multi-line. `textinput.NaturalHeight` is focus-dependent for
   inline; `textarea.ContentHeight` includes decoration rows.
+- `textinput.Mask` replaces each visible grapheme with a single-cell glyph for
+  password-style display while `Value()` keeps the real text. It affects
+  rendering only; validation, storage, and reveal behavior stay app-owned.
 
 Grow a chat input with its content by re-splitting the layout after edits:
 `layout.Len(min(4, ta.ContentHeight()))` — see [examples/chat](examples/chat/main.go).

@@ -1,0 +1,8 @@
+1: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "Steps" [fg=Accent bg=SurfaceRaised bold] | "                                 " [bg=SurfaceRaised]
+2: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "Order the release pipeline" [fg=TextMuted bg=SurfaceRaised] | "            " [bg=SurfaceRaised]
+3: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "≡" [fg=Text bg=SurfaceRaised] | " " [bg=SurfaceRaised] | "Design" [fg=Text bg=SurfaceRaised] | "                            " [bg=SurfaceRaised]
+4: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "> ≡" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "Build" [fg=Accent bg=SurfaceRaised bold] | "                             " [bg=SurfaceRaised]
+5: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "≡" [fg=Text bg=SurfaceRaised] | " " [bg=SurfaceRaised] | "Test" [fg=Text bg=SurfaceRaised] | "                              " [bg=SurfaceRaised]
+6: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "≡" [fg=Text bg=SurfaceRaised] | " " [bg=SurfaceRaised] | "Ship" [fg=Text bg=SurfaceRaised] | "                              " [bg=SurfaceRaised]
+7: "┃" [fg=Accent bg=SurfaceRaised bold] | "                                       " [bg=SurfaceRaised]
+8: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "space grabs • shift+↑/↓ moves" [fg=TextMuted bg=SurfaceRaised] | "         " [bg=SurfaceRaised]

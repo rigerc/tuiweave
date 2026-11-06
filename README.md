@@ -153,11 +153,11 @@ Foundations and composition:
 
 General-purpose components:
 [`autocomplete`](autocomplete), [`button`](button), [`dialog`](dialog),
-[`help`](help), [`list`](list), [`menu`](menu), [`palette`](palette),
-[`progress`](progress), [`spinner`](spinner), [`statusbar`](statusbar),
-[`table`](table), [`tabs`](tabs), [`textarea`](textarea),
-[`textinput`](textinput), [`toggle`](toggle), [`toolbar`](toolbar), and
-[`viewport`](viewport).
+[`help`](help), [`list`](list), [`menu`](menu), [`multiselect`](multiselect),
+[`palette`](palette), [`progress`](progress), [`reorder`](reorder),
+[`spinner`](spinner), [`statusbar`](statusbar), [`table`](table),
+[`tabs`](tabs), [`textarea`](textarea), [`textinput`](textinput),
+[`toggle`](toggle), [`toolbar`](toolbar), and [`viewport`](viewport).
 
 Agentic domain components:
 [`chat`](agentic/chat), [`diffview`](agentic/diffview),

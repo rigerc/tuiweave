@@ -15,6 +15,8 @@ import (
 	"github.com/ishan5ain/tuiweave/frame"
 	"github.com/ishan5ain/tuiweave/help"
 	"github.com/ishan5ain/tuiweave/menu"
+	"github.com/ishan5ain/tuiweave/multiselect"
+	"github.com/ishan5ain/tuiweave/reorder"
 	"github.com/ishan5ain/tuiweave/stack"
 	"github.com/ishan5ain/tuiweave/statusbar"
 	"github.com/ishan5ain/tuiweave/textinput"
@@ -30,6 +32,8 @@ type model struct {
 	name   textinput.Model
 	search textinput.Model
 	env    menu.Model
+	checks multiselect.Model
+	steps  reorder.Model
 	auto   toggle.Model
 	save   button.Model
 
@@ -79,6 +83,25 @@ func newModel() model {
 	auto.SetLabel("Auto-refresh")
 	auto.SetChecked(true)
 
+	checks := multiselect.New(theme)
+	checks.Title = "Checks"
+	checks.Description = "Run before commit"
+	checks.SetItems(
+		action.Item{ID: "types", Label: "Type checking"},
+		action.Item{ID: "format", Label: "Formatting"},
+		action.Item{ID: "tests", Label: "Tests"},
+	)
+	checks.SetCheckedIDs("types")
+
+	steps := reorder.New(theme)
+	steps.Title = "Steps"
+	steps.Description = "Release pipeline order"
+	steps.SetItems(
+		reorder.Item{ID: "design", Label: "Design"},
+		reorder.Item{ID: "build", Label: "Build"},
+		reorder.Item{ID: "ship", Label: "Ship"},
+	)
+
 	save := button.New(theme)
 	save.ID = "save"
 	save.SetLabel("Save changes")
@@ -90,9 +113,11 @@ func newModel() model {
 		name:       name,
 		search:     search,
 		env:        env,
+		checks:     checks,
+		steps:      steps,
 		auto:       auto,
 		save:       save,
-		fm:         focus.NewManager(5),
+		fm:         focus.NewManager(7),
 		noticeKind: statusbar.KindMuted,
 	}
 }
@@ -111,6 +136,8 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.name.SetSize(contentWidth, m.name.NaturalHeight())
 		m.search.SetSize(contentWidth, m.search.NaturalHeight())
 		m.env.SetSize(contentWidth, m.env.NaturalHeight())
+		m.checks.SetSize(contentWidth, m.checks.NaturalHeight())
+		m.steps.SetSize(contentWidth, m.steps.NaturalHeight())
 		m.auto.SetSize(contentWidth, m.auto.NaturalHeight())
 		m.save.SetSize(contentWidth, 1)
 		m.applyFocus()
@@ -139,6 +166,12 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case menu.SelectedMsg:
 		m.noticeKind = statusbar.KindInfo
 		m.setNotice("environment: " + msg.Label)
+	case multiselect.SubmittedMsg:
+		m.noticeKind = statusbar.KindInfo
+		m.setNotice(fmt.Sprintf("checks: %d selected", len(msg.Selected)))
+	case reorder.MovedMsg:
+		m.noticeKind = statusbar.KindInfo
+		m.setNotice(fmt.Sprintf("steps: %d moved", msg.To+1))
 	}
 
 	var cmd tea.Cmd
@@ -147,6 +180,10 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	m.search, cmd = m.search.Update(msg)
 	cmds = append(cmds, cmd)
 	m.env, cmd = m.env.Update(msg)
+	cmds = append(cmds, cmd)
+	m.checks, cmd = m.checks.Update(msg)
+	cmds = append(cmds, cmd)
+	m.steps, cmd = m.steps.Update(msg)
 	cmds = append(cmds, cmd)
 	m.auto, cmd = m.auto.Update(msg)
 	cmds = append(cmds, cmd)
@@ -163,7 +200,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m *model) applyFocus() {
-	m.fm.Apply(&m.name, &m.search, &m.env, &m.auto, &m.save)
+	m.fm.Apply(&m.name, &m.search, &m.env, &m.checks, &m.steps, &m.auto, &m.save)
 }
 
 func (m *model) setNotice(text string) {
@@ -181,6 +218,8 @@ func (m model) View() tea.View {
 		func(int) string { return m.name.View() },
 		func(int) string { return m.search.View() },
 		func(int) string { return m.env.View() },
+		func(int) string { return m.checks.View() },
+		func(int) string { return m.steps.View() },
 		func(int) string { return m.auto.View() },
 		func(int) string { return m.save.View() },
 	)

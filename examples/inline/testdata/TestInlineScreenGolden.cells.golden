@@ -6,21 +6,25 @@
 6: "└" [fg=TextFaint]
 7: "◇" [fg=Success] | "  " | "Email" [fg=TextMuted]
 8: "│" [fg=TextFaint] | "  " | "ada@example.com" [fg=TextMuted]
-9: "◇" [fg=Success] | "  " | "Environment" [fg=TextMuted]
-10: "│" [fg=TextFaint] | "  " | "Staging" [fg=TextMuted]
-11: "◇" [fg=Success] | "  " | "Updates" [fg=TextMuted]
-12: "│" [fg=TextFaint] | "  " | "● Auto-refresh" [fg=TextMuted]
-13: "◇" [fg=Success] | "  " | "Theme" [fg=TextMuted]
-14: "│" [fg=TextFaint] | "  " | "Dark" [fg=TextMuted]
-15:
-16: "└" [fg=TextFaint] | "  " | "tab focus • ↑/↓ change • space toggle • esc quit" [fg=TextMuted]
-17:
-18:
-19:
-20:
-21:
-22:
+9: "◇" [fg=Success] | "  " | "Password" [fg=TextMuted]
+10: "│" [fg=TextFaint] | "  " | "stored locally" [fg=TextMuted]
+11: "◇" [fg=Success] | "  " | "Environment" [fg=TextMuted]
+12: "│" [fg=TextFaint] | "  " | "Staging" [fg=TextMuted]
+13: "◇" [fg=Success] | "  " | "Features" [fg=TextMuted]
+14: "│" [fg=TextFaint] | "  " | "Type checking, Tests" [fg=TextMuted]
+15: "◇" [fg=Success] | "  " | "Steps" [fg=TextMuted]
+16: "│" [fg=TextFaint] | "  " | "Design, Build, Test, Ship" [fg=TextMuted]
+17: "◇" [fg=Success] | "  " | "Port" [fg=TextMuted]
+18: "│" [fg=TextFaint] | "  " | "3000" [fg=TextMuted]
+19: "◇" [fg=Success] | "  " | "Updates" [fg=TextMuted]
+20: "│" [fg=TextFaint] | "  " | "● Auto-refresh" [fg=TextMuted]
+21: "◇" [fg=Success] | "  " | "Theme" [fg=TextMuted]
+22: "│" [fg=TextFaint] | "  " | "Dark" [fg=TextMuted]
 23:
-24:
+24: "└" [fg=TextFaint] | "  " | "tab focus • ↑/↓ change • space toggle • enter submit • esc quit" [fg=TextMuted]
 25:
 26:
+27:
+28:
+29:
+30:

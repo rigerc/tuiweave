@@ -1,0 +1,8 @@
+┃ Checks
+┃ Run before commit
+┃ > [x] Type checking
+┃   [ ] Formatting
+┃   [x] Tests
+┃   [ ] Deploy preview
+┃
+┃ space toggles • enter submits

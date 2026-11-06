@@ -1,0 +1,7 @@
+1: "◆" [fg=Info bold] | "  " | "Steps" [fg=Text bold]
+2: "│" [fg=TextFaint] | "  " | "❯ " [fg=Info bold] | "≡" [fg=Success bold] | " " | "Design" [fg=Success bold]
+3: "│" [fg=TextFaint] | "    " | "≡" [fg=TextMuted] | " " | "Build" [fg=TextMuted]
+4: "│" [fg=TextFaint] | "    " | "≡" [fg=TextMuted] | " " | "Test" [fg=TextMuted]
+5: "│" [fg=TextFaint] | "    " | "≡" [fg=TextMuted] | " " | "Ship" [fg=TextMuted]
+6: "│" [fg=TextFaint] | "  " | "↑/↓ move • Space drop" [fg=TextMuted]
+7: "└" [fg=TextFaint]

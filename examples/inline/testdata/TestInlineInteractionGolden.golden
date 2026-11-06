@@ -1,11 +1,19 @@
 ┌  Inline fields
 │
 ◇  Name
-│  Ada Lovelace
+│  Ada
 ◇  Email
-│  ada
+│  ada@example.com
+◇  Password
+│  •••••••
 ◇  Environment
 │  Production
+◇  Features
+│  Type checking, Formatting, Tests
+◇  Steps
+│  Build, Design, Test, Ship
+◇  Port
+│  8000
 ◇  Updates
 │  ○ Auto-refresh
 ◆  Theme
@@ -15,11 +23,7 @@
 │  ↑/↓ to navigate • Enter: confirm
 └
 
-└  tab focus • ↑/↓ change • space toggle • esc quit
+│  auto-refresh: off
 
-
-
-
-
-
+└  tab focus • ↑/↓ change • space toggle • enter submit • esc quit
 

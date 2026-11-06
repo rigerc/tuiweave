@@ -1,0 +1,2 @@
+1: "┃" [fg=Accent bold] | " " | "Password" [fg=Accent bold]
+2: "┃" [fg=Accent bold] | " " | "> " [fg=Accent] | "•••••••" [fg=Text] | " " [fg=Text reverse]

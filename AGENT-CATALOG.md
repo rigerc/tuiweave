@@ -49,6 +49,9 @@ failure modes below as an audit checklist.
 | Show task completion | `progress`; passive, exact-width, status-aware indicator |
 | Show activity or key hints | `spinner` for ticks; `help` for whole key-binding hints |
 | Add an on/off setting | `toggle`; focusable, semantic, and emits `ChangedMsg` |
+| Select multiple options | `multiselect`; cursor plus checked IDs, `ChangedMsg` and `SubmittedMsg` |
+| Reorder items | `reorder`; grab or direct moves, `MovedMsg` with the new order |
+| Accept a password | `textinput` with `Mask`; display-only masking, app-owned storage |
 | Add one focused action | `button`; enter/space and semantic activation emit `PressedMsg` |
 | Search and activate actions | `palette`; filters stable actions and emits `SelectedMsg` |
 | Complete text from candidates | `autocomplete` beside an app-owned `textinput` |
@@ -105,6 +108,8 @@ failure modes below as an audit checklist.
 | `stack` | Composing vertical app chrome | `Vertical(theme, width, Options, views...)`; exact-width natural-height sections |
 | `progress` | Showing task or operation completion | `SetLabel`, `SetPercent`, `SetStatus`; passive and exact-width |
 | `toggle` | Editing a boolean setting | `SetLabel`, `SetChecked`, `Focus`; space/enter/x emit `ChangedMsg` |
+| `multiselect` | Checking any number of options | `SetItems`, `SetCheckedIDs`, `Focus`; space/enter emit `ChangedMsg`/`SubmittedMsg` |
+| `reorder` | Changing item order | `SetItems`, `MoveUp`/`MoveDown`, `Focus`; moves emit `MovedMsg` with the full order |
 | `button` | Activating one application-owned action | `SetLabel`, `Focus`, `PressedMsg`; enter/space activate |
 | `palette` | Discovering actions by query | `SetItems([]action.Item...)`, `SetQuery`, `SelectedMsg`; filters ID/label/description |
 | `autocomplete` | Offering text completions beside an input | `SetItems`, `SetQuery`, `SelectedMsg`; app owns query and insertion, disabled candidates are skipped |

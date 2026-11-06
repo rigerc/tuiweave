@@ -1,0 +1,8 @@
+◆  Steps
+│  Order the release pipeline
+│    ≡ Design
+│  ❯ ≡ Build
+│    ≡ Test
+│    ≡ Ship
+│  ↑/↓ • Space grab • Shift+↑/↓ move
+└

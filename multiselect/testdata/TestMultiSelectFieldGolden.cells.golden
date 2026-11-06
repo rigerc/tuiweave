@@ -1,0 +1,8 @@
+1: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "Checks" [fg=Accent bg=SurfaceRaised bold] | "                                " [bg=SurfaceRaised]
+2: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "Run before commit" [fg=TextMuted bg=SurfaceRaised] | "                     " [bg=SurfaceRaised]
+3: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "> [x]" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "Type checking" [fg=Accent bg=SurfaceRaised bold] | "                   " [bg=SurfaceRaised]
+4: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "[ ]" [fg=Text bg=SurfaceRaised] | " " [bg=SurfaceRaised] | "Formatting" [fg=Text bg=SurfaceRaised] | "                      " [bg=SurfaceRaised]
+5: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "[x]" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "Tests" [fg=Text bg=SurfaceRaised] | "                           " [bg=SurfaceRaised]
+6: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "[ ]" [fg=TextFaint bg=SurfaceRaised] | " " [bg=SurfaceRaised] | "Deploy preview" [fg=TextFaint bg=SurfaceRaised] | "                  " [bg=SurfaceRaised]
+7: "┃" [fg=Accent bg=SurfaceRaised bold] | "                                       " [bg=SurfaceRaised]
+8: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "space toggles • enter submits" [fg=TextMuted bg=SurfaceRaised] | "         " [bg=SurfaceRaised]

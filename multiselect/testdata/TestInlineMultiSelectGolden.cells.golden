@@ -1,0 +1,8 @@
+1: "◆" [fg=Info bold] | "  " | "Checks" [fg=Text bold]
+2: "│" [fg=TextFaint] | "  " | "Run before commit" [fg=TextMuted]
+3: "│" [fg=TextFaint] | "  " | "❯ " [fg=Info bold] | "◻" [fg=TextMuted] | " " | "Type checking" [fg=Text bold]
+4: "│" [fg=TextFaint] | "    " | "◼" [fg=Success bold] | " " | "Formatting" [fg=TextMuted]
+5: "│" [fg=TextFaint] | "    " | "◻" [fg=TextMuted] | " " | "Tests" [fg=TextMuted]
+6: "│" [fg=TextFaint] | "    " | "◻" [fg=TextFaint] | " " | "Deploy preview" [fg=TextFaint]
+7: "│" [fg=TextFaint] | "  " | "↑/↓ to navigate • Space: select • Enter:…" [fg=TextMuted]
+8: "└" [fg=TextFaint]

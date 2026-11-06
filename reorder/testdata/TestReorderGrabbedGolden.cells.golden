@@ -1,0 +1,5 @@
+1: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "Steps" [fg=Accent bg=SurfaceRaised bold] | "                                 " [bg=SurfaceRaised]
+2: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "≡" [fg=Text bg=SurfaceRaised] | " " [bg=SurfaceRaised] | "Design" [fg=Text bg=SurfaceRaised] | "                            " [bg=SurfaceRaised]
+3: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "≡" [fg=Text bg=SurfaceRaised] | " " [bg=SurfaceRaised] | "Build" [fg=Text bg=SurfaceRaised] | "                             " [bg=SurfaceRaised]
+4: "┃" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "↕ ≡" [fg=Accent bg=SurfaceRaised bold] | " " [bg=SurfaceRaised] | "Test" [fg=Accent bg=SurfaceRaised bold] | "                              " [bg=SurfaceRaised]
+5: "┃" [fg=Accent bg=SurfaceRaised bold] | "   " [bg=SurfaceRaised] | "≡" [fg=Text bg=SurfaceRaised] | " " [bg=SurfaceRaised] | "Ship" [fg=Text bg=SurfaceRaised] | "                              " [bg=SurfaceRaised]

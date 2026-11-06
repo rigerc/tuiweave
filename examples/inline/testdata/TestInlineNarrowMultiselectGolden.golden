@@ -1,0 +1,24 @@
+┌  Inline fields
+│
+◇  Name
+│  Ada Lovelace
+◇  Email
+│  ada@example.com
+◇  Password
+│  stored locally
+◇  Environment
+│  Staging
+◆  Features
+│  Applied to new workspaces
+│  ❯ ◼ Type checking
+│    ◻ Formatting
+│    ◼ Tests
+│    ◻ Deploy preview
+│  ↑/↓ to navigate • Space: select • Enter:…
+└
+◇  Steps
+│  Design, Build, Test, Ship
+◇  Port
+│  3000
+◇  Updates
+│  ● Auto-refresh

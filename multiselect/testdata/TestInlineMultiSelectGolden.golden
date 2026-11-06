@@ -1,0 +1,8 @@
+◆  Checks
+│  Run before commit
+│  ❯ ◻ Type checking
+│    ◼ Formatting
+│    ◻ Tests
+│    ◻ Deploy preview
+│  ↑/↓ to navigate • Space: select • Enter:…
+└

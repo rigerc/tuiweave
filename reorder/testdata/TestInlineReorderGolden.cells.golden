@@ -1,0 +1,8 @@
+1: "◆" [fg=Info bold] | "  " | "Steps" [fg=Text bold]
+2: "│" [fg=TextFaint] | "  " | "Order the release pipeline" [fg=TextMuted]
+3: "│" [fg=TextFaint] | "    " | "≡" [fg=TextMuted] | " " | "Design" [fg=TextMuted]
+4: "│" [fg=TextFaint] | "  " | "❯ " [fg=Info bold] | "≡" [fg=Success bold] | " " | "Build" [fg=Text bold]
+5: "│" [fg=TextFaint] | "    " | "≡" [fg=TextMuted] | " " | "Test" [fg=TextMuted]
+6: "│" [fg=TextFaint] | "    " | "≡" [fg=TextMuted] | " " | "Ship" [fg=TextMuted]
+7: "│" [fg=TextFaint] | "  " | "↑/↓ • Space grab • Shift+↑/↓ move" [fg=TextMuted]
+8: "└" [fg=TextFaint]

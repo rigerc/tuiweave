@@ -177,6 +177,53 @@ func (s Styles) OptionRow(focused, selected, disabled bool, label string, width 
 	return s.Row(focused, body, width)
 }
 
+// MultiOptionRow renders one Clack multiselect row. The cursor row gets the
+// cursor; checked rows get a filled checkbox and unchecked rows an empty one.
+func (s Styles) MultiOptionRow(focused, cursor, checked, disabled bool, label string, width int) string {
+	cursorMark := s.Pad.Render("  ")
+	if disabled {
+		return s.Row(focused, cursorMark+s.Disabled.Render("◻")+s.Pad.Render(" ")+s.Disabled.Render(label), width)
+	}
+	mark := s.Inactive.Render("◻")
+	labelStyle := s.Inactive
+	if checked {
+		mark = s.Selected.Render("◼")
+	}
+	if cursor {
+		cursorMark = s.Cursor.Render("❯ ")
+		if focused {
+			labelStyle = s.Title
+		} else {
+			labelStyle = s.TitleIdle
+		}
+	}
+	body := cursorMark + mark + s.Pad.Render(" ") + labelStyle.Render(label)
+	return s.Row(focused, body, width)
+}
+
+// ReorderRow renders one Clack reorder row with a handle. The cursor row gets
+// the cursor; a grabbed row uses the submitted accent for its handle and label.
+func (s Styles) ReorderRow(focused, cursor, grabbed bool, label string, width int) string {
+	cursorMark := s.Pad.Render("  ")
+	handle := s.Inactive.Render("≡")
+	labelStyle := s.Inactive
+	if cursor {
+		cursorMark = s.Cursor.Render("❯ ")
+		handle = s.Selected.Render("≡")
+		if focused {
+			labelStyle = s.Title
+		} else {
+			labelStyle = s.TitleIdle
+		}
+	}
+	if grabbed {
+		handle = s.Selected.Render("≡")
+		labelStyle = s.Selected
+	}
+	body := cursorMark + handle + s.Pad.Render(" ") + labelStyle.Render(label)
+	return s.Row(focused, body, width)
+}
+
 // HelpRow renders a muted hint under the bar.
 func (s Styles) HelpRow(focused bool, text string, width int) string {
 	if text == "" {
