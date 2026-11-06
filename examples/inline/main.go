@@ -151,7 +151,9 @@ func (m model) View() tea.View {
 		m.outro(),
 	}
 	view := fitHeight(strings.Join(lines, "\n"), m.width, m.height)
-	return tea.NewView(view)
+	v := tea.NewView(view)
+	v.AltScreen = true
+	return v
 }
 
 func (m model) intro() string {

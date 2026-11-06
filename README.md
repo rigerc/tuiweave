@@ -74,6 +74,22 @@ func main() {
 - Support: [SUPPORT.md](SUPPORT.md)
 - Security: [SECURITY.md](SECURITY.md)
 
+## Demos
+
+Recorded with [VHS](https://github.com/charmbracelet/vhs). Regenerate with
+`./scripts/render-demos.sh`; tapes live in [`demos/vhs`](demos/vhs).
+
+| | |
+|---|---|
+| **[ops](examples/ops)** · operations console with palette and nested confirmation<br><a href="examples/ops"><img src="docs/demos/ops.gif" alt="ops demo" width="440"></a> | **[browser](examples/browser)** · filterable files, preview, and scrollbars<br><a href="examples/browser"><img src="docs/demos/browser.gif" alt="browser demo" width="440"></a> |
+| **[chat](examples/chat)** · streaming agent transcript and permission prompt<br><a href="examples/chat"><img src="docs/demos/chat.gif" alt="chat demo" width="440"></a> | **[demo](examples/demo)** · multi-pane layout with list, viewport, and dialog<br><a href="examples/demo"><img src="docs/demos/demo.gif" alt="demo app" width="440"></a> |
+| **[frame](examples/frame)** · tabs, actions, toolbar, progress, toggle, button<br><a href="examples/frame"><img src="docs/demos/frame.gif" alt="frame demo" width="440"></a> | **[table](examples/table)** · git-style table beside a diff pane<br><a href="examples/table"><img src="docs/demos/table.gif" alt="table demo" width="440"></a> |
+| **[statusbar](examples/statusbar)** · theme cycling and status segments<br><a href="examples/statusbar"><img src="docs/demos/statusbar.gif" alt="statusbar demo" width="440"></a> | **[consumer](examples/consumer)** · public-API consumer smoke app<br><a href="examples/consumer"><img src="docs/demos/consumer.gif" alt="consumer demo" width="440"></a> |
+| **[autocomplete](examples/autocomplete)** · input plus suggestion window<br><a href="examples/autocomplete"><img src="docs/demos/autocomplete.gif" alt="autocomplete demo" width="440"></a> | **[textarea-autocomplete](examples/textarea-autocomplete)** · token completion in a textarea<br><a href="examples/textarea-autocomplete"><img src="docs/demos/textarea-autocomplete.gif" alt="textarea autocomplete demo" width="440"></a> |
+| **[palette](examples/palette)** · filtered command discovery and activation<br><a href="examples/palette"><img src="docs/demos/palette.gif" alt="palette demo" width="440"></a> | **[form](examples/form)** · Huh-style stacked fields<br><a href="examples/form"><img src="docs/demos/form.gif" alt="form demo" width="440"></a> |
+| **[inline](examples/inline)** · Clack-style inline prompts<br><a href="examples/inline"><img src="docs/demos/inline.gif" alt="inline demo" width="440"></a> | **[banner](examples/banner)** · figlet gradient banner<br><a href="examples/banner"><img src="docs/demos/banner.gif" alt="banner demo" width="440"></a> |
+
+
 The root package supplies semantic theme roles. Domain-neutral components live
 in top-level packages such as `layout`, `frame`, `tabs`, `menu`, `viewport`,
 `textinput`, and `textarea`; optional domain packages live under `agentic/`.

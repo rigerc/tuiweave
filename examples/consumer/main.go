@@ -119,7 +119,11 @@ func (m model) Inspect() inspect.Node {
 	)
 }
 
-func (m model) View() tea.View { return tea.NewView(m.render()) }
+func (m model) View() tea.View {
+	v := tea.NewView(m.render())
+	v.AltScreen = true
+	return v
+}
 
 func main() {
 	if _, err := tea.NewProgram(newModel()).Run(); err != nil {

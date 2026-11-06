@@ -1,0 +1,83 @@
+name: Record example demos with VHS
+
+on:
+  pull_request:
+    paths:
+      - 'demos/vhs/**'
+      - 'examples/**'
+      - 'docs/demos/**'
+      - '.github/workflows/vhs.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'demos/vhs/**'
+      - 'examples/**'
+      - 'docs/demos/**'
+      - '.github/workflows/vhs.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: vhs-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        example:
+          - autocomplete
+          - banner
+          - browser
+          - chat
+          - consumer
+          - demo
+          - form
+          - frame
+          - inline
+          - ops
+          - palette
+          - statusbar
+          - table
+          - textarea-autocomplete
+    env:
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
+      TZ: UTC
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      - name: Install VHS
+        uses: charmbracelet/vhs-action@v2.1.1
+        with:
+          version: v0.12.1
+      - name: Render ${{ matrix.example }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p docs/demos demos/vhs/outputs
+          vhs "demos/vhs/${{ matrix.example }}.tape"
+          test -s "docs/demos/${{ matrix.example }}.gif"
+          test -s "demos/vhs/outputs/${{ matrix.example }}.mp4"
+          ffprobe -v error -select_streams v:0 \
+            -show_entries stream=width,height -of csv=p=0 \
+            "demos/vhs/outputs/${{ matrix.example }}.mp4"
+          file --mime-type "docs/demos/${{ matrix.example }}.gif" | grep -q 'image/gif'
+      - name: Upload VHS evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vhs-${{ matrix.example }}-${{ github.run_id }}
+          path: |
+            docs/demos/${{ matrix.example }}.gif
+            demos/vhs/outputs/${{ matrix.example }}.mp4
+          if-no-files-found: warn
+          retention-days: 7

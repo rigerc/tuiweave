@@ -197,7 +197,9 @@ func (m model) View() tea.View {
 	if m.height > 1 {
 		parts = append(parts, m.help.View())
 	}
-	return tea.NewView(strings.Join(parts, "\n"))
+	v := tea.NewView(strings.Join(parts, "\n"))
+	v.AltScreen = true
+	return v
 }
 
 // fitHeight pads or clips a rendered block to exactly height rows.

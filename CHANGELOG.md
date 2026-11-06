@@ -42,6 +42,11 @@ before v1, a minor release may contain breaking changes when clearly called out.
 
 ### Added
 
+- Added a VHS demo gallery to the README for all runnable examples, with
+  checked-in GIFs under `docs/demos`, reusable tapes under `demos/vhs`, a
+  `scripts/render-demos.sh` regeneration script, and a matrix CI workflow that
+  records and uploads GIF/MP4 evidence.
+
 - Added `banner`, a figlet ASCII-art utility with named gradients, ANSI or
   truecolor output, HTML output, explicit plain-text parsing, and a runnable
   [`examples/banner`](examples/banner) demo. Rendering is deterministic when
