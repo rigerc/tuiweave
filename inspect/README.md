@@ -123,5 +123,5 @@ explicit result delivery.
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/inspect)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/inspect)
 - [Agent-operable surfaces](../AGENT-CATALOG.md#agent-operable-surfaces)

@@ -23,6 +23,6 @@ See the [frame example](../examples/frame) and [button recipe](../AGENTS.md#butt
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/button)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/button)
 - [Frame example](../examples/frame)
 - [Button recipe](../AGENTS.md#button)

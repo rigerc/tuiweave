@@ -42,6 +42,6 @@ layout after a pasted edit just as after a typed edit.
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/textarea)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/textarea)
 - [Textarea autocomplete example](../examples/textarea-autocomplete)
 - [Text input and textarea recipe](../AGENTS.md#textinput--textarea)

@@ -17,8 +17,8 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/viewport"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/viewport"
 )
 
 // Cell is one unit of transcript content, rendered at the transcript width.

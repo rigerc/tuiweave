@@ -10,7 +10,7 @@ import (
 	uv "github.com/charmbracelet/ultraviolet"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/ishan5ain/tuiweave/internal/grapheme"
+	"github.com/rigerc/tuiweave/internal/grapheme"
 )
 
 // Option configures SnapCells.

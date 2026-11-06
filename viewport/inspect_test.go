@@ -3,8 +3,8 @@ package viewport
 import (
 	"testing"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/inspect"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/inspect"
 )
 
 func TestSemanticScrollBottom(t *testing.T) {

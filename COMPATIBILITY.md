@@ -111,7 +111,7 @@ Direct construction of, conversion to, or storage as
 longer type-compatible. An application that used that pre-v1 implementation
 detail must replace Ultraviolet constraint values with tuiweave's constructors.
 This boundary was completed in
-[Issue #28](https://github.com/ishan5ain/tuiweave/issues/28).
+[Issue #28](https://github.com/rigerc/tuiweave/issues/28).
 
 ## Release and migration policy
 

@@ -33,7 +33,7 @@ tuiweave v0.3.0 requires Go 1.26.0 or newer and uses Bubble Tea v2.1.0.
 Earlier release tags retain their own Go requirements.
 
 ```sh
-go get github.com/ishan5ain/tuiweave@v0.3.0
+go get github.com/rigerc/tuiweave@v0.3.0
 ```
 
 ```go
@@ -42,8 +42,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/statusbar"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/statusbar"
 )
 
 func main() {
@@ -66,7 +66,7 @@ func main() {
 - Snapshot verification: [`snaptest` tutorial](snaptest/README.md)
 - Semantic inspection and actions: [`inspect` contract](inspect) and [`examples/ops`](examples/ops)
 - All runnable examples: [`examples`](examples)
-- Package documentation: [pkg.go.dev](https://pkg.go.dev/github.com/ishan5ain/tuiweave)
+- Package documentation: [pkg.go.dev](https://pkg.go.dev/github.com/rigerc/tuiweave)
 - Compatibility and migration policy: [COMPATIBILITY.md](COMPATIBILITY.md)
 - Architecture: [DESIGN.md](DESIGN.md)
 - Roadmap: [ROADMAP.md](ROADMAP.md)
@@ -194,7 +194,7 @@ encapsulated.
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave)
 - [Architecture](DESIGN.md)
 - [Compatibility and migration policy](COMPATIBILITY.md)
 - [Dependency architecture](DESIGN.md#6-dependency-policy)

@@ -23,5 +23,5 @@ See the [frame example](../examples/frame) and [progress recipe](../AGENTS.md#pr
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/progress)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/progress)
 - [Progress recipe](../AGENTS.md#progress)

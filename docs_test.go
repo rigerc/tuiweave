@@ -57,7 +57,7 @@ func TestPublicPackagesHaveREADMEs(t *testing.T) {
 		if !strings.Contains(content, "## Related documentation") {
 			t.Errorf("public package %q README.md is missing a related documentation section", path)
 		}
-		if !strings.Contains(content, "https://pkg.go.dev/github.com/ishan5ain/tuiweave") {
+		if !strings.Contains(content, "https://pkg.go.dev/github.com/rigerc/tuiweave") {
 			t.Errorf("public package %q README.md is missing a pkg.go.dev API reference", path)
 		}
 		if !strings.Contains(content, "AGENTS.md") && !strings.Contains(content, "AGENT-CATALOG.md") && !strings.Contains(content, "examples/") {

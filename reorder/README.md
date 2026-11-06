@@ -38,7 +38,7 @@ plus the [reorder recipe](../AGENTS.md#reorder).
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/reorder)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/reorder)
 - [Inline example](../examples/inline)
 - [Form example](../examples/form)
 - [Reorder recipe](../AGENTS.md#reorder)

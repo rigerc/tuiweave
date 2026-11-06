@@ -9,8 +9,8 @@ import (
 	uv "github.com/charmbracelet/ultraviolet"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/table"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/table"
 )
 
 func TestTableRegionalIndicatorWcWidthTransition(t *testing.T) {

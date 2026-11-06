@@ -3,7 +3,7 @@ package toolcall
 import (
 	"strconv"
 
-	"github.com/ishan5ain/tuiweave/inspect"
+	"github.com/rigerc/tuiweave/inspect"
 )
 
 const (

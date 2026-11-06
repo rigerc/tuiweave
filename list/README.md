@@ -23,6 +23,6 @@ See the [browser example](../examples/browser) and [scrolling recipe](../AGENTS.
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/list)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/list)
 - [Browser example](../examples/browser)
 - [Scrolling components](../AGENTS.md#viewport--list--table-scrolling-components)

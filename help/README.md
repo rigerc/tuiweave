@@ -23,5 +23,5 @@ See the [demo](../examples/demo) and [package catalog](../AGENT-CATALOG.md#gener
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/help)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/help)
 - [General-purpose components](../AGENT-CATALOG.md#general-purpose-components)

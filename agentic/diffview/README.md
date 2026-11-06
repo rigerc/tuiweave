@@ -24,6 +24,6 @@ See the [table example](../../examples/table) and [chat example](../../examples/
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/agentic/diffview)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/agentic/diffview)
 - [Table example](../../examples/table)
 - [Chat example](../../examples/chat)

@@ -25,6 +25,6 @@ See the [table example](../examples/table) and [scrolling recipe](../AGENTS.md#v
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/table)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/table)
 - [Table example](../examples/table)
 - [Scrolling components](../AGENTS.md#viewport--list--table-scrolling-components)

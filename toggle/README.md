@@ -23,6 +23,6 @@ See the [frame example](../examples/frame) and [toggle recipe](../AGENTS.md#togg
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/toggle)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/toggle)
 - [Frame example](../examples/frame)
 - [Toggle recipe](../AGENTS.md#toggle)

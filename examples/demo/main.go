@@ -16,17 +16,17 @@ import (
 	tea "charm.land/bubbletea/v2"
 	lipgloss "charm.land/lipgloss/v2"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/dialog"
-	"github.com/ishan5ain/tuiweave/focus"
-	"github.com/ishan5ain/tuiweave/help"
-	"github.com/ishan5ain/tuiweave/layout"
-	"github.com/ishan5ain/tuiweave/list"
-	"github.com/ishan5ain/tuiweave/overlay"
-	"github.com/ishan5ain/tuiweave/spinner"
-	"github.com/ishan5ain/tuiweave/statusbar"
-	"github.com/ishan5ain/tuiweave/textinput"
-	"github.com/ishan5ain/tuiweave/viewport"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/dialog"
+	"github.com/rigerc/tuiweave/focus"
+	"github.com/rigerc/tuiweave/help"
+	"github.com/rigerc/tuiweave/layout"
+	"github.com/rigerc/tuiweave/list"
+	"github.com/rigerc/tuiweave/overlay"
+	"github.com/rigerc/tuiweave/spinner"
+	"github.com/rigerc/tuiweave/statusbar"
+	"github.com/rigerc/tuiweave/textinput"
+	"github.com/rigerc/tuiweave/viewport"
 )
 
 type model struct {

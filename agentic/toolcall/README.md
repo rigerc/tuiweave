@@ -23,6 +23,6 @@ See the [chat example](../../examples/chat) and [agentic package map](../../AGEN
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/agentic/toolcall)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/agentic/toolcall)
 - [Chat example](../../examples/chat)
 - [Agentic package map](../../AGENT-CATALOG.md#agentic-domain-components)

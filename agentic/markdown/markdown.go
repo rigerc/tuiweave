@@ -17,7 +17,7 @@ import (
 	glamour "charm.land/glamour/v2"
 	"charm.land/glamour/v2/ansi"
 
-	"github.com/ishan5ain/tuiweave"
+	"github.com/rigerc/tuiweave"
 )
 
 // Renderer renders markdown source to styled terminal text wrapped at width.

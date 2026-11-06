@@ -1,6 +1,6 @@
 # Streaming Markdown rendering investigation
 
-Investigation for [issue #33](https://github.com/ishan5ain/tuiweave/issues/33).
+Investigation for [issue #33](https://github.com/rigerc/tuiweave/issues/33).
 Production rendering and the public `markdown.Renderer` interface are unchanged.
 
 ## Task contract
@@ -229,7 +229,7 @@ between requests. The assistant and terminal/application work add further cost.
 This is an illustrative operating budget, not a claim about a measured production
 application or a library-wide latency guarantee.
 
-Opened [issue #49](https://github.com/ishan5ain/tuiweave/issues/49) to investigate
+Opened [issue #49](https://github.com/rigerc/tuiweave/issues/49) to investigate
 reducing ANSI writer allocation churn, preferably through an upstream fix and
 reviewed dependency update. Its proposed success targets on the documented
 baseline are <=25 ms median final render (half the illustrative update interval),

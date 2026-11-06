@@ -37,7 +37,7 @@ Run the example with `go run ./examples/banner`.
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/banner)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/banner)
 - [Banner recipe](../AGENTS.md#banner)
 - [Figlet-go module](https://github.com/lsferreira42/figlet-go)
 

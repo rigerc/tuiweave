@@ -39,7 +39,7 @@ plus the [multiselect recipe](../AGENTS.md#multiselect).
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/multiselect)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/multiselect)
 - [Inline example](../examples/inline)
 - [Form example](../examples/form)
 - [Multiselect recipe](../AGENTS.md#multiselect)

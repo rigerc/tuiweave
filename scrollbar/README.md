@@ -23,5 +23,5 @@ See the [table example](../examples/table) and [scrollbar recipe](../AGENTS.md#s
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/scrollbar)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/scrollbar)
 - [Scrollbar recipe](../AGENTS.md#scrollbar)

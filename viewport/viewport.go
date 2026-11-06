@@ -11,8 +11,8 @@ import (
 	tea "charm.land/bubbletea/v2"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/mouse"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/mouse"
 )
 
 // Model is a viewport component. Create one with New.

@@ -12,7 +12,7 @@ stable v1 release. It is a decision aid, not a release schedule.
 - [x] Keep `layout.Rect` as a standard-library alias and own the
       `layout.Constraint` representation while preserving its constructor API;
       see [COMPATIBILITY.md](COMPATIBILITY.md#layout-compatibility) and
-      [Issue #28](https://github.com/ishan5ain/tuiweave/issues/28).
+      [Issue #28](https://github.com/rigerc/tuiweave/issues/28).
 - [x] Document the deprecation, migration, and removal policy for v1; see
       [COMPATIBILITY.md](COMPATIBILITY.md#release-and-migration-policy).
 
@@ -21,9 +21,9 @@ stable v1 release. It is a decision aid, not a release schedule.
 - [x] Verify every bounded component's `SetSize` and exact-width/height behavior
       across narrow, empty, focused, and blurred states.
 - [x] Complete the cell-width expectations for the audited text-bearing
-      components; see [Issue #10](https://github.com/ishan5ain/tuiweave/issues/10).
+      components; see [Issue #10](https://github.com/rigerc/tuiweave/issues/10).
 - [ ] Define IME expectations separately with application evidence; see
-      [Issue #19](https://github.com/ishan5ain/tuiweave/issues/19).
+      [Issue #19](https://github.com/rigerc/tuiweave/issues/19).
 - [x] Define the accessibility semantics exposed by inspection and document
       what remains application-owned.
 - [x] Keep application state, visibility, routing, and side effects outside
@@ -33,7 +33,7 @@ stable v1 release. It is a decision aid, not a release schedule.
 
 - [x] Maintain paired plain-text and role-aware goldens for representative
       theme-owned rendering behavior, with documented exclusions for styling
-      pass-through utilities; see [Issue #31](https://github.com/ishan5ain/tuiweave/issues/31).
+      pass-through utilities; see [Issue #31](https://github.com/rigerc/tuiweave/issues/31).
 - [x] Cover important transitions with named scenarios, including emitted
       commands and explicitly delivered command results.
 - [x] Demonstrate semantic inspection and action routing end to end in a small,
@@ -48,6 +48,6 @@ stable v1 release. It is a decision aid, not a release schedule.
       Bubbles and framework-style alternatives.
 - [x] Convert active roadmap areas into scoped, evidence-driven issues with
       acceptance tests, non-goals, and affected applications; see
-      [Issue #19](https://github.com/ishan5ain/tuiweave/issues/19),
-      [Issue #33](https://github.com/ishan5ain/tuiweave/issues/33), and
+      [Issue #19](https://github.com/rigerc/tuiweave/issues/19),
+      [Issue #33](https://github.com/rigerc/tuiweave/issues/33), and
       [ROADMAP.md](ROADMAP.md).

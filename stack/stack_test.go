@@ -6,9 +6,9 @@ import (
 
 	lipgloss "charm.land/lipgloss/v2"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/frame"
-	"github.com/ishan5ain/tuiweave/snaptest"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/frame"
+	"github.com/rigerc/tuiweave/snaptest"
 )
 
 func TestVertical(t *testing.T) {

@@ -22,5 +22,5 @@ See the [statusbar example](../examples/statusbar) and [recipe](../AGENTS.md#sta
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/statusbar)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/statusbar)
 - [Statusbar recipe](../AGENTS.md#statusbar)

@@ -26,6 +26,6 @@ See the [autocomplete example](../examples/autocomplete) and [recipe](../AGENTS.
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/autocomplete)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/autocomplete)
 - [Autocomplete example](../examples/autocomplete)
 - [Autocomplete recipe](../AGENTS.md#autocomplete)

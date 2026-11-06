@@ -11,14 +11,14 @@ import (
 	tea "charm.land/bubbletea/v2"
 	lipgloss "charm.land/lipgloss/v2"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/action"
-	"github.com/ishan5ain/tuiweave/focus"
-	"github.com/ishan5ain/tuiweave/menu"
-	"github.com/ishan5ain/tuiweave/multiselect"
-	"github.com/ishan5ain/tuiweave/reorder"
-	"github.com/ishan5ain/tuiweave/textinput"
-	"github.com/ishan5ain/tuiweave/toggle"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/action"
+	"github.com/rigerc/tuiweave/focus"
+	"github.com/rigerc/tuiweave/menu"
+	"github.com/rigerc/tuiweave/multiselect"
+	"github.com/rigerc/tuiweave/reorder"
+	"github.com/rigerc/tuiweave/textinput"
+	"github.com/rigerc/tuiweave/toggle"
 )
 
 type model struct {

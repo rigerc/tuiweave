@@ -1,8 +1,8 @@
 package diffview
 
 import (
-	"github.com/ishan5ain/tuiweave/inspect"
-	"github.com/ishan5ain/tuiweave/viewport"
+	"github.com/rigerc/tuiweave/inspect"
+	"github.com/rigerc/tuiweave/viewport"
 )
 
 const (

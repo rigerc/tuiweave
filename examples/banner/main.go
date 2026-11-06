@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ishan5ain/tuiweave/banner"
+	"github.com/rigerc/tuiweave/banner"
 )
 
 func render() (string, error) {

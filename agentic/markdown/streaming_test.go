@@ -8,10 +8,10 @@ import (
 	"unicode/utf8"
 
 	"github.com/charmbracelet/x/ansi"
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/agentic/chat"
-	"github.com/ishan5ain/tuiweave/agentic/markdown"
-	"github.com/ishan5ain/tuiweave/snaptest"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/agentic/chat"
+	"github.com/rigerc/tuiweave/agentic/markdown"
+	"github.com/rigerc/tuiweave/snaptest"
 )
 
 //go:embed testdata/streaming/*.md

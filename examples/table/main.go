@@ -16,13 +16,13 @@ import (
 	tea "charm.land/bubbletea/v2"
 	lipgloss "charm.land/lipgloss/v2"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/agentic/diffview"
-	"github.com/ishan5ain/tuiweave/focus"
-	"github.com/ishan5ain/tuiweave/layout"
-	"github.com/ishan5ain/tuiweave/scrollbar"
-	"github.com/ishan5ain/tuiweave/statusbar"
-	"github.com/ishan5ain/tuiweave/table"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/agentic/diffview"
+	"github.com/rigerc/tuiweave/focus"
+	"github.com/rigerc/tuiweave/layout"
+	"github.com/rigerc/tuiweave/scrollbar"
+	"github.com/rigerc/tuiweave/statusbar"
+	"github.com/rigerc/tuiweave/table"
 )
 
 type change struct {

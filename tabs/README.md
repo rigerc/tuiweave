@@ -37,6 +37,6 @@ See the [frame example](../examples/frame) and [tabs recipe](../AGENTS.md#tabs).
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/tabs)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/tabs)
 - [Frame example](../examples/frame)
 - [Tabs recipe](../AGENTS.md#tabs)

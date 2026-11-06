@@ -156,5 +156,5 @@ broad regeneration to silence a snapshot failure you do not understand.
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/snaptest)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/snaptest)
 - [Testing a component](../AGENTS.md#testing-a-component)

@@ -20,5 +20,5 @@ See the [operations example](../examples/ops) and [modal routing conventions](..
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/overlay)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/overlay)
 - [Modal routing](../AGENT-CATALOG.md#canonical-wiring)

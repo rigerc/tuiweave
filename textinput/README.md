@@ -37,6 +37,6 @@ layout after a pasted edit just as after a typed edit.
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/textinput)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/textinput)
 - [Browser example](../examples/browser)
 - [Text input recipe](../AGENTS.md#textinput--textarea)

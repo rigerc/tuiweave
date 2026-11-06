@@ -18,6 +18,12 @@ before v1, a minor release may contain breaking changes when clearly called out.
 
 ### Changed
 
+- **Breaking (fork module path):** this fork now declares
+  `github.com/rigerc/tuiweave`. Consumers must update their imports and require
+  this module directly instead of replacing `github.com/ishan5ain/tuiweave`.
+  This allows downstream commands to support versioned `go install` without
+  a replacement directive. Component APIs, rendering, and the Go floor are unchanged.
+
 - Form-like components now use a Huh-inspired field grammar: a thick left
   focus rail, optional `Title`, `Description`, and `Help` rows, `> ` option
   selectors, accent selected text, and action chips. Applies to `textinput`,
@@ -169,6 +175,6 @@ and runnable general-purpose and agentic examples.
 Known limitations: pre-v1 API evolution, incomplete IME behavior, Bubble Tea v2
 coupling, and internal reliance on a pre-v1 Ultraviolet dependency.
 
-[Unreleased]: https://github.com/ishan5ain/tuiweave/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/ishan5ain/tuiweave/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/ishan5ain/tuiweave/releases/tag/v0.1.0
+[Unreleased]: https://github.com/rigerc/tuiweave/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/rigerc/tuiweave/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/rigerc/tuiweave/releases/tag/v0.1.0

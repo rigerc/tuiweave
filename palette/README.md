@@ -25,7 +25,7 @@ See the [palette example](../examples/palette) and [palette recipe](../AGENTS.md
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/palette)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/palette)
 - [Palette example](../examples/palette)
 - [Palette recipe](../AGENTS.md#palette)
 

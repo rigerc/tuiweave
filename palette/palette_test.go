@@ -8,9 +8,9 @@ import (
 	lipgloss "charm.land/lipgloss/v2"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/inspect"
-	"github.com/ishan5ain/tuiweave/snaptest"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/inspect"
+	"github.com/rigerc/tuiweave/snaptest"
 )
 
 func newTestPalette(width, height int) Model {

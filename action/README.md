@@ -21,5 +21,5 @@ See the [frame example](../examples/frame) and the [action recipe](../AGENTS.md#
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/action)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/action)
 - [Agent catalog](../AGENT-CATALOG.md#package-map)

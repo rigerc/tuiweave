@@ -157,7 +157,7 @@ material cost for long structured streams: the 32 KiB fixture takes about
 56 ms for a final render at width 80 on the documented machine. Profiles point
 to styled ANSI writer allocation churn, with Markdown parsing a small sampled
 fraction. Production rendering and the seam remain unchanged;
-[Issue #49](https://github.com/ishan5ain/tuiweave/issues/49) scopes a compatible
+[Issue #49](https://github.com/rigerc/tuiweave/issues/49) scopes a compatible
 writer-path optimization with concrete workload targets. Re-measure that path
 before considering an incremental parser or renderer replacement.
 The [writer batching follow-up](agentic/markdown/WRITER-BATCHING.md) adopts
@@ -362,7 +362,7 @@ a way to catch violations (D9→D10). Each choice load-bears for the others.
 ## 3. Package architecture
 
 ```
-github.com/ishan5ain/tuiweave
+github.com/rigerc/tuiweave
 ├── tuiweave            (root) Theme roles and built-in preset catalog
 ├── layout/          facade over ultraviolet/layout: Rect, constraints,
 │                    Vertical/Horizontal, Sizable, Apply
@@ -541,7 +541,7 @@ The architectural constraints behind the compatibility policy are:
 
 ## 7. Open questions
 
-The canonical module is `github.com/ishan5ain/tuiweave`. The project is
+The canonical module is `github.com/rigerc/tuiweave`. The project is
 published under the MIT License; released module paths and versions are
 immutable.
 - **Text editing depth:** `textarea` now has an initial tier-2 slice for
@@ -563,7 +563,7 @@ immutable.
 - **Streaming Markdown performance:** the
   [Issue #33 investigation](agentic/markdown/STREAMING-PERFORMANCE.md) keeps
   full-document rendering and scopes ANSI writer allocation improvements in
-  [Issue #49](https://github.com/ishan5ain/tuiweave/issues/49). Preserve output
+  [Issue #49](https://github.com/rigerc/tuiweave/issues/49). Preserve output
   and the renderer seam, meet the documented workload targets, and re-profile
   before considering a broader streaming design.
 - **Inspection/action schema hardening:** evolve the initial data-only schema

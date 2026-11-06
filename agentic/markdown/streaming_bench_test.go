@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/agentic/chat"
-	"github.com/ishan5ain/tuiweave/agentic/markdown"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/agentic/chat"
+	"github.com/rigerc/tuiweave/agentic/markdown"
 )
 
 var streamingResult string

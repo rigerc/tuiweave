@@ -18,17 +18,17 @@ import (
 	tea "charm.land/bubbletea/v2"
 	lipgloss "charm.land/lipgloss/v2"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/agentic/chat"
-	"github.com/ishan5ain/tuiweave/agentic/diffview"
-	"github.com/ishan5ain/tuiweave/agentic/markdown"
-	"github.com/ishan5ain/tuiweave/agentic/permission"
-	"github.com/ishan5ain/tuiweave/agentic/toolcall"
-	"github.com/ishan5ain/tuiweave/agentic/usagebar"
-	"github.com/ishan5ain/tuiweave/focus"
-	"github.com/ishan5ain/tuiweave/layout"
-	"github.com/ishan5ain/tuiweave/overlay"
-	"github.com/ishan5ain/tuiweave/textarea"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/agentic/chat"
+	"github.com/rigerc/tuiweave/agentic/diffview"
+	"github.com/rigerc/tuiweave/agentic/markdown"
+	"github.com/rigerc/tuiweave/agentic/permission"
+	"github.com/rigerc/tuiweave/agentic/toolcall"
+	"github.com/rigerc/tuiweave/agentic/usagebar"
+	"github.com/rigerc/tuiweave/focus"
+	"github.com/rigerc/tuiweave/layout"
+	"github.com/rigerc/tuiweave/overlay"
+	"github.com/rigerc/tuiweave/textarea"
 )
 
 const responsePart1 = `Good question! The **layout** package splits terminal space with
@@ -181,7 +181,7 @@ func (m *model) advance() tea.Cmd {
 			return tick()
 		}
 		m.tool.SetStatus(toolcall.StatusSuccess)
-		m.tool.AppendOutput("ok  \tgithub.com/ishan5ain/tuiweave/layout\t0.3s\nok  \tgithub.com/ishan5ain/tuiweave/snaptest\t0.2s")
+		m.tool.AppendOutput("ok  \tgithub.com/rigerc/tuiweave/layout\t0.3s\nok  \tgithub.com/rigerc/tuiweave/snaptest\t0.2s")
 		m.tool.Expanded = true
 		theme, diff := m.theme, sampleDiff
 		// part 2 streams into a fresh assistant cell so it appears after the

@@ -13,8 +13,8 @@ import (
 	tea "charm.land/bubbletea/v2"
 	lipgloss "charm.land/lipgloss/v2"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/layout"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/layout"
 )
 
 var lastID atomic.Int64

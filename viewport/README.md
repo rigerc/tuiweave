@@ -22,6 +22,6 @@ See the [browser example](../examples/browser) and [mouse conventions](../AGENTS
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/viewport)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/viewport)
 - [Browser example](../examples/browser)
 - [Mouse input](../AGENTS.md#mouse-input)

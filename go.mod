@@ -1,4 +1,4 @@
-module github.com/ishan5ain/tuiweave
+module github.com/rigerc/tuiweave
 
 go 1.26.0
 

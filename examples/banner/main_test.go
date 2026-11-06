@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	"github.com/ishan5ain/tuiweave/snaptest"
+	"github.com/rigerc/tuiweave/snaptest"
 )
 
 func TestBannerExampleGolden(t *testing.T) {

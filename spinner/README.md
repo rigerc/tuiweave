@@ -24,5 +24,5 @@ See the [demo](../examples/demo) and [spinner recipe](../AGENTS.md#spinner).
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/spinner)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/spinner)
 - [Spinner recipe](../AGENTS.md#spinner)

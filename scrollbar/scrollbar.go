@@ -17,7 +17,7 @@ import (
 
 	lipgloss "charm.land/lipgloss/v2"
 
-	"github.com/ishan5ain/tuiweave"
+	"github.com/rigerc/tuiweave"
 )
 
 // Scrollable is implemented by tuiweave's scrolling components (viewport, list,

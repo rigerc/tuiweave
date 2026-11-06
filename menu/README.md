@@ -25,6 +25,6 @@ See the [frame example](../examples/frame) and [menu recipe](../AGENTS.md#menu).
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/menu)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/menu)
 - [Frame example](../examples/frame)
 - [Menu recipe](../AGENTS.md#menu)

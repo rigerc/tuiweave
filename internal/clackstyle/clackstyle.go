@@ -14,7 +14,7 @@ import (
 	lipgloss "charm.land/lipgloss/v2"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/ishan5ain/tuiweave"
+	"github.com/rigerc/tuiweave"
 )
 
 // PrefixWidth is the standard width of the bar, gutter, and content start.

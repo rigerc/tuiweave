@@ -9,7 +9,7 @@ import (
 	lipgloss "charm.land/lipgloss/v2"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/ishan5ain/tuiweave"
+	"github.com/rigerc/tuiweave"
 )
 
 // Column describes one table column. Width 0 marks a flexible column:

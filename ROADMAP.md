@@ -4,9 +4,9 @@ tuiweave is working toward a stable v1 component vocabulary. The current
 investigation and performance follow-up have scoped evidence requirements:
 
 - define and validate input-method handling from real terminal and application
-  evidence in [Issue #19](https://github.com/ishan5ain/tuiweave/issues/19);
+  evidence in [Issue #19](https://github.com/rigerc/tuiweave/issues/19);
 - reduce streaming Markdown ANSI writer allocation churn in
-  [Issue #49](https://github.com/ishan5ain/tuiweave/issues/49). The
+  [Issue #49](https://github.com/rigerc/tuiweave/issues/49). The
   [Issue #33 investigation](agentic/markdown/STREAMING-PERFORMANCE.md) found
   material cost for long structured responses, with output/writer allocation
   dominating parsing. Keep full-document rendering until a measured, compatible

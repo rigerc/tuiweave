@@ -17,12 +17,12 @@ import (
 	tea "charm.land/bubbletea/v2"
 	lipgloss "charm.land/lipgloss/v2"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/autocomplete"
-	"github.com/ishan5ain/tuiweave/frame"
-	"github.com/ishan5ain/tuiweave/layout"
-	"github.com/ishan5ain/tuiweave/statusbar"
-	"github.com/ishan5ain/tuiweave/textarea"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/autocomplete"
+	"github.com/rigerc/tuiweave/frame"
+	"github.com/rigerc/tuiweave/layout"
+	"github.com/rigerc/tuiweave/statusbar"
+	"github.com/rigerc/tuiweave/textarea"
 )
 
 type model struct {

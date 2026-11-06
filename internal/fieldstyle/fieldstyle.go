@@ -14,7 +14,7 @@ import (
 	lipgloss "charm.land/lipgloss/v2"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/ishan5ain/tuiweave"
+	"github.com/rigerc/tuiweave"
 )
 
 // RailWidth is the standard number of cells the focus rail and its inset

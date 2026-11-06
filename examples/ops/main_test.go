@@ -5,13 +5,13 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/button"
-	"github.com/ishan5ain/tuiweave/dialog"
-	"github.com/ishan5ain/tuiweave/inspect"
-	"github.com/ishan5ain/tuiweave/palette"
-	"github.com/ishan5ain/tuiweave/snaptest"
-	"github.com/ishan5ain/tuiweave/toggle"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/button"
+	"github.com/rigerc/tuiweave/dialog"
+	"github.com/rigerc/tuiweave/inspect"
+	"github.com/rigerc/tuiweave/palette"
+	"github.com/rigerc/tuiweave/snaptest"
+	"github.com/rigerc/tuiweave/toggle"
 )
 
 func sized(t *testing.T) model {

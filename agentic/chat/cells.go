@@ -6,8 +6,8 @@ import (
 	lipgloss "charm.land/lipgloss/v2"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/agentic/markdown"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/agentic/markdown"
 )
 
 func fitHeader(style lipgloss.Style, text string, width int) string {

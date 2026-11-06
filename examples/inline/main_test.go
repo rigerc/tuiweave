@@ -5,7 +5,7 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 
-	"github.com/ishan5ain/tuiweave/snaptest"
+	"github.com/rigerc/tuiweave/snaptest"
 )
 
 func update(t *testing.T, m model, msg tea.Msg) (model, tea.Cmd) {

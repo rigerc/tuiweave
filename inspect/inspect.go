@@ -8,7 +8,7 @@ import (
 	"bytes"
 	"encoding/json"
 
-	"github.com/ishan5ain/tuiweave/layout"
+	"github.com/rigerc/tuiweave/layout"
 )
 
 // Bounds is a component's terminal rectangle in cell coordinates.

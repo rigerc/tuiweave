@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ishan5ain/tuiweave/snaptest"
+	"github.com/rigerc/tuiweave/snaptest"
 )
 
 func TestRenderPlain(t *testing.T) {

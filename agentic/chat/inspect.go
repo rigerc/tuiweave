@@ -5,7 +5,7 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 
-	"github.com/ishan5ain/tuiweave/inspect"
+	"github.com/rigerc/tuiweave/inspect"
 )
 
 const (

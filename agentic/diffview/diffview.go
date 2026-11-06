@@ -12,8 +12,8 @@ import (
 	lipgloss "charm.land/lipgloss/v2"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/viewport"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/viewport"
 )
 
 type styles struct {

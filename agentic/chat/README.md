@@ -26,6 +26,6 @@ See the [chat example](../../examples/chat) and [chat recipe](../../AGENTS.md#vi
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/agentic/chat)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/agentic/chat)
 - [Chat example](../../examples/chat)
 - [Scrolling conventions](../../AGENTS.md#viewport--list--table-scrolling-components)

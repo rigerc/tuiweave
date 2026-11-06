@@ -15,19 +15,19 @@ import (
 	tea "charm.land/bubbletea/v2"
 	lipgloss "charm.land/lipgloss/v2"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/focus"
-	"github.com/ishan5ain/tuiweave/frame"
-	"github.com/ishan5ain/tuiweave/inspect"
-	"github.com/ishan5ain/tuiweave/layout"
-	"github.com/ishan5ain/tuiweave/line"
-	"github.com/ishan5ain/tuiweave/list"
-	"github.com/ishan5ain/tuiweave/scrollbar"
-	"github.com/ishan5ain/tuiweave/stack"
-	"github.com/ishan5ain/tuiweave/statusbar"
-	"github.com/ishan5ain/tuiweave/tabs"
-	"github.com/ishan5ain/tuiweave/textinput"
-	"github.com/ishan5ain/tuiweave/viewport"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/focus"
+	"github.com/rigerc/tuiweave/frame"
+	"github.com/rigerc/tuiweave/inspect"
+	"github.com/rigerc/tuiweave/layout"
+	"github.com/rigerc/tuiweave/line"
+	"github.com/rigerc/tuiweave/list"
+	"github.com/rigerc/tuiweave/scrollbar"
+	"github.com/rigerc/tuiweave/stack"
+	"github.com/rigerc/tuiweave/statusbar"
+	"github.com/rigerc/tuiweave/tabs"
+	"github.com/rigerc/tuiweave/textinput"
+	"github.com/rigerc/tuiweave/viewport"
 )
 
 type fileEntry struct {
@@ -80,7 +80,7 @@ func entriesFor(tabID string) []fileEntry {
 		return []fileEntry{
 			{path: "DESIGN.md", content: "# Design\n\nThe core remains domain-neutral.\n\nComposition stays explicit so applications own routing and state."},
 			{path: "ROADMAP.md", content: "# Roadmap\n\nHarden the public component vocabulary through real application use."},
-			{path: "go.mod", content: "module github.com/ishan5ain/tuiweave\n\ngo 1.23\n\nrequire charm.land/bubbletea/v2"},
+			{path: "go.mod", content: "module github.com/rigerc/tuiweave\n\ngo 1.23\n\nrequire charm.land/bubbletea/v2"},
 		}
 	default:
 		return []fileEntry{

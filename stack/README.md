@@ -22,5 +22,5 @@ See the [frame example](../examples/frame) and [stack recipe](../AGENTS.md#stack
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/stack)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/stack)
 - [Stack recipe](../AGENTS.md#stack)

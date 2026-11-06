@@ -8,9 +8,9 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/layout"
-	"github.com/ishan5ain/tuiweave/snaptest"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/layout"
+	"github.com/rigerc/tuiweave/snaptest"
 )
 
 func huhItems() []Item {

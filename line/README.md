@@ -21,5 +21,5 @@ See the [frame example](../examples/frame) and [line recipe](../AGENTS.md#line).
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/line)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/line)
 - [Line recipe](../AGENTS.md#line)

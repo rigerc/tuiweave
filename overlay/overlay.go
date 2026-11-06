@@ -10,7 +10,7 @@ import (
 	uv "github.com/charmbracelet/ultraviolet"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/ishan5ain/tuiweave/internal/grapheme"
+	"github.com/rigerc/tuiweave/internal/grapheme"
 )
 
 // Place draws over on top of base with over's top-left corner at column x,

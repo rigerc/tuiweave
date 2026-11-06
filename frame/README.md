@@ -35,5 +35,5 @@ See the [frame example](../examples/frame) and [frame recipe](../AGENTS.md#frame
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/frame)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/frame)
 - [Frame recipe](../AGENTS.md#frame)

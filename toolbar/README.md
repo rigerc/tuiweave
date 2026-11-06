@@ -25,6 +25,6 @@ See the [frame example](../examples/frame) and [toolbar recipe](../AGENTS.md#too
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/toolbar)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/toolbar)
 - [Frame example](../examples/frame)
 - [Toolbar recipe](../AGENTS.md#toolbar)

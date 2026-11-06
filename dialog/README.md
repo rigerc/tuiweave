@@ -25,6 +25,6 @@ See the [operations example](../examples/ops) and [modal compatibility notes](..
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/dialog)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/dialog)
 - [Operations example](../examples/ops)
 - [Modal compatibility notes](../AGENT-CATALOG.md#api-compatibility-notes)

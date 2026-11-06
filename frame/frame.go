@@ -9,8 +9,8 @@ import (
 	lipgloss "charm.land/lipgloss/v2"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/layout"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/layout"
 )
 
 // BadgeKind selects the semantic roles used by Badge.

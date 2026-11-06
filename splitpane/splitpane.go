@@ -8,8 +8,8 @@ import (
 
 	lipgloss "charm.land/lipgloss/v2"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/layout"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/layout"
 )
 
 // View renders one pane for the width supplied by Horizontal.

@@ -21,5 +21,5 @@ See the [frame example](../examples/frame) and [splitpane recipe](../AGENTS.md#s
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/splitpane)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/splitpane)
 - [Splitpane recipe](../AGENTS.md#splitpane)

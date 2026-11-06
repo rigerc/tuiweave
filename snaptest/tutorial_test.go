@@ -5,9 +5,9 @@ import (
 	"testing"
 
 	tea "charm.land/bubbletea/v2"
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/snaptest"
-	"github.com/ishan5ain/tuiweave/toggle"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/snaptest"
+	"github.com/rigerc/tuiweave/toggle"
 )
 
 const tutorialToggleID = "auto-refresh"

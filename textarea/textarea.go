@@ -27,9 +27,9 @@ import (
 	lipgloss "charm.land/lipgloss/v2"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/internal/fieldstyle"
-	"github.com/ishan5ain/tuiweave/internal/paste"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/internal/fieldstyle"
+	"github.com/rigerc/tuiweave/internal/paste"
 )
 
 // Model is a textarea component. Create one with New.

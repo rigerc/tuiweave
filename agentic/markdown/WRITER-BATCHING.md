@@ -1,8 +1,8 @@
 # ANSI writer batching experiment
 
-Follow-up to [issue #49](https://github.com/ishan5ain/tuiweave/issues/49) and the
+Follow-up to [issue #49](https://github.com/rigerc/tuiweave/issues/49) and the
 [streaming investigation](STREAMING-PERFORMANCE.md), landed in
-[PR #50](https://github.com/ishan5ain/tuiweave/pull/50).
+[PR #50](https://github.com/rigerc/tuiweave/pull/50).
 
 ## Task contract
 
@@ -282,7 +282,7 @@ in this matrix. The pin is an unreleased upstream commit, not a tagged release.
 Revisit the pin when a v2.0.7-or-later tag contains both writer fixes and
 preserves the Go 1.26.0 floor; adopt it after the same compatibility checks.
 
-The broader [issue #49](https://github.com/ishan5ain/tuiweave/issues/49) remains
+The broader [issue #49](https://github.com/rigerc/tuiweave/issues/49) remains
 open. Against its illustrative workload-specific targets:
 
 | Target | Measured candidate | Status |

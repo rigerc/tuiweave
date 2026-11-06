@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/ishan5ain/tuiweave/layout"
+	"github.com/rigerc/tuiweave/layout"
 )
 
 func TestRectUsesStandardLibraryIdentity(t *testing.T) {
@@ -53,7 +53,7 @@ func TestConstraintIdentityIsOwnedByLayout(t *testing.T) {
 	}
 
 	for _, c := range constraints {
-		if got, want := reflect.TypeOf(c).PkgPath(), "github.com/ishan5ain/tuiweave/layout"; got != want {
+		if got, want := reflect.TypeOf(c).PkgPath(), "github.com/rigerc/tuiweave/layout"; got != want {
 			t.Errorf("constraint type package = %q, want %q", got, want)
 		}
 	}

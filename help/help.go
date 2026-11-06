@@ -10,8 +10,8 @@ import (
 	lipgloss "charm.land/lipgloss/v2"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/layout"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/layout"
 )
 
 // Binding is one key hint.

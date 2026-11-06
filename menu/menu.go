@@ -17,12 +17,12 @@ import (
 	lipgloss "charm.land/lipgloss/v2"
 	"github.com/charmbracelet/x/ansi"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/action"
-	"github.com/ishan5ain/tuiweave/inspect"
-	"github.com/ishan5ain/tuiweave/internal/clackstyle"
-	"github.com/ishan5ain/tuiweave/internal/fieldstyle"
-	"github.com/ishan5ain/tuiweave/layout"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/action"
+	"github.com/rigerc/tuiweave/inspect"
+	"github.com/rigerc/tuiweave/internal/clackstyle"
+	"github.com/rigerc/tuiweave/internal/fieldstyle"
+	"github.com/rigerc/tuiweave/layout"
 )
 
 const (

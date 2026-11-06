@@ -21,5 +21,5 @@ See the [operations example](../examples/ops) and [focus recipe](../AGENTS.md#fo
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/focus)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/focus)
 - [Focus recipe](../AGENTS.md#focus-tab-order)

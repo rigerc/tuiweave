@@ -25,6 +25,6 @@ See the [chat example](../../examples/chat) and [modal compatibility notes](../.
 
 ## Related documentation
 
-- [API reference](https://pkg.go.dev/github.com/ishan5ain/tuiweave/agentic/permission)
+- [API reference](https://pkg.go.dev/github.com/rigerc/tuiweave/agentic/permission)
 - [Chat example](../../examples/chat)
 - [Modal compatibility notes](../../AGENT-CATALOG.md#api-compatibility-notes)

@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ishan5ain/tuiweave"
-	"github.com/ishan5ain/tuiweave/layout"
-	"github.com/ishan5ain/tuiweave/snaptest"
+	"github.com/rigerc/tuiweave"
+	"github.com/rigerc/tuiweave/layout"
+	"github.com/rigerc/tuiweave/snaptest"
 )
 
 func TestSpinnerAdvancesOnOwnTick(t *testing.T) {
